@@ -1,0 +1,295 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.api\\controllers\\tariffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|solutionrelative:pilotmaster.api\\controllers\\tariffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.application\\interfaces\\tariffcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|solutionrelative:pilotmaster.application\\interfaces\\tariffcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.api\\controllers\\schedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|solutionrelative:pilotmaster.api\\controllers\\schedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|solutionrelative:pilotmaster.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.api\\pilotmaster.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|solutionrelative:pilotmaster.api\\pilotmaster.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D0F8E6C-3785-4124-AFD5-77D677B6F43D}|PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.infrastructure\\pilotmaster.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2D0F8E6C-3785-4124-AFD5-77D677B6F43D}|PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj|solutionrelative:pilotmaster.infrastructure\\pilotmaster.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.application\\interfaces\\scheduleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|solutionrelative:pilotmaster.application\\interfaces\\scheduleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.application\\interfaces\\ischeduleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|solutionrelative:pilotmaster.application\\interfaces\\ischeduleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.application\\interfaces\\itariffcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|solutionrelative:pilotmaster.application\\interfaces\\itariffcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D0F8E6C-3785-4124-AFD5-77D677B6F43D}|PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.infrastructure\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D0F8E6C-3785-4124-AFD5-77D677B6F43D}|PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj|solutionrelative:pilotmaster.infrastructure\\dbseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D0F8E6C-3785-4124-AFD5-77D677B6F43D}|PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.infrastructure\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D0F8E6C-3785-4124-AFD5-77D677B6F43D}|PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj|solutionrelative:pilotmaster.infrastructure\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21A5A1CB-DF5E-43DB-A55C-D4578F330FCD}|PilotMaster.Domain\\PilotMaster.Domain.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.domain\\entities\\pilotschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21A5A1CB-DF5E-43DB-A55C-D4578F330FCD}|PilotMaster.Domain\\PilotMaster.Domain.csproj|solutionrelative:pilotmaster.domain\\entities\\pilotschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21A5A1CB-DF5E-43DB-A55C-D4578F330FCD}|PilotMaster.Domain\\PilotMaster.Domain.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.domain\\entities\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21A5A1CB-DF5E-43DB-A55C-D4578F330FCD}|PilotMaster.Domain\\PilotMaster.Domain.csproj|solutionrelative:pilotmaster.domain\\entities\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2E1D5833-0679-4BC9-BBEA-78B2A069CCD8}|PilotMaster.api\\PilotMaster.Api.csproj|solutionrelative:pilotmaster.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D27611F1-24CC-44CE-BD05-B9ACC98F4A43}|Pilotmaster-core\\Pilotmaster-core.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster-core\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D27611F1-24CC-44CE-BD05-B9ACC98F4A43}|Pilotmaster-core\\Pilotmaster-core.csproj|solutionrelative:pilotmaster-core\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|c:\\users\\user\\source\\repos\\pilotmaster-core\\pilotmaster.application\\pilotmaster.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{6F3DD1D4-65F6-43B4-9FFF-9EB6B102AEF1}|PilotMaster.Application\\PilotMaster.Application.csproj|solutionrelative:pilotmaster.application\\pilotmaster.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ScheduleController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Api\\Controllers\\ScheduleController.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Api\\Controllers\\ScheduleController.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Api\\Controllers\\ScheduleController.cs",
+              "RelativeToolTip": "PilotMaster.Api\\Controllers\\ScheduleController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:36:37.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TariffController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Api\\Controllers\\TariffController.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Api\\Controllers\\TariffController.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Api\\Controllers\\TariffController.cs*",
+              "RelativeToolTip": "PilotMaster.Api\\Controllers\\TariffController.cs*",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAAC4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:35:31.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PilotMaster.Infrastructure.csproj",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
+              "RelativeToolTip": "PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-26T14:33:22.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PilotMaster.Api.csproj",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.api\\PilotMaster.Api.csproj",
+              "RelativeDocumentMoniker": "PilotMaster.api\\PilotMaster.Api.csproj",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.api\\PilotMaster.Api.csproj",
+              "RelativeToolTip": "PilotMaster.api\\PilotMaster.Api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-26T14:32:55.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ScheduleService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\Interfaces\\ScheduleService.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Application\\Interfaces\\ScheduleService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\Interfaces\\ScheduleService.cs",
+              "RelativeToolTip": "PilotMaster.Application\\Interfaces\\ScheduleService.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAYwDMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:34:37.189Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TariffCalculator.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\Interfaces\\TariffCalculator.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Application\\Interfaces\\TariffCalculator.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\Interfaces\\TariffCalculator.cs",
+              "RelativeToolTip": "PilotMaster.Application\\Interfaces\\TariffCalculator.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAIAwwE8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:33:38.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Api\\Program.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Api\\Program.cs",
+              "RelativeToolTip": "PilotMaster.Api\\Program.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:20:44.26Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IScheduleService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\Interfaces\\IScheduleService.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Application\\Interfaces\\IScheduleService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\Interfaces\\IScheduleService.cs",
+              "RelativeToolTip": "PilotMaster.Application\\Interfaces\\IScheduleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:32:21.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ITariffCalculator.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\Interfaces\\ITariffCalculator.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Application\\Interfaces\\ITariffCalculator.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\Interfaces\\ITariffCalculator.cs",
+              "RelativeToolTip": "PilotMaster.Application\\Interfaces\\ITariffCalculator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:30:19.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DbSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\DbSeeder.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Infrastructure\\DbSeeder.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\DbSeeder.cs",
+              "RelativeToolTip": "PilotMaster.Infrastructure\\DbSeeder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:27:29.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Infrastructure\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\AppDbContext.cs",
+              "RelativeToolTip": "PilotMaster.Infrastructure\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:26:29.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PilotSchedule.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\Entities\\PilotSchedule.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Domain\\Entities\\PilotSchedule.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\Entities\\PilotSchedule.cs",
+              "RelativeToolTip": "PilotMaster.Domain\\Entities\\PilotSchedule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:24:07.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Ship.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\Entities\\Ship.cs",
+              "RelativeDocumentMoniker": "PilotMaster.Domain\\Entities\\Ship.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\Entities\\Ship.cs",
+              "RelativeToolTip": "PilotMaster.Domain\\Entities\\Ship.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T18:23:10.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "PilotMaster.Api\\appsettings.json",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Api\\appsettings.json",
+              "RelativeToolTip": "PilotMaster.Api\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-26T18:19:55.32Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\Pilotmaster-core\\appsettings.json",
+              "RelativeDocumentMoniker": "Pilotmaster-core\\appsettings.json",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\Pilotmaster-core\\appsettings.json",
+              "RelativeToolTip": "Pilotmaster-core\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-26T18:19:45.248Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PilotMaster.Application.csproj",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\PilotMaster.Application.csproj",
+              "RelativeDocumentMoniker": "PilotMaster.Application\\PilotMaster.Application.csproj",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\PilotMaster.Application.csproj",
+              "RelativeToolTip": "PilotMaster.Application\\PilotMaster.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-26T14:34:24.999Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
