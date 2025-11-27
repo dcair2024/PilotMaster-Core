@@ -9,3 +9,4 @@ C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Domain\obj\Debug\net8.0\
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Domain\obj\Debug\net8.0\refint\PilotMaster.Domain.dll
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Domain\obj\Debug\net8.0\PilotMaster.Domain.pdb
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Domain\obj\Debug\net8.0\ref\PilotMaster.Domain.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Domain\obj\Debug\net8.0\PilotMaster.Domain.sourcelink.json

@@ -1,47 +1,42 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PilotMaster.Application.Interfaces;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PilotMaster.Domain.Entities;
 
 namespace PilotMaster.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class TariffController : ControllerBase
 {
-    private readonly ITariffCalculator _calc;
-
-    public TariffController(ITariffCalculator calc)
-    {
-        _calc = calc;
-    }
     [HttpGet("calculate")]
-    public IActionResult Calculate(int grt, string area, decimal draft = 0, int age = 0, bool emergencial = false, bool extraordinaria = false, string deficiency = "None", bool requiresTug = false)
+    public IActionResult Calculate([FromQuery] Ship ship)
     {
-        try
-        {
-            var ship = new Ship
-            {
-                GRT = grt,
-                Draft = draft,
-                Age = age,
-                RequiresTug = requiresTug,
-                Deficiency = Enum.TryParse<OperationalDeficiency>(deficiency, true, out var d) ? d : OperationalDeficiency.None
-            };
+        decimal baseValue = ship.GRT * 0.15m;
 
-            var basePrice = _calc.CalculateBase(grt, area);
-            var final = _calc.CalculateFinal(ship, area, emergencial, extraordinaria);
+        if (ship.Age > 20)
+            baseValue *= 1.10m;
 
-            return Ok(new
-            {
-                grt,
-                area,
-                basePrice,
-                final
-            });
-        }
-        catch (Exception ex)
+        if (ship.RequiresTug)
+            baseValue += 500;
+
+        decimal deficiencyMultiplier = ship.Deficiency switch
         {
-            return BadRequest(new { error = ex.Message });
-        }
+            OperationalDeficiency.OutsideChannels_1_15 => 1.15m,
+            OperationalDeficiency.InChannels_1_45 => 1.45m,
+            OperationalDeficiency.PreventsPropulsion_2_0 => 2.0m,
+            _ => 1m
+        };
+
+        decimal final = baseValue * deficiencyMultiplier;
+
+        return Ok(new
+        {
+            Ship = ship.Name,
+            Base = baseValue,
+            Multiplier = deficiencyMultiplier,
+            Final = final
+        });
     }
 }
+

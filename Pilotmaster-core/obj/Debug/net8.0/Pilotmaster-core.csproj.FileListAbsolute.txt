@@ -33,3 +33,4 @@ C:\Users\User\source\repos\Pilotmaster-core\Pilotmaster-core\obj\Debug\net8.0\re
 C:\Users\User\source\repos\Pilotmaster-core\Pilotmaster-core\obj\Debug\net8.0\Pilotmaster-core.pdb
 C:\Users\User\source\repos\Pilotmaster-core\Pilotmaster-core\obj\Debug\net8.0\Pilotmaster-core.genruntimeconfig.cache
 C:\Users\User\source\repos\Pilotmaster-core\Pilotmaster-core\obj\Debug\net8.0\ref\Pilotmaster-core.dll
+C:\Users\User\source\repos\Pilotmaster-core\Pilotmaster-core\obj\Debug\net8.0\Pilotmaster-core.sourcelink.json

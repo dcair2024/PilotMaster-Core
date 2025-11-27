@@ -140,3 +140,12 @@ C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Api\bin\Debug\net8.0\Pil
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Api\bin\Debug\net8.0\PilotMaster.Domain.pdb
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Api\bin\Debug\net8.0\PilotMaster.Infrastructure.pdb
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\obj\Debug\net8.0\PilotMaster.Api.sourcelink.json
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

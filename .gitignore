@@ -1,0 +1,24 @@
+﻿echo .vs/ > .gitignore
+echo bin/ >> .gitignore
+echo obj/ >> .gitignore
+echo *.user >> .gitignore
+echo *.suo >> .gitignore
+
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build
+bin/
+obj/
+
+# Logs
+*.log
+
+# Node
+node_modules/
+dist/
+
+

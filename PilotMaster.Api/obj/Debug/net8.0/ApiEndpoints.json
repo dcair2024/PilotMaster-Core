@@ -1,23 +1,44 @@
 [
   {
+    "ContainingType": "PilotMaster.Api.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PilotMaster.Api.Controllers.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PilotMaster.Api.Controllers.AuthController",
+    "Method": "Refresh",
+    "RelativePath": "api/Auth/refresh",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PilotMaster.Api.Controllers.RefreshRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PilotMaster.Api.Controllers.ScheduleController",
     "Method": "Get",
     "RelativePath": "api/Schedule",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "date",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "area",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -30,7 +51,7 @@
     "Parameters": [
       {
         "Name": "schedule",
-        "Type": "PilotMaster.Domain.Entities.PilotSchedule",
+        "Type": "PilotMaster.Api.Controllers.PilotSchedule",
         "IsRequired": true
       }
     ],
@@ -48,11 +69,6 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
-      },
-      {
-        "Name": "cancelledBy",
-        "Type": "System.String",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -66,43 +82,38 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "grt",
+        "Name": "Id",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "area",
+        "Name": "Name",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "draft",
+        "Name": "GRT",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Draft",
         "Type": "System.Decimal",
         "IsRequired": false
       },
       {
-        "Name": "age",
+        "Name": "Age",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "emergencial",
+        "Name": "RequiresTug",
         "Type": "System.Boolean",
         "IsRequired": false
       },
       {
-        "Name": "extraordinaria",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "deficiency",
+        "Name": "Deficiency",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "requiresTug",
-        "Type": "System.Boolean",
         "IsRequired": false
       }
     ],

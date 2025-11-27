@@ -15,3 +15,4 @@ C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Infrastructure\obj\Debug
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Infrastructure\obj\Debug\net8.0\PilotMaster.Infrastructure.pdb
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Infrastructure\obj\Debug\net8.0\PilotMaster.Infrastructure.genruntimeconfig.cache
 C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Infrastructure\obj\Debug\net8.0\ref\PilotMaster.Infrastructure.dll
+C:\Users\User\source\repos\Pilotmaster-core\PilotMaster.Infrastructure\obj\Debug\net8.0\PilotMaster.Infrastructure.sourcelink.json

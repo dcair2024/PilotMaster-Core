@@ -1,47 +1,47 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PilotMaster.Application.Interfaces;
-using PilotMaster.Domain.Entities;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PilotMaster.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ScheduleController : ControllerBase
 {
-    private readonly IScheduleService _service;
-
-    public ScheduleController(IScheduleService service)
-    {
-        _service = service;
-    }
+    private static List<PilotSchedule> _db = new();
 
     [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] DateTime? date, [FromQuery] string? area)
-    {
-        var list = await _service.GetSchedules(date, area);
-        return Ok(list);
-    }
+    public IActionResult Get() => Ok(_db);
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] PilotSchedule schedule)
+    public IActionResult Create([FromBody] PilotSchedule schedule)
     {
-        try
-        {
-            var created = await _service.CreateSchedule(schedule);
-            return CreatedAtAction(nameof(Get), new { id = created.Id }, created);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
+        schedule.Id = _db.Count + 1;
+        schedule.Status = "Ativo";
+
+        _db.Add(schedule);
+
+        return Ok(schedule);
     }
 
     [HttpPut("{id}/cancel")]
-    public async Task<IActionResult> Cancel(int id, [FromQuery] string cancelledBy = "unknown")
+    public IActionResult Cancel(int id)
     {
-        var ok = await _service.CancelSchedule(id, cancelledBy);
-        if (!ok) return NotFound();
-        return NoContent();
+        var item = _db.FirstOrDefault(x => x.Id == id);
+        if (item == null) return NotFound();
+
+        item.Status = "Cancelado";
+
+        return Ok(item);
     }
 }
+
+public class PilotSchedule
+{
+    public int Id { get; set; }
+    public string ShipName { get; set; }
+    public DateTime ETA { get; set; }
+    public string Status { get; set; }
+}
+
 
