@@ -10,6 +10,9 @@ namespace PilotMaster.Api.Controllers;
 public class TariffController : ControllerBase
 {
     [HttpGet("calculate")]
+    [ProducesResponseType(typeof(object), 200)]
+    [ProducesResponseType(400)]
+
     public IActionResult Calculate([FromQuery] Ship ship)
     {
         decimal baseValue = ship.GRT * 0.15m;

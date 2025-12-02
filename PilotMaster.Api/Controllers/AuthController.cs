@@ -20,6 +20,10 @@ public class AuthController : ControllerBase
 
     [HttpPost("login")]
     [AllowAnonymous]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(object), 200)]
+    [ProducesResponseType(401)]
+
     public IActionResult Login([FromBody] LoginRequest request)
     {
         if (request.Username != "admin" || request.Password != "123")
@@ -33,6 +37,9 @@ public class AuthController : ControllerBase
 
     [HttpPost("refresh")]
     [AllowAnonymous]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(object), 200)]
+
     public IActionResult Refresh([FromBody] RefreshRequest request)
     {
         var newToken = GenerateToken("admin");

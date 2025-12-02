@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PilotMaster.Application.Interfaces;
+using PilotMaster.Domain.Entities;
 
 namespace PilotMaster.Api.Controllers;
 
@@ -8,40 +10,55 @@ namespace PilotMaster.Api.Controllers;
 [Authorize]
 public class ScheduleController : ControllerBase
 {
-    private static List<PilotSchedule> _db = new();
+    private readonly IScheduleService _service;
 
+    public ScheduleController(IScheduleService service)
+    {
+        _service = service;
+    }
+
+    // GET: /api/schedule
     [HttpGet]
-    public IActionResult Get() => Ok(_db);
+    [ProducesResponseType(typeof(IEnumerable<PilotSchedule>), 200)]
+    public async Task<IActionResult> Get([FromQuery] DateTime? date = null, [FromQuery] string? area = null)
+    {
+        var result = await _service.GetSchedules(date, area);
+        return Ok(result);
+    }
 
+    // POST: /api/schedule
     [HttpPost]
-    public IActionResult Create([FromBody] PilotSchedule schedule)
+    [ProducesResponseType(typeof(PilotSchedule), 200)]
+    [ProducesResponseType(400)]
+    public async Task<IActionResult> Create([FromBody] PilotSchedule schedule)
     {
-        schedule.Id = _db.Count + 1;
-        schedule.Status = "Ativo";
+        if (schedule == null)
+            return BadRequest("Invalid schedule.");
 
-        _db.Add(schedule);
+        schedule.Status = "Scheduled";
 
-        return Ok(schedule);
+        try
+        {
+            var created = await _service.CreateSchedule(schedule);
+            return Ok(created);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
     }
 
+    // PUT: /api/schedule/{id}/cancel
     [HttpPut("{id}/cancel")]
-    public IActionResult Cancel(int id)
+    [ProducesResponseType(typeof(object), 200)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> Cancel(int id)
     {
-        var item = _db.FirstOrDefault(x => x.Id == id);
-        if (item == null) return NotFound();
+        var cancelledBy = User.Identity?.Name ?? "system";
+        var ok = await _service.CancelSchedule(id, cancelledBy);
 
-        item.Status = "Cancelado";
+        if (!ok) return NotFound();
 
-        return Ok(item);
+        return Ok(new { message = "Cancelled" });
     }
 }
-
-public class PilotSchedule
-{
-    public int Id { get; set; }
-    public string ShipName { get; set; }
-    public DateTime ETA { get; set; }
-    public string Status { get; set; }
-}
-
-

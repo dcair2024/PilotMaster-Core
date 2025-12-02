@@ -1,7 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PilotMaster.Application.Interfaces;
+using PilotMaster.Application.Services;
 using System.Text;
+using PilotMaster.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,14 +16,12 @@ var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
 // CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("DevPolicy", policy =>
-    {
-        policy.WithOrigins("http://127.0.0.1:5500","https://localhost:5173","http://localhost:5173","http://localhost:5174", "https://localhost:5174")
+    options.AddPolicy("AllowAll", policy =>
+        policy.AllowAnyOrigin()
               .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
-    });
+              .AllowAnyMethod());
 });
+
 
 
 // JWT
@@ -71,14 +74,23 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddScoped<IScheduleService, ScheduleService>();
+
+
 builder.Services.AddControllers();
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+});
+builder.Services.AddScoped<IScheduleService, ScheduleService>();
 var app = builder.Build();
 app.UseHttpsRedirection();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseCors("AllowAll");
 
-app.UseCors("DevPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();
