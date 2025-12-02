@@ -1,34 +1,21 @@
-import { API_BASE_URL, getDefaultHeaders, getAuthHeaders } from "./api.config";
-import AuthService from "./AuthService";
+import { API_BASE_URL, getAuthHeaders } from "../config";
 
-const TARIFF_URL = `${API_BASE_URL}/tariff`;
+async function test() {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("Sem token");
 
-export const TariffService = {
-  async test() {
-    const res = await fetch(`${TARIFF_URL}/test`, {
-      method: "GET",
-      headers: getDefaultHeaders()
-    });
-    if (!res.ok) {
-      throw new Error("Erro no tariff test");
-    }
-    return await res.text();
-  },
+  const url = `${API_BASE_URL}/tariff/calculate?Id=1&Name=test&GRT=100&Draft=5&Age=1&RequiresTug=false&Deficiency=0`;
 
-  // exemplo de método protegido
-  async getAll() {
-    const token = AuthService.getToken();
-    if (!token) throw new Error("Login necessário");
-    const res = await fetch(TARIFF_URL, {
-      method: "GET",
-      headers: getAuthHeaders(token)
-    });
-    if (!res.ok) {
-      const body = await res.json().catch(() => ({}));
-      throw new Error(body.message || `Erro tariff (${res.status})`);
-    }
-    return await res.json();
-  }
+  const res = await fetch(url, {
+    headers: getAuthHeaders(token)
+  });
+
+  if (!res.ok) throw new Error("Erro ao testar tariff");
+
+  return JSON.stringify(await res.json(), null, 2);
+}
+
+export default {
+  test
 };
 
-export default TariffService;

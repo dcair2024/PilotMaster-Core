@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AuthService from "../api/AuthService";
+import { login } from "../api/AuthService"; 
 
 export default function TestAuthPage() {
   const [username, setUsername] = useState("");
@@ -8,19 +8,22 @@ export default function TestAuthPage() {
 
   const handleLogin = async () => {
     try {
-      const data = await AuthService.login({ username, password });
-      setResponse("Login OK! Token recebido.");
+      const data = await login(username, password);
+
+      setResponse("TOKEN OK: " + data.token);
+      localStorage.setItem("token", data.token);
+
     } catch (err) {
-      setResponse(err.message);
+      setResponse("ERRO: " + err.message);
     }
   };
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>Teste Auth</h1>
+      <h2>Teste Auth</h2>
 
       <input
-        placeholder="username"
+        placeholder="Usuário"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
@@ -28,13 +31,13 @@ export default function TestAuthPage() {
       <br />
 
       <input
+        placeholder="Senha"
         type="password"
-        placeholder="senha"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <br /><br />
+      <br />
 
       <button onClick={handleLogin}>Testar Login</button>
 
