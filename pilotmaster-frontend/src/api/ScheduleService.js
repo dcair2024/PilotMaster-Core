@@ -39,7 +39,31 @@ async function create(payload) {
     return await res.json();
 }
 
+async function cancel(id) {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("Sem token");
+
+    const res = await fetch(`${API_BASE_URL}/schedule/${id}/cancel`, {
+        method: "PUT",
+        headers: getAuthHeaders(token)
+    });
+
+    if (!res.ok) {
+        let msg = "Erro ao cancelar schedule";
+        try {
+            const err = await res.json();
+            msg = err.message || msg;
+        } catch {}
+        throw new Error(msg);
+    }
+
+    return await res.json();
+}
+
+
 export default {
     getAll,
-    create
+    create,
+    cancel
 };
+
