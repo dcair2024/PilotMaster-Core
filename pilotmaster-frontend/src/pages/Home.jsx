@@ -1,52 +1,76 @@
-// src/pages/Home.jsx
-import React, { useEffect, useState } from "react";
-import { API_BASE_URL, getAuthHeaders } from "../config";
+import { useEffect, useState } from "react";
+import Sidebar from "../components/Sidebar";
+import TopBar from "../components/topbar";   // <<< AJUSTADO AQUI
+import "./home.css";
+import api from "../api/apiConfig";
+
 
 export default function Home() {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
 
-    useEffect(() => {
-        async function loadDashboard() {
-            setLoading(true);
-            setError(null);
-            try {
-                const token = localStorage.getItem("token");
-                const res = await fetch(`${API_BASE_URL}/dashboard`, {
-                    headers: getAuthHeaders(token)
-                });
+  useEffect(() => {
+    api.get("/Dashboard").then(res => setData(res.data));
+  }, []);
 
-                if (!res.ok) throw new Error("Falha ao carregar dashboard");
+  if (!data) return <div>Carregando...</div>;
 
-                const body = await res.json();
-                setData(body);
-            } catch (err) {
-                setError(err.message || "Erro desconhecido");
-            } finally {
-                setLoading(false);
-            }
-        }
+  const cards = [
+    {
+      color: "#10B981",
+      icon: "📅",
+      value: data.recentSchedules,
+      label: "Manobras Realizadas",
+      subtitle: "total acumulado",
+    },
+    {
+      color: "#3B82F6",
+      icon: "🚢",
+      value: data.totalShips,
+      label: "Navios Cadastrados",
+      subtitle: "na base",
+    },
+    {
+      color: "#F59E0B",
+      icon: "⚠️",
+      value: data.pendingSchedules,
+      label: "Pendentes",
+      subtitle: "requerem atenção",
+    },
+    {
+      color: "#8B5CF6",
+      icon: "💰",
+      value: "$" + data.lastTariffCalc.final,
+      label: "Última Tarifa",
+      subtitle: "navio " + data.lastTariffCalc.ship,
+    },
+  ];
 
-        loadDashboard();
-    }, []);
+  return (
+    <div className="layout">
+      <Sidebar />
 
-    if (loading) return <p style={{ padding: 20 }}>Carregando Dashboard...</p>;
-    if (error) return <p style={{ padding: 20, color: "red" }}>⚠️ {error}</p>;
+      <TopBar />
 
-    return (
-        <div style={{ padding: 20 }}>
-            <h2>🏠 Dashboard do Sistema</h2>
+      <main className="home-content">
+        <h2 className="title">Olá, Usuário 👋</h2>
+        <p className="subtitle">Dashboard de Manobras</p>
 
-            <p><strong>Manobras Recentes:</strong> {data.recentSchedules}</p>
-            <p><strong>Total de Navios:</strong> {data.totalShips}</p>
-            <p><strong>Manobras Pendentes:</strong> {data.pendingSchedules}</p>
-
-            <div style={{ marginTop: 20 }}>
-                <h3>🛳️ Último Cálculo de Tarifa</h3>
-                <p><strong>Navio:</strong> {data.lastTariffCalc?.ship}</p>
-                <p><strong>Valor Final:</strong> R$ {data.lastTariffCalc?.final}</p>
+        <div className="cards-grid">
+          {cards.map((c, i) => (
+            <div key={i} className="card" style={{ borderTopColor: c.color }}>
+              <div className="card-icon">{c.icon}</div>
+              <div className="card-value">{c.value}</div>
+              <div className="card-label">{c.label}</div>
+              <div className="card-sub">{c.subtitle}</div>
             </div>
+          ))}
         </div>
-    );
+
+        <div className="quick-actions">
+          <button className="btn-primary">➕ Novo Agendamento</button>
+          <button className="btn-secondary">📋 Ver Agendamentos</button>
+        </div>
+      </main>
+    </div>
+  );
 }
