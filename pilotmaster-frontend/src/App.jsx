@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
@@ -8,22 +8,13 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 import TestAuthPage from "./pages/TestAuthPage";
 import TestSchedulePage from "./pages/TestSchedulePage";
+import TestScheduleCreate from "./pages/TestScheduleCreate";
 import TestTariffPage from "./pages/TestTariffPage";
-import TestScheduleCreate from "./pages/TestScheduleCreate";   // <-- NOVO IMPORT
+import ShipsList from "./pages/ShipsList.jsx";  // <- IMPORT NECESSÁRIO
 
 export default function App() {
   return (
     <BrowserRouter>
-
-      {/* MENU */}
-      <nav style={{ padding: 12 }}>
-        <Link to="/auth/login" style={{ marginRight: 8 }}>Login</Link>
-        <Link to="/home" style={{ marginRight: 8 }}>Home</Link>
-        <Link to="/test/auth" style={{ marginRight: 8 }}>Test Auth</Link>
-        <Link to="/test/schedule" style={{ marginRight: 8 }}>Schedule</Link>
-        <Link to="/test/schedule-create" style={{ marginRight: 8 }}>New Schedule</Link> {/* <-- NOVO LINK */}
-        <Link to="/test/tariff">Tariff</Link>
-      </nav>
 
       <Routes>
 
@@ -33,24 +24,29 @@ export default function App() {
         {/* ROTAS PROTEGIDAS */}
         <Route element={<ProtectedRoute />}>
 
-          {/* Home */}
+          {/* Dashboard */}
           <Route path="/home" element={<Home />} />
 
-          {/* Listagem de schedules */}
-          <Route path="/test/schedule" element={<TestSchedulePage />} />
+          {/* Navios */}
+          <Route path="/ships" element={<ShipsList />} />
 
-          {/* Criação de schedule (FE-05) */}
-          <Route path="/test/schedule-create" element={<TestScheduleCreate />} />  {/* <-- AQUI!!! */}
+          {/* Agendamentos (lista) */}
+          <Route path="/schedule" element={<TestSchedulePage />} />
+
+          {/* Novo agendamento */}
+          <Route path="/schedule/new" element={<TestScheduleCreate />} />
 
           {/* Tarifa */}
-          <Route path="/test/tariff" element={<TestTariffPage />} />
+          <Route path="/tariff" element={<TestTariffPage />} />
 
-          {/* Redireciona raiz para /home */}
+          {/* Configurações */}
+          <Route path="/settings" element={<div>Configurações (em construção)</div>} />
+
+          {/* Redirecionamento padrão */}
           <Route path="/" element={<Navigate to="/home" replace />} />
-
         </Route>
 
-        {/* Rota isolada que não precisa de proteção */}
+        {/* Testes isolados */}
         <Route path="/test/auth" element={<TestAuthPage />} />
 
         {/* 404 */}

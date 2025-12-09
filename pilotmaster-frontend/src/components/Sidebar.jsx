@@ -1,43 +1,51 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./sidebar.css";
 
 export default function Sidebar() {
-  const navigate = useNavigate();
-
-  function logout() {
-    localStorage.removeItem("token");
-    navigate("/login");
-  }
+  const { pathname } = useLocation();
 
   return (
-    <aside className="sidebar md:block hidden">
-      <div className="sidebar-logo">⛴️ Pilotmaster</div>
+    <aside className="sidebar">
+      <div className="logo">🟦 Pilotmaster</div>
 
-      <nav className="sidebar-nav">
-        <NavLink to="/home" className="nav-item">
-          <span className="nav-icon">🏠</span> Dashboard
-        </NavLink>
+      <nav className="menu">
+        <Link
+          to="/home"
+          className={pathname === "/home" ? "active" : ""}
+        >
+          🏠 Dashboard
+        </Link>
 
-        <NavLink to="/schedule" className="nav-item">
-          <span className="nav-icon">📅</span> Agendamentos
-        </NavLink>
+        <Link
+          to="/schedule"
+          className={pathname === "/schedule" ? "active" : ""}
+        >
+          📅 Agendamentos
+        </Link>
 
-        <NavLink to="/tariff" className="nav-item">
-          <span className="nav-icon">💰</span> Tarifas
-        </NavLink>
+        <Link
+          to="/tariff"
+          className={pathname === "/tariff" ? "active" : ""}
+        >
+          💰 Tarifas
+        </Link>
 
-        <NavLink to="/ships" className="nav-item">
-          <span className="nav-icon">🚢</span> Navios
-        </NavLink>
+        <Link
+          to="/ships"
+          className={pathname === "/ships" ? "active" : ""}
+        >
+          🚢 Navios
+        </Link>
 
-        <NavLink to="/config" className="nav-item">
-          <span className="nav-icon">⚙️</span> Configurações
-        </NavLink>
+        <Link
+          to="/settings"
+          className={pathname === "/settings" ? "active" : ""}
+        >
+          ⚙️ Configurações
+        </Link>
       </nav>
 
-      <button className="logout-btn" onClick={logout}>
-        🚪 Sair
-      </button>
+      <button className="logout">🚪 Sair</button>
     </aside>
   );
 }
