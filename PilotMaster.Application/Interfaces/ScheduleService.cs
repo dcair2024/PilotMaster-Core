@@ -30,14 +30,29 @@ public class ScheduleService : IScheduleService
 
     public async Task<PilotSchedule> CreateSchedule(PilotSchedule schedule)
     {
-        // valida conflito simples: mesmo horário e mesma área
-        var conflict = await _db.PilotSchedules.AnyAsync(x => x.Area == schedule.Area && x.ScheduledAt == schedule.ScheduledAt && x.Status == "Scheduled");
-        if (conflict) throw new InvalidOperationException("Conflito de horário para essa área.");
+        // ✅ Valida se o navio existe
+        if (schedule.ShipId.HasValue)
+        {
+            var shipExists = await _db.Ships.AnyAsync(x => x.Id == schedule.ShipId.Value);
+            if (!shipExists)
+                throw new InvalidOperationException("Navio inexistente.");
+        }
+
+        // ✅ Conflito de horário e área
+        var conflict = await _db.PilotSchedules.AnyAsync(x =>
+            x.Area == schedule.Area &&
+            x.ScheduledAt == schedule.ScheduledAt &&
+            x.Status == "Scheduled");
+
+        if (conflict)
+            throw new InvalidOperationException("Conflito de horário para essa área.");
 
         _db.PilotSchedules.Add(schedule);
         await _db.SaveChangesAsync();
+
         return schedule;
     }
+
 
     public async Task<bool> CancelSchedule(int id, string cancelledBy)
     {

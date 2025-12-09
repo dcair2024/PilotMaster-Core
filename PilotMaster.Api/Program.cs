@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens; 
 using Microsoft.OpenApi.Models;
 using PilotMaster.Application.Interfaces;
 using PilotMaster.Application.Services;
@@ -10,10 +10,21 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var jwtKey = builder.Configuration["Jwt:Key"];
+// ========================
+// JWT CONFIG CORRETA ✅
+// ========================
+
+var jwtSection = builder.Configuration.GetSection("Jwt");
+var jwtKey = jwtSection["Key"]!;
+var issuer = jwtSection["Issuer"];
+var audience = jwtSection["Audience"];
+
 var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
 
-// CORS
+// ========================
+// CORS ✅
+// ========================
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -22,24 +33,46 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod());
 });
 
+// ========================
+// AUTH ✅
+// ========================
 
-
-// JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = false,
-            ValidateAudience = false,
+            ValidateIssuer = true,
+            ValidateAudience = true,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(keyBytes),
-            ValidateLifetime = true
+            ValidateLifetime = true,
+
+            ValidIssuer = issuer,
+            ValidAudience = audience,
+            IssuerSigningKey = new SymmetricSecurityKey(keyBytes)
         };
     });
 
-// Controllers + Swagger
+// ========================
+// DB ✅
+// ========================
 
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+// ========================
+// SERVICES ✅
+// ========================
+
+builder.Services.AddScoped<IScheduleService, ScheduleService>();
+
+// ========================
+// CONTROLLERS + SWAGGER ✅
+// ========================
+
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
@@ -74,23 +107,14 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddScoped<IScheduleService, ScheduleService>();
-
-
-builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-
-});
-builder.Services.AddScoped<IScheduleService, ScheduleService>();
 var app = builder.Build();
+
 app.UseHttpsRedirection();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseCors("AllowAll");
 
+app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();

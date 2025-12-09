@@ -23,7 +23,6 @@ public class AuthController : ControllerBase
     [Produces("application/json")]
     [ProducesResponseType(typeof(object), 200)]
     [ProducesResponseType(401)]
-
     public IActionResult Login([FromBody] LoginRequest request)
     {
         if (request.Username != "admin" || request.Password != "123")
@@ -39,7 +38,6 @@ public class AuthController : ControllerBase
     [AllowAnonymous]
     [Produces("application/json")]
     [ProducesResponseType(typeof(object), 200)]
-
     public IActionResult Refresh([FromBody] RefreshRequest request)
     {
         var newToken = GenerateToken("admin");
@@ -48,8 +46,15 @@ public class AuthController : ControllerBase
 
     private string GenerateToken(string username)
     {
-        var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);
-        var creds = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+        var jwtKey = _config["Jwt:Key"]!;
+        var issuer = _config["Jwt:Issuer"];       // ✅
+        var audience = _config["Jwt:Audience"];   // ✅
+
+        var key = Encoding.UTF8.GetBytes(jwtKey);
+        var creds = new SigningCredentials(
+            new SymmetricSecurityKey(key),
+            SecurityAlgorithms.HmacSha256
+        );
 
         var claims = new[]
         {
@@ -57,6 +62,8 @@ public class AuthController : ControllerBase
         };
 
         var token = new JwtSecurityToken(
+            issuer: issuer,              // ✅
+            audience: audience,          // ✅
             claims: claims,
             expires: DateTime.UtcNow.AddHours(1),
             signingCredentials: creds
@@ -68,11 +75,11 @@ public class AuthController : ControllerBase
 
 public class LoginRequest
 {
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public string Username { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
 }
 
 public class RefreshRequest
 {
-    public string RefreshToken { get; set; }
+    public string RefreshToken { get; set; } = string.Empty;
 }

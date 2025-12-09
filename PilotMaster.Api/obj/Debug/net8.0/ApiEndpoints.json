@@ -166,6 +166,85 @@
     ]
   },
   {
+    "ContainingType": "PilotMaster.Api.Controllers.ShipsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Ships",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PilotMaster.Api.Controllers.ShipsController",
+    "Method": "Create",
+    "RelativePath": "api/Ships",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ship",
+        "Type": "PilotMaster.Domain.Entities.Ship",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PilotMaster.Api.Controllers.ShipsController",
+    "Method": "GetById",
+    "RelativePath": "api/Ships/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PilotMaster.Api.Controllers.ShipsController",
+    "Method": "Update",
+    "RelativePath": "api/Ships/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ship",
+        "Type": "PilotMaster.Domain.Entities.Ship",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PilotMaster.Api.Controllers.ShipsController",
+    "Method": "Delete",
+    "RelativePath": "api/Ships/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PilotMaster.Api.Controllers.TariffController",
     "Method": "Calculate",
     "RelativePath": "api/Tariff/calculate",

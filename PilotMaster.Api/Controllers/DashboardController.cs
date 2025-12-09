@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PilotMaster.Infrastructure;
 
 namespace PilotMaster.Api.Controllers;
 
@@ -8,18 +10,38 @@ namespace PilotMaster.Api.Controllers;
 [Authorize]
 public class DashboardController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult Get()
+    private readonly AppDbContext _db;
+
+    public DashboardController(AppDbContext db)
     {
-        var response = new
+        _db = db;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var totalShips = await _db.Ships.CountAsync();
+
+        var pendingSchedules = await _db.PilotSchedules
+            .CountAsync(x => x.Status == "Scheduled");
+
+        var recentSchedules = await _db.PilotSchedules
+            .OrderByDescending(x => x.ScheduledAt)
+            .Take(5)
+            .CountAsync();
+
+        var lastTariffCalc = new
         {
-            recentSchedules = 5,
-            totalShips = 12,
-            pendingSchedules = 2,
-            lastTariffCalc = new { ship = "TEST", final = 15 }
+            ship = "N/A",
+            final = 0
         };
 
-        return Ok(response);
+        return Ok(new
+        {
+            totalShips,
+            pendingSchedules,
+            recentSchedules,
+            lastTariffCalc
+        });
     }
 }
-
