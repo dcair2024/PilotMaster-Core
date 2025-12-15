@@ -1,40 +1,21 @@
-import { API_BASE_URL, getDefaultHeaders } from "../config";
+// src/api/AuthService.js
+import api from "./apiConfig";
 
-// LOGIN
 export async function login(username, password) {
-  const response = await fetch(`${API_BASE_URL}/Auth/login`, {
-    method: "POST",
-    headers: getDefaultHeaders(),
-    body: JSON.stringify({ username, password })
+  const res = await api.post("/Auth/login", {
+    username,
+    password,
   });
 
-  if (!response.ok) {
-    throw new Error("Credenciais inválidas.");
-  }
+  const { token, refreshToken } = res.data;
 
-  return await response.json(); // { token, refreshToken }
+  localStorage.setItem("token", token);
+  localStorage.setItem("refreshToken", refreshToken);
+
+  return res.data;
 }
 
-// REFRESH
-export async function refreshToken(refreshToken, token) {
-  const response = await fetch(`${API_BASE_URL}/Auth/refresh`, {
-    method: "POST",
-    headers: {
-      ...getDefaultHeaders(),
-      Authorization: `Bearer ${token}`
-    },
-    body: JSON.stringify({ refreshToken })
-  });
-
-  if (!response.ok) {
-    throw new Error("Falha ao renovar token.");
-  }
-
-  return await response.json();
+export function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("refreshToken");
 }
-
-
-
-
-
-

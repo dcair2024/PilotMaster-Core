@@ -1,5 +1,6 @@
+// src/pages/Login.jsx
 import { useState } from "react";
-import api from "../api/apiConfig";
+import { login } from "../api/AuthService";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -9,36 +10,18 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-
     try {
-      const res = await api.post("/Auth/login", {
-        username,
-        password,
-      });
-
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("refreshToken", res.data.refreshToken);
-
+      await login(username, password);
       navigate("/home");
-    } catch (err) {
-      console.error(err);
-      alert("Erro no login");
+    } catch {
+      alert("Login inválido");
     }
   }
 
   return (
     <form onSubmit={handleLogin}>
-      <input
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="admin"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="123"
-      />
+      <input placeholder="Usuário" onChange={e => setUsername(e.target.value)} />
+      <input type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)} />
       <button type="submit">Entrar</button>
     </form>
   );

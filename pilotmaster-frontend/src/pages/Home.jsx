@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import TopBar from "../components/topbar"; // ← CORREÇÃO AQUI
+import TopBar from "../components/topbar"; 
 import "./home.css";
 import api from "../api/apiConfig";
 import { useNavigate } from "react-router-dom";
@@ -16,16 +16,13 @@ export default function Home() {
         const res = await api.get("/Dashboard");
         setData(res.data);
       } catch (err) {
-        console.error("Erro no Dashboard", err);
-
-        // token inválido / expirado
         if (err.response?.status === 401) {
           localStorage.removeItem("token");
           localStorage.removeItem("refreshToken");
           navigate("/auth/login");
         }
       } finally {
-        setLoading(false);
+        setLoading(false); // ← LINHA CRÍTICA
       }
     };
 
@@ -86,14 +83,6 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="grid grid-4 gap-16">
-  <div className="card">Card 1</div>
-  <div className="card">Card 2</div>
-  <div className="card">Card 3</div>
-  <div className="card">Card 4</div>
-</div>
-
-
         <div className="quick-actions">
           <button className="btn-primary">➕ Novo Agendamento</button>
           <button className="btn-secondary">📋 Ver Agendamentos</button>
@@ -102,4 +91,3 @@ export default function Home() {
     </div>
   );
 }
-
