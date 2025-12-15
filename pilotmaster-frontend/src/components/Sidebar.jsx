@@ -1,51 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
-import "./sidebar.css";
+import "../styles/sidebar.css";
 
-export default function Sidebar() {
-  const { pathname } = useLocation();
-
+export default function Sidebar({ open }) {
   return (
-    <aside className="sidebar">
-      <div className="logo">🟦 Pilotmaster</div>
+    <aside className={`sidebar ${open ? "open" : "closed"}`}>
+      <h2>PilotMaster</h2>
 
-      <nav className="menu">
-        <Link
-          to="/home"
-          className={pathname === "/home" ? "active" : ""}
-        >
-          🏠 Dashboard
-        </Link>
-
-        <Link
-          to="/schedule"
-          className={pathname === "/schedule" ? "active" : ""}
-        >
-          📅 Agendamentos
-        </Link>
-
-        <Link
-          to="/tariff"
-          className={pathname === "/tariff" ? "active" : ""}
-        >
-          💰 Tarifas
-        </Link>
-
-        <Link
-          to="/ships"
-          className={pathname === "/ships" ? "active" : ""}
-        >
-          🚢 Navios
-        </Link>
-
-        <Link
-          to="/settings"
-          className={pathname === "/settings" ? "active" : ""}
-        >
-          ⚙️ Configurações
-        </Link>
+      <nav>
+        <a className="active">Navios</a>
+        <a>Agendamentos</a>
+        <a>Tarifas</a>
       </nav>
-
-      <button className="logout">🚪 Sair</button>
     </aside>
   );
 }
+
+

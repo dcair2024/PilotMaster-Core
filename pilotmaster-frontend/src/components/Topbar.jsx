@@ -1,10 +1,12 @@
-import "./topbar.css";
+import "../styles/topbar.css";
 
-export default function TopBar({ onMenuClick }) {
+export default function Topbar({ toggleSidebar }) {
   return (
-    <header className="topbar md:hidden">
-      <div className="topbar-logo">⛴️ Pilotmaster</div>
-      <button className="menu-btn" onClick={onMenuClick}>☰</button>
+    <header className="topbar">
+      <button className="menu-btn" onClick={toggleSidebar}>
+        ☰
+      </button>
+      <span>Sistema de Gestão Portuária</span>
     </header>
   );
 }

@@ -1,69 +1,45 @@
 import { useState } from "react";
-import { login } from "../api/AuthService";
-import { useNavigate } from "react-router-dom"; // <-- PASSO 1: Importar useNavigate
+import api from "../api/apiConfig";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-    
-    const navigate = useNavigate(); // <-- PASSO 2: Inicializar o hook
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        setError("");
-        setLoading(true);
+  async function handleLogin(e) {
+    e.preventDefault();
 
-        try {
-            const result = await login(username, password);
+    try {
+      const res = await api.post("/Auth/login", {
+        username,
+        password,
+      });
 
-            // Armazenamento Completo: token e refreshToken
-            localStorage.setItem("token", result.token);
-            localStorage.setItem("refreshToken", result.refreshToken); 
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
 
-            alert("Login OK!");
-            
-            // <-- PASSO 3: CORREÇÃO DO REDIRECIONAMENTO
-            navigate("/home", { replace: true }); 
-            // 'replace: true' garante que a página de login não fique no histórico do navegador.
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+      alert("Erro no login");
+    }
+  }
 
-        } catch (err) {
-            setError("Usuário ou senha inválidos");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div style={{ maxWidth: "350px", margin: "50px auto" }}>
-            <h2>Login</h2>
-
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label>Usuário</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </div>
-
-                <div style={{ marginTop: 10 }}>
-                    <label>Senha</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-
-                {error && <p style={{ color: "red" }}>{error}</p>}
-
-                <button style={{ marginTop: 15 }} disabled={loading}>
-                    {loading ? "Entrando..." : "Entrar"}
-                </button>
-            </form>
-        </div>
-    );
+  return (
+    <form onSubmit={handleLogin}>
+      <input
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="admin"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="123"
+      />
+      <button type="submit">Entrar</button>
+    </form>
+  );
 }

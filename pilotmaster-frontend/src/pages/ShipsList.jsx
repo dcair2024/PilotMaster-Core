@@ -1,44 +1,34 @@
-import { useState } from "react";
+import Layout from "../components/Layout";
+import "../styles/table.css";
 
 export default function ShipsList() {
-  const [page, setPage] = useState(1);
-
-  const shipsMock = [
-    { id: 1, name: "Tanker EX", grt: 35000 },
-    { id: 2, name: "Bulk Alpha", grt: 22000 },
-    { id: 3, name: "Carrier One", grt: 45000 }
-  ];
-
   return (
-    <div style={{ padding: 32 }}>
-      <h1>Lista de Navios</h1>
+    <Layout>
+      <div className="page-header">
+        <input placeholder="Buscar navio..." />
+        <button className="btn-primary">+ Novo Navio</button>
+      </div>
 
-      <table border="1" cellPadding="8">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>GRT</th>
-          </tr>
-        </thead>
-        <tbody>
-          {shipsMock.map(s => (
-            <tr key={s.id}>
-              <td>{s.id}</td>
-              <td>{s.name}</td>
-              <td>{s.grt}</td>
+      <div className="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>GRT</th>
+              <th>Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-        ⬅ Anterior
-      </button>
-
-      <button onClick={() => setPage(page + 1)}>
-        Próximo ➡
-      </button>
-    </div>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Tanker EX</td>
+              <td>35000</td>
+              <td>✏️ 👁️ 🗑️</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </Layout>
   );
 }

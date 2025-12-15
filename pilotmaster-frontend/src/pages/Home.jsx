@@ -1,18 +1,39 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import TopBar from "../components/topbar";   // <<< AJUSTADO AQUI
+import TopBar from "../components/topbar"; // ← CORREÇÃO AQUI
 import "./home.css";
 import api from "../api/apiConfig";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    api.get("/Dashboard").then(res => setData(res.data));
-  }, []);
+    const loadDashboard = async () => {
+      try {
+        const res = await api.get("/Dashboard");
+        setData(res.data);
+      } catch (err) {
+        console.error("Erro no Dashboard", err);
 
-  if (!data) return <div>Carregando...</div>;
+        // token inválido / expirado
+        if (err.response?.status === 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("refreshToken");
+          navigate("/auth/login");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDashboard();
+  }, [navigate]);
+
+  if (loading) return <div>Carregando...</div>;
+  if (!data) return <div>Erro ao carregar dashboard</div>;
 
   const cards = [
     {
@@ -48,7 +69,6 @@ export default function Home() {
   return (
     <div className="layout">
       <Sidebar />
-
       <TopBar />
 
       <main className="home-content">
@@ -74,3 +94,4 @@ export default function Home() {
     </div>
   );
 }
+

@@ -2404,11 +2404,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
       "projectName": "PilotMaster.Infrastructure",
-      "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2429,8 +2429,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
-              "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj"
+            "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj"
             }
           }
         }
