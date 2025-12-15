@@ -1,0 +1,25 @@
+/* ================================
+   COMPONENTES - CARDS
+   ================================ */
+
+.card {
+  background: var(--bg-card, #ffffff);
+  border-radius: var(--radius, 12px);
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-top: 4px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Interação */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade geral (reduz padding em telas menores) */
+@media (max-width: 768px) {
+  .card {
+    padding: 12px;
+  }
+}

@@ -86,6 +86,14 @@ export default function Home() {
           ))}
         </div>
 
+        <div className="grid grid-4 gap-16">
+  <div className="card">Card 1</div>
+  <div className="card">Card 2</div>
+  <div className="card">Card 3</div>
+  <div className="card">Card 4</div>
+</div>
+
+
         <div className="quick-actions">
           <button className="btn-primary">➕ Novo Agendamento</button>
           <button className="btn-secondary">📋 Ver Agendamentos</button>

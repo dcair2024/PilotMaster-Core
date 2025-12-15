@@ -11,6 +11,9 @@ import TestSchedulePage from "./pages/TestSchedulePage";
 import TestScheduleCreate from "./pages/TestScheduleCreate";
 import TestTariffPage from "./pages/TestTariffPage";
 import ShipsList from "./pages/ShipsList.jsx";  // <- IMPORT NECESSÁRIO
+import "./styles/design-system.css";
+import "./styles/cards.css";
+
 
 export default function App() {
   return (
