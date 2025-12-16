@@ -69,6 +69,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IShipService, ShipService>();
+builder.Services.AddScoped<DashboardService>();
+
 
 
 // ========================

@@ -20,15 +20,25 @@ public class DashboardController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var totalShips = await _db.Ships.CountAsync();
+        var totalShips = await _db.Ships
+            .CountAsync(x => x.IsActive);
 
         var pendingSchedules = await _db.PilotSchedules
             .CountAsync(x => x.Status == "Scheduled");
 
         var recentSchedules = await _db.PilotSchedules
+            .Include(x => x.Ship)
             .OrderByDescending(x => x.ScheduledAt)
             .Take(5)
-            .CountAsync();
+            .Select(x => new
+            {
+                x.Id,
+                x.ScheduledAt,
+                x.Area,
+                ShipName = x.Ship != null ? x.Ship.Name : "",
+                x.Status
+            })
+            .ToListAsync();
 
         var lastTariffCalc = new
         {
@@ -44,4 +54,5 @@ public class DashboardController : ControllerBase
             lastTariffCalc
         });
     }
+
 }
