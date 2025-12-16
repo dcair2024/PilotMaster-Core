@@ -286,6 +286,11 @@
         "Name": "Deficiency",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "IsActive",
+        "Type": "System.Boolean",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

@@ -30,15 +30,18 @@ public class ScheduleService : IScheduleService
 
     public async Task<PilotSchedule> CreateSchedule(PilotSchedule schedule)
     {
-        // ✅ Valida se o navio existe
-        if (schedule.ShipId.HasValue)
-        {
-            var shipExists = await _db.Ships.AnyAsync(x => x.Id == schedule.ShipId.Value);
-            if (!shipExists)
-                throw new InvalidOperationException("Navio inexistente.");
-        }
+        // 🔒 1️⃣ ShipId é obrigatório
+        if (schedule.ShipId <= 0)
+            throw new InvalidOperationException("ShipId é obrigatório para criar um agendamento.");
 
-        // ✅ Conflito de horário e área
+        // 🔒 2️⃣ Navio deve existir e estar ativo
+        var ship = await _db.Ships
+            .FirstOrDefaultAsync(s => s.Id == schedule.ShipId && s.IsActive);
+
+        if (ship == null)
+            throw new InvalidOperationException("Navio inexistente ou inativo.");
+
+        // 🔒 3️⃣ Conflito de horário e área
         var conflict = await _db.PilotSchedules.AnyAsync(x =>
             x.Area == schedule.Area &&
             x.ScheduledAt == schedule.ScheduledAt &&
@@ -47,21 +50,26 @@ public class ScheduleService : IScheduleService
         if (conflict)
             throw new InvalidOperationException("Conflito de horário para essa área.");
 
+        // 🔒 4️⃣ Backend define o status
+        schedule.Status = "Scheduled";
+
         _db.PilotSchedules.Add(schedule);
         await _db.SaveChangesAsync();
 
         return schedule;
     }
-
-
     public async Task<bool> CancelSchedule(int id, string cancelledBy)
     {
         var s = await _db.PilotSchedules.FindAsync(id);
         if (s == null) return false;
+
         s.Status = "Cancelled";
         s.Notes = $"Cancelled by {cancelledBy} at {DateTime.UtcNow}";
         await _db.SaveChangesAsync();
+
         return true;
     }
+
+
 }
 

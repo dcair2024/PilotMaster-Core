@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using PilotMaster.Application.Interfaces;
 using PilotMaster.Domain.Entities;
-using PilotMaster.Infrastructure;
 
 namespace PilotMaster.Api.Controllers;
 
@@ -11,73 +10,42 @@ namespace PilotMaster.Api.Controllers;
 [Authorize]
 public class ShipsController : ControllerBase
 {
-    private readonly AppDbContext _db;
+    private readonly IShipService _service;
 
-    public ShipsController(AppDbContext db)
+    public ShipsController(IShipService service)
     {
-        _db = db;
+        _service = service;
     }
 
-    // GET: /api/ships
     [HttpGet]
     public async Task<IActionResult> GetAll()
-    {
-        var ships = await _db.Ships.ToListAsync();
-        return Ok(ships);
-    }
+        => Ok(await _service.GetAllAsync());
 
-    // GET: /api/ships/{id}
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var ship = await _db.Ships.FindAsync(id);
-        if (ship == null) return NotFound();
-
-        return Ok(ship);
+        var ship = await _service.GetByIdAsync(id);
+        return ship == null ? NotFound() : Ok(ship);
     }
 
-    // POST: /api/ships
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] Ship ship)
     {
-        if (ship == null) return BadRequest("Invalid ship.");
-
-        _db.Ships.Add(ship);
-        await _db.SaveChangesAsync();
-
-        return Ok(ship);
+        var created = await _service.CreateAsync(ship);
+        return Ok(created);
     }
 
-    // PUT: /api/ships/{id}
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] Ship ship)
     {
-        var existing = await _db.Ships.FindAsync(id);
-        if (existing == null) return NotFound();
-
-        existing.Name = ship.Name;
-        existing.GRT = ship.GRT;
-        existing.Draft = ship.Draft;
-        existing.Age = ship.Age;
-        existing.RequiresTug = ship.RequiresTug;
-        existing.Deficiency = ship.Deficiency;
-
-        await _db.SaveChangesAsync();
-
-        return Ok(existing);
+        var updated = await _service.UpdateAsync(id, ship);
+        return updated == null ? NotFound() : Ok(updated);
     }
 
-    // DELETE: /api/ships/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var ship = await _db.Ships.FindAsync(id);
-        if (ship == null) return NotFound();
-
-        _db.Ships.Remove(ship);
-        await _db.SaveChangesAsync();
-
-        return Ok(new { message = "Deleted" });
+        var ok = await _service.DeactivateAsync(id);
+        return ok ? Ok(new { message = "Navio desativado" }) : NotFound();
     }
 }
-

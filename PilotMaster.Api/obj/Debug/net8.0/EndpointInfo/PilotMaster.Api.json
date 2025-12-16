@@ -457,6 +457,13 @@
             "schema": {
               "$ref": "#/components/schemas/OperationalDeficiency"
             }
+          },
+          {
+            "name": "IsActive",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -623,6 +630,9 @@
           },
           "deficiency": {
             "$ref": "#/components/schemas/OperationalDeficiency"
+          },
+          "isActive": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

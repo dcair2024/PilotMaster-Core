@@ -8,4 +8,3 @@ public interface IScheduleService
     Task<PilotSchedule> CreateSchedule(PilotSchedule schedule);
     Task<bool> CancelSchedule(int id, string cancelledBy);
 }
-

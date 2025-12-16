@@ -294,10 +294,10 @@ C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\sta
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\swae.build.ex.cache
-C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\PilotMas.1CA6C625.Up2Date
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\PilotMaster.Api.dll
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\refint\PilotMaster.Api.dll
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\PilotMaster.Api.pdb
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\PilotMaster.Api.genruntimeconfig.cache
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\ref\PilotMaster.Api.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

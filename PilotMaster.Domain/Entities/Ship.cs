@@ -3,13 +3,20 @@
 public class Ship
 {
     public int Id { get; set; }
+
     public string Name { get; set; } = string.Empty;
-    public int GRT { get; set; }            // tonnage
-    public decimal Draft { get; set; }      // calado (m)
-    public int Age { get; set; }            // anos
-    public bool RequiresTug { get; set; }  // rebocador
+
+    public int GRT { get; set; }          // Tonelagem
+    public decimal Draft { get; set; }    // Calado (m)
+    public int Age { get; set; }          // Anos
+
+    public bool RequiresTug { get; set; }
+
     public OperationalDeficiency? Deficiency { get; set; }
+
+    public bool IsActive { get; set; } = true;
 }
+
 
 public enum OperationalDeficiency
 {

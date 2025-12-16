@@ -33,6 +33,7 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod());
 });
 
+
 // ========================
 // AUTH ✅
 // ========================
@@ -67,6 +68,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // ========================
 
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
+builder.Services.AddScoped<IShipService, ShipService>();
+
 
 // ========================
 // CONTROLLERS + SWAGGER ✅
