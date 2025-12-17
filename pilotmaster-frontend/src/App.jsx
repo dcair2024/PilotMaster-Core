@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import ShipsList from "./pages/ShipsList";
+import ShipForm from "./pages/ShipForm";
+
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -30,6 +32,9 @@ export default function App() {
 
           {/* Navios */}
           <Route path="/ships" element={<ShipsList />} />
+          {/* Novo Navio */}
+          <Route path="/ships/new" element={<ShipForm />} />
+
 
           {/* Agendamentos */}
           <Route path="/schedule" element={<TestSchedulePage />} />
