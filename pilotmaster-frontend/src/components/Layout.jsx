@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
-import Topbar from "./topbar";
+import Topbar from "./Topbar";
 import "../styles/layout.css";
 
 export default function Layout({ children }) {

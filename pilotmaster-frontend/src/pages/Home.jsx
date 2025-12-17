@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import TopBar from "../components/topbar"; 
+import TopBar from "../components/Topbar";
 import "./home.css";
 import api from "../api/apiConfig";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ export default function Home() {
           navigate("/auth/login");
         }
       } finally {
-        setLoading(false); // ← LINHA CRÍTICA
+        setLoading(false);
       }
     };
 
@@ -32,14 +32,8 @@ export default function Home() {
   if (loading) return <div>Carregando...</div>;
   if (!data) return <div>Erro ao carregar dashboard</div>;
 
+  // ✅ FE-30 — APENAS os cards exigidos
   const cards = [
-    {
-      color: "#10B981",
-      icon: "📅",
-      value: data.recentSchedules,
-      label: "Manobras Realizadas",
-      subtitle: "total acumulado",
-    },
     {
       color: "#3B82F6",
       icon: "🚢",
@@ -51,15 +45,8 @@ export default function Home() {
       color: "#F59E0B",
       icon: "⚠️",
       value: data.pendingSchedules,
-      label: "Pendentes",
+      label: "Agendamentos Pendentes",
       subtitle: "requerem atenção",
-    },
-    {
-      color: "#8B5CF6",
-      icon: "💰",
-      value: "$" + data.lastTariffCalc.final,
-      label: "Última Tarifa",
-      subtitle: "navio " + data.lastTariffCalc.ship,
     },
   ];
 
@@ -72,6 +59,7 @@ export default function Home() {
         <h2 className="title">Olá, Usuário 👋</h2>
         <p className="subtitle">Dashboard de Manobras</p>
 
+        {/* CARDS */}
         <div className="cards-grid">
           {cards.map((c, i) => (
             <div key={i} className="card" style={{ borderTopColor: c.color }}>
@@ -83,6 +71,35 @@ export default function Home() {
           ))}
         </div>
 
+        {/* LISTA DE AGENDAMENTOS RECENTES */}
+        <div className="recent-schedules">
+          <h3>Últimos Agendamentos</h3>
+
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Área</th>
+                <th>Navio</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.recentSchedules.map((schedule) => (
+                <tr key={schedule.id}>
+                  <td>
+                    {new Date(schedule.scheduledAt).toLocaleString()}
+                  </td>
+                  <td>{schedule.area}</td>
+                  <td>{schedule.shipName}</td>
+                  <td>{schedule.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* AÇÕES RÁPIDAS (fora do escopo FE-30, mantidas) */}
         <div className="quick-actions">
           <button className="btn-primary">➕ Novo Agendamento</button>
           <button className="btn-secondary">📋 Ver Agendamentos</button>
