@@ -53,16 +53,21 @@ export default function Home() {
       <p className="subtitle">Dashboard de Manobras</p>
 
       {/* CARDS */}
-      <div className="cards-grid">
-        {cards.map((c, i) => (
-          <div key={i} className="card" style={{ borderTopColor: c.color }}>
-            <div className="card-icon">{c.icon}</div>
-            <div className="card-value">{c.value}</div>
-            <div className="card-label">{c.label}</div>
-            <div className="card-sub">{c.subtitle}</div>
-          </div>
-        ))}
-      </div>
+<div className="cards-grid">
+  {cards.map((c, i) => (
+    <div key={i} className="card" style={{ borderTopColor: c.color }}>
+      <div className="card-icon">{c.icon}</div>
+      <div className="card-value">{c.value}</div>
+      <div className="card-label">{c.label}</div>
+      <div className="card-sub">{c.subtitle}</div>
+    </div>
+  ))}
+</div>
+
+{/* SEPARADOR VISUAL */}
+<div className="section-separator" />
+
+    
 
       {/* LISTA */}
       <div className="recent-schedules">

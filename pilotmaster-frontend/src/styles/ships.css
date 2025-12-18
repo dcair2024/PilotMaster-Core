@@ -123,4 +123,22 @@
   }
 }
 
+/* === ESTADOS DE FORM === */
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.form-error {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 14px;
+}
+
+
 
