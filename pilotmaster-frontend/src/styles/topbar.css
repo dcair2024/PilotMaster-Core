@@ -1,11 +1,10 @@
 .topbar {
-  height: 64px;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+  height: 56px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 0 24px;
+  padding: 0 16px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .menu-btn {

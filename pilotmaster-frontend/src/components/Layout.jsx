@@ -9,7 +9,7 @@ export default function Layout({ children }) {
   return (
     <div className={`app-layout ${sidebarOpen ? "" : "collapsed"}`}>
       <Sidebar open={sidebarOpen} />
-      
+
       <div className="main-area">
         <Topbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
         <main className="content">{children}</main>
@@ -17,4 +17,3 @@ export default function Layout({ children }) {
     </div>
   );
 }
-

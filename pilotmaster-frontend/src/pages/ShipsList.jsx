@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import { getShips } from "../api/shipsService";
-import "../styles/table.css";
+import "../styles/ships.css"; // troca ESSENCIAL
 
 export default function ShipsList() {
   const [ships, setShips] = useState([]);
@@ -39,7 +39,10 @@ export default function ShipsList() {
   }
 
   return (
-    <Layout>
+  <Layout>
+    <div className="page-container">
+
+      {/* HEADER */}
       <div className="page-header">
         <input
           placeholder="Buscar navio..."
@@ -55,30 +58,46 @@ export default function ShipsList() {
         </button>
       </div>
 
-      <div className="table-card">
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>GRT</th>
-              <th>Draft</th>
-              <th>Age</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredShips.map((ship) => (
-              <tr key={ship.id}>
-                <td>{ship.name}</td>
-                <td>{ship.grt}</td>
-                <td>{ship.draft}</td>
-                <td>{ship.age}</td>
-                <td>{ship.isActive ? "Ativo" : "Inativo"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* GRID DE CARDS */}
+      <div className="ship-grid">
+        {filteredShips.map((ship) => (
+          <div key={ship.id} className="ship-card">
+
+            <div className="ship-card-header">
+              <strong className="ship-name">{ship.name}</strong>
+
+              <span
+                className={`ship-status ${
+                  ship.isActive ? "active" : "inactive"
+                }`}
+              >
+                {ship.isActive ? "Ativo" : "Inativo"}
+              </span>
+            </div>
+
+            <div className="ship-card-body">
+              <div className="ship-info">
+                <span>GRT</span>
+                <strong>{ship.grt}</strong>
+              </div>
+
+              <div className="ship-info">
+                <span>Draft</span>
+                <strong>{ship.draft}</strong>
+              </div>
+
+              <div className="ship-info">
+                <span>Age</span>
+                <strong>{ship.age}</strong>
+              </div>
+            </div>
+
+          </div>
+        ))}
       </div>
-    </Layout>
-  );
+
+    </div>
+  </Layout>
+);
+
 }

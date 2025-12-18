@@ -6,7 +6,6 @@ export default function Topbar({ toggleSidebar }) {
       <button className="menu-btn" onClick={toggleSidebar}>
         ☰
       </button>
-      <span>Sistema de Gestão Portuária</span>
     </header>
   );
 }
