@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "../components/Layout";
 import { getShips } from "../api/shipsService";
-import "../styles/ships.css"; // troca ESSENCIAL
+import "../styles/ships.css";
 
 export default function ShipsList() {
   const [ships, setShips] = useState([]);
@@ -30,17 +29,10 @@ export default function ShipsList() {
     ship.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (loading) {
-    return (
-      <Layout>
-        <p>Carregando navios...</p>
-      </Layout>
-    );
-  }
+  if (loading) return <p>Carregando navios...</p>;
 
   return (
-  <Layout>
-    <div className="page-container">
+    <div className="ships-page">
 
       {/* HEADER */}
       <div className="page-header">
@@ -58,7 +50,7 @@ export default function ShipsList() {
         </button>
       </div>
 
-      {/* GRID DE CARDS */}
+      {/* GRID */}
       <div className="ship-grid">
         {filteredShips.map((ship) => (
           <div key={ship.id} className="ship-card">
@@ -97,7 +89,5 @@ export default function ShipsList() {
       </div>
 
     </div>
-  </Layout>
-);
-
+  );
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "../components/Layout";
-import { createShip } from "../api/shipsService";
+import api from "../api/apiConfig";
+import "../styles/ships.css";
 
 export default function ShipForm() {
   const navigate = useNavigate();
@@ -15,11 +15,8 @@ export default function ShipForm() {
     deficiency: 0,
   });
 
-  const [loading, setLoading] = useState(false);
-
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
-
     setForm({
       ...form,
       [name]: type === "checkbox" ? checked : value,
@@ -28,10 +25,9 @@ export default function ShipForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
 
     try {
-      await createShip({
+      await api.post("/Ships", {
         ...form,
         grt: Number(form.grt),
         draft: Number(form.draft),
@@ -39,77 +35,51 @@ export default function ShipForm() {
         deficiency: Number(form.deficiency),
       });
 
-      alert("Navio criado com sucesso!");
       navigate("/ships");
     } catch (err) {
-      alert("Erro ao criar navio. Verifique os dados.");
-    } finally {
-      setLoading(false);
+      alert("Erro ao salvar navio");
     }
   }
 
   return (
-    <Layout>
+  <div className="ships-page">
+    <div className="ship-form-container">
       <h2>Novo Navio</h2>
 
-      <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-        <input
-          name="name"
-          placeholder="Nome do navio"
-          value={form.name}
-          onChange={handleChange}
-          required
-        />
+      <form className="ship-form" onSubmit={handleSubmit}>
+        <div className="form-grid">
+          <div className="form-field">
+            <label>Nome do navio</label>
+            <input name="name" onChange={handleChange} required />
+          </div>
 
-        <input
-          name="grt"
-          type="number"
-          placeholder="GRT"
-          value={form.grt}
-          onChange={handleChange}
-          required
-        />
+          <div className="form-field">
+            <label>GRT</label>
+            <input name="grt" type="number" onChange={handleChange} required />
+          </div>
 
-        <input
-          name="draft"
-          type="number"
-          placeholder="Draft"
-          value={form.draft}
-          onChange={handleChange}
-          required
-        />
+          <div className="form-field">
+            <label>Draft</label>
+            <input name="draft" type="number" onChange={handleChange} required />
+          </div>
 
-        <input
-          name="age"
-          type="number"
-          placeholder="Idade"
-          value={form.age}
-          onChange={handleChange}
-          required
-        />
+          <div className="form-field">
+            <label>Idade</label>
+            <input name="age" type="number" onChange={handleChange} required />
+          </div>
+        </div>
 
-        <input
-          name="deficiency"
-          type="number"
-          placeholder="Deficiência"
-          value={form.deficiency}
-          onChange={handleChange}
-        />
-
-        <label>
-          <input
-            type="checkbox"
-            name="requiresTug"
-            checked={form.requiresTug}
-            onChange={handleChange}
-          />
+        <label className="checkbox">
+          <input type="checkbox" name="requiresTug" onChange={handleChange} />
           Requer rebocador
         </label>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Salvando..." : "Salvar"}
-        </button>
+        <div className="form-actions">
+          <button className="btn-primary">Salvar</button>
+        </div>
       </form>
-    </Layout>
-  );
+    </div>
+  </div>
+);
+
 }

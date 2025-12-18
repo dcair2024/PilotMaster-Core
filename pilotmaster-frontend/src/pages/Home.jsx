@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
-import TopBar from "../components/Topbar";
-import "./home.css";
-import api from "../api/apiConfig";
 import { useNavigate } from "react-router-dom";
+import api from "../api/apiConfig";
+import "./home.css";
 
 export default function Home() {
   const [data, setData] = useState(null);
@@ -11,7 +9,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadDashboard = async () => {
+    async function loadDashboard() {
       try {
         const res = await api.get("/Dashboard");
         setData(res.data);
@@ -24,15 +22,14 @@ export default function Home() {
       } finally {
         setLoading(false);
       }
-    };
+    }
 
     loadDashboard();
   }, [navigate]);
 
-  if (loading) return <div>Carregando...</div>;
-  if (!data) return <div>Erro ao carregar dashboard</div>;
+  if (loading) return <p>Carregando...</p>;
+  if (!data) return <p>Erro ao carregar dashboard</p>;
 
-  // ✅ FE-30 — APENAS os cards exigidos
   const cards = [
     {
       color: "#3B82F6",
@@ -51,60 +48,54 @@ export default function Home() {
   ];
 
   return (
-    <div className="layout">
-      <Sidebar />
-      <TopBar />
+    <div className="home-page">
+      <h2 className="title">Olá, Usuário 👋</h2>
+      <p className="subtitle">Dashboard de Manobras</p>
 
-      <main className="home-content">
-        <h2 className="title">Olá, Usuário 👋</h2>
-        <p className="subtitle">Dashboard de Manobras</p>
+      {/* CARDS */}
+      <div className="cards-grid">
+        {cards.map((c, i) => (
+          <div key={i} className="card" style={{ borderTopColor: c.color }}>
+            <div className="card-icon">{c.icon}</div>
+            <div className="card-value">{c.value}</div>
+            <div className="card-label">{c.label}</div>
+            <div className="card-sub">{c.subtitle}</div>
+          </div>
+        ))}
+      </div>
 
-        {/* CARDS */}
-        <div className="cards-grid">
-          {cards.map((c, i) => (
-            <div key={i} className="card" style={{ borderTopColor: c.color }}>
-              <div className="card-icon">{c.icon}</div>
-              <div className="card-value">{c.value}</div>
-              <div className="card-label">{c.label}</div>
-              <div className="card-sub">{c.subtitle}</div>
-            </div>
-          ))}
-        </div>
+      {/* LISTA */}
+      <div className="recent-schedules">
+        <h3>Últimos Agendamentos</h3>
 
-        {/* LISTA DE AGENDAMENTOS RECENTES */}
-        <div className="recent-schedules">
-          <h3>Últimos Agendamentos</h3>
-
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Data</th>
-                <th>Área</th>
-                <th>Navio</th>
-                <th>Status</th>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Área</th>
+              <th>Navio</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.recentSchedules.map((schedule) => (
+              <tr key={schedule.id}>
+                <td>{new Date(schedule.scheduledAt).toLocaleString()}</td>
+                <td>{schedule.area}</td>
+                <td>{schedule.shipName}</td>
+                <td>{schedule.status}</td>
               </tr>
-            </thead>
-            <tbody>
-              {data.recentSchedules.map((schedule) => (
-                <tr key={schedule.id}>
-                  <td>
-                    {new Date(schedule.scheduledAt).toLocaleString()}
-                  </td>
-                  <td>{schedule.area}</td>
-                  <td>{schedule.shipName}</td>
-                  <td>{schedule.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-        {/* AÇÕES RÁPIDAS (fora do escopo FE-30, mantidas) */}
-        <div className="quick-actions">
-          <button className="btn-primary">➕ Novo Agendamento</button>
-          <button className="btn-secondary">📋 Ver Agendamentos</button>
-        </div>
-      </main>
+      {/* AÇÕES */}
+      <div className="quick-actions">
+        <button className="btn-primary">➕ Novo Agendamento</button>
+        <button className="btn-secondary">📋 Ver Agendamentos</button>
+      </div>
     </div>
   );
 }
+

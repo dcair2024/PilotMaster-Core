@@ -1,19 +1,25 @@
+import { NavLink } from "react-router-dom";
 import "../styles/sidebar.css";
 
-export default function Sidebar({ open }) {
+export default function Sidebar() {
   return (
-    <aside className={`sidebar ${open ? "open" : "closed"}`}>
-      
-      <div className="sidebar-header">
-        <span className="brand">PilotMaster</span>
-      </div>
+    <aside className="sidebar">
+      <h2 className="logo">PilotMaster</h2>
 
-      <nav className="sidebar-nav">
-        <a className="active">Navios</a>
-        <a>Agendamentos</a>
-        <a>Tarifas</a>
+      <nav>
+        <NavLink to="/home" className="nav-link">
+          Dashboard
+        </NavLink>
+        <NavLink to="/ships" className="nav-link">
+          Navios
+        </NavLink>
+        <NavLink to="/schedule" className="nav-link">
+          Agendamentos
+        </NavLink>
+        <NavLink to="/tariff" className="nav-link">
+          Tarifas
+        </NavLink>
       </nav>
-
     </aside>
   );
 }

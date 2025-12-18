@@ -33,3 +33,17 @@
   background: #2563eb;
   color: white;
 }
+.nav-link {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: #cbd5f5;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.nav-link.active {
+  background: #2563eb;
+  color: white;
+}
+

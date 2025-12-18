@@ -5,8 +5,8 @@ import Home from "./pages/Home";
 import ShipsList from "./pages/ShipsList";
 import ShipForm from "./pages/ShipForm";
 
-
 import ProtectedRoute from "./components/ProtectedRoute";
+import AppLayout from "./components/AppLayout";
 
 import TestAuthPage from "./pages/TestAuthPage";
 import TestSchedulePage from "./pages/TestSchedulePage";
@@ -26,31 +26,34 @@ export default function App() {
 
         {/* ROTAS PROTEGIDAS */}
         <Route element={<ProtectedRoute />}>
-          
-          {/* Dashboard */}
-          <Route path="/home" element={<Home />} />
 
-          {/* Navios */}
-          <Route path="/ships" element={<ShipsList />} />
-          {/* Novo Navio */}
-          <Route path="/ships/new" element={<ShipForm />} />
+          {/* Layout do App */}
+          <Route element={<AppLayout />}>
 
+            {/* Dashboard */}
+            <Route path="/home" element={<Home />} />
 
-          {/* Agendamentos */}
-          <Route path="/schedule" element={<TestSchedulePage />} />
-          <Route path="/schedule/new" element={<TestScheduleCreate />} />
+            {/* Navios */}
+            <Route path="/ships" element={<ShipsList />} />
+            <Route path="/ships/new" element={<ShipForm />} />
 
-          {/* Tarifa */}
-          <Route path="/tariff" element={<TestTariffPage />} />
+            {/* Agendamentos */}
+            <Route path="/schedule" element={<TestSchedulePage />} />
+            <Route path="/schedule/new" element={<TestScheduleCreate />} />
 
-          {/* Configurações */}
-          <Route
-            path="/settings"
-            element={<div style={{ padding: 20 }}>Configurações (em construção)</div>}
-          />
+            {/* Tarifa */}
+            <Route path="/tariff" element={<TestTariffPage />} />
 
-          {/* Redirecionamento padrão */}
-          <Route path="/" element={<Navigate to="/home" replace />} />
+            {/* Configurações */}
+            <Route
+              path="/settings"
+              element={<div style={{ padding: 20 }}>Configurações (em construção)</div>}
+            />
+
+            {/* Redirecionamento padrão */}
+            <Route path="/" element={<Navigate to="/home" replace />} />
+
+          </Route>
         </Route>
 
         {/* Testes isolados */}
@@ -61,6 +64,7 @@ export default function App() {
           path="*"
           element={<div style={{ padding: 20 }}>404 — Não encontrado</div>}
         />
+
       </Routes>
     </BrowserRouter>
   );

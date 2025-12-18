@@ -1,123 +1,126 @@
+.ships-page {
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.page-header input {
+  padding: 10px 12px;
+  width: 240px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+/* grid */
 .ship-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
 }
 
 .ship-card {
-  background: var(--color-white);
-  border-radius: 12px;
+  background: white;
+  border-radius: 10px;
   padding: 16px;
+  border: 1px solid #e5e7eb;
 }
 
 .ship-card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.ship-status {
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 12px;
+  margin-bottom: 12px;
 }
 
 .ship-status.active {
-  background: var(--color-success-light);
-  color: var(--color-success);
+  color: #16a34a;
 }
 
 .ship-status.inactive {
-  background: var(--color-gray-100);
-  color: var(--color-gray-600);
+  color: #dc2626;
 }
-
-.ship-card-body {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.ship-card-body span {
-  font-size: 0.75rem;
-  color: var(--color-gray-500);
-}
-.page-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-/* HEADER */
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-/* GRID */
-.ship-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-}
-
-/* CARD */
-.ship-card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+.ship-form {
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.ship-card-header {
+.ship-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.checkbox {
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
   align-items: center;
 }
 
-.ship-name {
-  font-weight: 600;
-}
+/* === FORM NOVO NAVIO === */
 
-/* INFO */
-.ship-card-body {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-}
-
-.ship-info span {
-  font-size: 0.75rem;
-  color: var(--color-gray-500);
-}
-
-/* STATUS */
-.ship-status {
-  font-size: 0.7rem;
-  padding: 4px 8px;
+.ship-form-container {
+  max-width: 520px;
+  background: #ffffff;
+  padding: 24px;
   border-radius: 12px;
+  border: 1px solid #e5e7eb;
 }
 
-.ship-status.active {
-  background: var(--color-success-light);
-  color: var(--color-success);
+.ship-form-container h2 {
+  margin-bottom: 20px;
 }
 
-.ship-status.inactive {
-  background: var(--color-gray-100);
-  color: var(--color-gray-600);
+/* Grid dos campos */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .page-header {
-    flex-direction: column;
+/* Campo */
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.form-field input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Checkbox */
+.checkbox {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Ações */
+.form-actions {
+  margin-top: 24px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 }
+
 
