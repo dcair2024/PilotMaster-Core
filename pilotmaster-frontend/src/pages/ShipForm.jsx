@@ -70,6 +70,8 @@ export default function ShipForm() {
               />
             </div>
 
+            
+
             <div className="form-field">
               <label>GRT</label>
               <input

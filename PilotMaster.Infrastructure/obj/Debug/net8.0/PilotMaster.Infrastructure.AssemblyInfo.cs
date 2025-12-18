@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PilotMaster.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e36e6d28c431626779844ed27c58612d550835f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43e2a2b705be82c50d01fef0834128cf0e9518cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("PilotMaster.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PilotMaster.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
