@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PilotMaster.Api.Models;
 using PilotMaster.Application.Interfaces;
 using PilotMaster.Domain.Entities;
 
@@ -30,23 +31,38 @@ public class ScheduleController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(PilotSchedule), 200)]
     [ProducesResponseType(400)]
+    // POST: /api/schedule
+    [HttpPost]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
     public async Task<IActionResult> Create([FromBody] PilotSchedule schedule)
     {
         if (schedule == null)
-            return BadRequest("Invalid schedule.");
-
-        schedule.Status = "Scheduled";
+        {
+            return BadRequest(
+                ApiResponse<object>.Fail("Payload inválido.", "INVALID_PAYLOAD")
+            );
+        }
 
         try
         {
             var created = await _service.CreateSchedule(schedule);
-            return Ok(created);
+
+            return Ok(
+                ApiResponse<PilotSchedule>.Ok(created)
+            );
         }
         catch (InvalidOperationException ex)
         {
-            return BadRequest(new { error = ex.Message });
+            return BadRequest(
+                ApiResponse<object>.Fail(
+                    ex.Message,
+                    "SCHEDULE_VALIDATION_ERROR"
+                )
+            );
         }
     }
+
 
     // PUT: /api/schedule/{id}/cancel
     [HttpPut("{id}/cancel")]
