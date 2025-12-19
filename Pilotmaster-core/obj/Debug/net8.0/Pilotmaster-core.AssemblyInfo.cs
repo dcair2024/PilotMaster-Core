@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pilotmaster-core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43e2a2b705be82c50d01fef0834128cf0e9518cb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+931e13f44a0d1106a5f80f7b35c0879ec9de1025")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pilotmaster-core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pilotmaster-core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
