@@ -139,6 +139,15 @@
   color: #991b1b;
   font-size: 14px;
 }
+.form-success {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 14px;
+}
+
 
 
 

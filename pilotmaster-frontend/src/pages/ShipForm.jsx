@@ -17,6 +17,7 @@ export default function ShipForm() {
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
@@ -27,30 +28,43 @@ export default function ShipForm() {
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    setSubmitting(true);
-    setError("");
+  e.preventDefault();
 
-    try {
-      await api.post("/Ships", {
-        ...form,
-        grt: Number(form.grt),
-        draft: Number(form.draft),
-        age: Number(form.age),
-        deficiency: Number(form.deficiency),
-      });
+  setSubmitting(true);
+  setError("");
+  setSuccess("");
 
+  try {
+    const res = await api.post("/Ships", {
+      ...form,
+      grt: Number(form.grt),
+      draft: Number(form.draft),
+      age: Number(form.age),
+      deficiency: Number(form.deficiency),
+    });
+
+    // ✅ MOSTRA A MENSAGEM
+    setSuccess(res.data?.message || "Navio criado com sucesso.");
+
+    // ⏳ ESPERA UM POUCO ANTES DE SAIR DA TELA
+    setTimeout(() => {
       navigate("/ships");
-    } catch (err) {
-      if (err.response?.status === 400) {
-        setError("Dados inválidos. Verifique os campos e tente novamente.");
-      } else {
-        setError("Erro ao salvar navio. Tente novamente.");
-      }
-    } finally {
-      setSubmitting(false);
+    }, 600);
+
+  } catch (err) {
+    if (err.response?.status === 400) {
+      setError("Dados inválidos. Verifique os campos e tente novamente.");
+    } else {
+      setError("Erro ao salvar navio. Tente novamente.");
     }
+  } finally {
+    // ⚠️ IMPORTANTE: só libera depois do timeout
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 600);
   }
+}
+
 
   return (
     <div className="ships-page">
@@ -121,6 +135,8 @@ export default function ShipForm() {
           </label>
 
           {error && <div className="form-error">{error}</div>}
+          {success && <div className="form-success">{success}</div>}
+
 
           <div className="form-actions">
             <button
