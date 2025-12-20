@@ -18,10 +18,13 @@ public class ShipsController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll()
         => Ok(await _service.GetAllAsync());
 
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(int id)
     {
         var ship = await _service.GetByIdAsync(id);
@@ -29,6 +32,8 @@ public class ShipsController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)] // BK-41
     public async Task<IActionResult> Create([FromBody] Ship ship)
     {
         var created = await _service.CreateAsync(ship);
@@ -36,6 +41,9 @@ public class ShipsController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)] // BK-41
     public async Task<IActionResult> Update(int id, [FromBody] Ship ship)
     {
         var updated = await _service.UpdateAsync(id, ship);
@@ -43,9 +51,13 @@ public class ShipsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(int id)
     {
         var ok = await _service.DeactivateAsync(id);
-        return ok ? Ok(new { message = "Navio desativado" }) : NotFound();
+        return ok
+            ? Ok(new { success = true, message = "Navio desativado" })
+            : NotFound();
     }
 }

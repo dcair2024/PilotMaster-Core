@@ -52,12 +52,17 @@ export default function ShipForm() {
     }, 600);
 
   } catch (err) {
-    if (err.response?.status === 400) {
-      setError("Dados inválidos. Verifique os campos e tente novamente.");
-    } else {
-      setError("Erro ao salvar navio. Tente novamente.");
-    }
-  } finally {
+  console.log("FULL ERROR:", err);
+  console.log("RESPONSE DATA:", err.response?.data);
+
+  const apiMessage =
+    err.response?.data?.message ||
+    err.response?.data?.title ||
+    "Erro inesperado. Tente novamente.";
+
+  setError(apiMessage);
+}
+ finally {
     // ⚠️ IMPORTANTE: só libera depois do timeout
     setTimeout(() => {
       setSubmitting(false);

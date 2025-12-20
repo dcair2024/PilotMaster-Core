@@ -114,6 +114,9 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+
+app.UseMiddleware<ExceptionMiddleware>(); // 👈 PRIMEIRO DE TODOS
+
 app.UseHttpsRedirection();
 
 app.UseSwagger();
@@ -127,3 +130,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+
