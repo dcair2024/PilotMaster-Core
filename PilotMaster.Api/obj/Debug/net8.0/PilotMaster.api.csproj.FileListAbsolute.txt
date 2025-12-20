@@ -300,3 +300,4 @@ C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\Pil
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\PilotMaster.Api.genruntimeconfig.cache
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\ref\PilotMaster.Api.dll
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\User\source\repos\PilotMaster-Core\PilotMaster.api\obj\Debug\net8.0\PilotMaster.Api.MvcApplicationPartsAssemblyInfo.cs

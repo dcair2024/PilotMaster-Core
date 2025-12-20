@@ -14,19 +14,33 @@ public class ScheduleService : IScheduleService
         _db = db;
     }
 
-    public async Task<IEnumerable<PilotSchedule>> GetSchedules(DateTime? date = null, string? area = null)
+    public async Task<IEnumerable<PilotSchedule>> GetSchedules(
+    DateTime? date = null,
+    string? area = null)
     {
-        var q = _db.PilotSchedules.Include(p => p.Ship).AsQueryable();
+        var query = _db.PilotSchedules
+            .AsNoTracking() // 🔥 FUNDAMENTAL
+            .Include(p => p.Ship)
+            .AsQueryable();
+
         if (date.HasValue)
         {
-            var d = date.Value.Date;
-            q = q.Where(x => x.ScheduledAt.Date == d);
+            var targetDate = date.Value.Date;
+            query = query.Where(p => p.ScheduledAt.Date == targetDate);
         }
-        if (!string.IsNullOrEmpty(area))
-            q = q.Where(x => x.Area.ToUpper() == area.ToUpper());
 
-        return await q.OrderBy(x => x.ScheduledAt).ToListAsync();
+        if (!string.IsNullOrWhiteSpace(area))
+        {
+            var normalizedArea = area.Trim().ToUpper();
+            query = query.Where(p => p.Area.ToUpper() == normalizedArea);
+        }
+
+        return await query
+            .OrderBy(p => p.ScheduledAt)
+            .ToListAsync();
     }
+
+
 
     public async Task<PilotSchedule> CreateSchedule(PilotSchedule schedule)
 
