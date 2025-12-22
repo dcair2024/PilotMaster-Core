@@ -63,50 +63,65 @@ export default function TestTariffPage() {
             <h2>⚓ Cálculo de Tarifa (FE-03)</h2>
             <p>Página de teste para o endpoint GET /api/Tariff/calculate.</p>
 
-            <form onSubmit={handleCalculate} style={{ display: 'grid', gap: '10px' }}>
-                <label>ID:</label>
-                <input type="text" name="Id" value={params.Id} onChange={handleChange} required />
+            <form  onSubmit={handleCalculate}
+  className={loading ? "ds-loading" : ""}
+>
+  <div className="form-field">
+    <label className="ds-label">ID</label>
+    <input className="ds-input" name="Id" value={params.Id} onChange={handleChange} required />
+  </div>
 
-                <label>Nome do Navio:</label>
-                <input type="text" name="Name" value={params.Name} onChange={handleChange} required />
+  <div className="form-field">
+    <label className="ds-label">Nome do Navio</label>
+    <input className="ds-input" name="Name" value={params.Name} onChange={handleChange} required />
+  </div>
 
-                <label>GRT (Gross Tonnage):</label>
-                <input type="number" name="GRT" value={params.GRT} onChange={handleChange} required />
+  <div className="form-field">
+    <label className="ds-label">GRT</label>
+    <input className="ds-input" type="number" name="GRT" value={params.GRT} onChange={handleChange} required />
+  </div>
 
-                <label>Draft (Calado):</label>
-                <input type="number" name="Draft" value={params.Draft} onChange={handleChange} required />
+  <div className="form-field">
+    <label className="ds-label">Draft</label>
+    <input className="ds-input" type="number" name="Draft" value={params.Draft} onChange={handleChange} required />
+  </div>
 
-                <label>Idade (Anos):</label>
-                <input type="number" name="Age" value={params.Age} onChange={handleChange} required />
+  <div className="form-field">
+    <label className="ds-label">Idade</label>
+    <input className="ds-input" type="number" name="Age" value={params.Age} onChange={handleChange} required />
+  </div>
 
-                {/* Checkbox RequiresTug */}
-                <div>
-                    <input
-                        id="RequiresTug"
-                        type="checkbox"
-                        name="RequiresTug"
-                        checked={params.RequiresTug}
-                        onChange={handleChange}
-                    />
-                    <label htmlFor="RequiresTug">Requer Rebocador?</label>
-                </div>
+  <div className="form-field">
+    <label>
+      <input
+        type="checkbox"
+        name="RequiresTug"
+        checked={params.RequiresTug}
+        onChange={handleChange}
+      />{" "}
+      Requer Rebocador
+    </label>
+  </div>
 
-                {/* Checkbox Deficiency */}
-                <div>
-                    <input
-                        id="Deficiency"
-                        type="checkbox"
-                        name="Deficiency"
-                        checked={params.Deficiency === 1}
-                        onChange={handleChange}
-                    />
-                    <label htmlFor="Deficiency">Possui Deficiência?</label>
-                </div>
+  <div className="form-field">
+    <label>
+      <input
+        type="checkbox"
+        name="Deficiency"
+        checked={params.Deficiency === 1}
+        onChange={handleChange}
+      />{" "}
+      Possui Deficiência
+    </label>
+  </div>
 
-                <button type="submit" disabled={loading} style={{ padding: '10px', marginTop: '15px' }}>
-                    {loading ? 'Calculando...' : 'Calcular Tarifa'}
-                </button>
-            </form>
+  <button className="btn-primary" type="submit" disabled={loading}>
+    {loading ? "Calculando..." : "Calcular Tarifa"}
+  </button>
+</form>
+
+{error && <div className="ds-error">{error}</div>}
+
 
             {error && <p style={{ color: 'red', marginTop: '15px' }}>⚠️ Erro: {error}</p>}
 

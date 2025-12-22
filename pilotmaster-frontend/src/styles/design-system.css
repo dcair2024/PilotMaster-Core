@@ -1,141 +1,46 @@
-:root {
-  --primary: #2563eb;
-  --primary-dark: #1e40af;
-
-  --bg-page: #f5f7fb;
-  --bg-card: #ffffff;
-
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-
-  --border-light: #e5e7eb;
-
-  --radius: 12px;
-  --radius-sm: 8px;
-
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+.form-field {
+  margin-bottom: 16px;
 }
 
-/* ================================
-   DESIGN SYSTEM - UTILITÁRIOS
-   ================================ */
-
-/* --- Margens --- */
-.m-8 { margin: 8px; }
-.m-16 { margin: 16px; }
-.m-24 { margin: 24px; }
-
-.mt-8 { margin-top: 8px; }
-.mt-16 { margin-top: 16px; }
-.mt-24 { margin-top: 24px; }
-
-.mb-8 { margin-bottom: 8px; }
-.mb-16 { margin-bottom: 16px; }
-.mb-24 { margin-bottom: 24px; }
-
-/* --- Espaçamentos internos --- */
-.p-8 { padding: 8px; }
-.p-16 { padding: 16px; }
-.p-24 { padding: 24px; }
-
-/* --- Layout Flex --- */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.flex-between { justify-content: space-between; }
-.flex-center { justify-content: center; align-items: center; }
-
-/* --- Layout Grid --- */
-.grid { display: grid; }
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-/* --- Gaps --- */
-.gap-8 { gap: 8px; }
-.gap-16 { gap: 16px; }
-.gap-24 { gap: 24px; }
-
-/* --- Responsividade --- */
-@media (max-width: 768px) {
-  .grid-4 {
-    grid-template-columns: 1fr;
-  }
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ================================
-   DESIGN SYSTEM — FORMS
-   ================================ */
-
-/* ===== Label ===== */
 .ds-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
 }
 
-/* ===== Input ===== */
 .ds-input {
   width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  background-color: #ffffff;
-
+  padding: 10px 12px;
+  font-size: 0.95rem;
   border: 1px solid #e5e7eb;
-  border-radius: 6px;
+  border-radius: 8px;
+  background: #fff;
 }
 
-/* Focus visível, discreto */
 .ds-input:focus {
   outline: none;
   border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-}
-
-/* ===== Erro ===== */
-.ds-input-error {
-  border-color: #dc2626;
-}
-
-.ds-error {
-  font-size: 14px;
-  color: #991b1b;
-}
-
-/* ================================
-   DESIGN SYSTEM — STATES
-   ================================ */
-
-/* ===== Disabled ===== */
-.ds-disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.ds-input:disabled {
-  background-color: #f9fafb;
-  color: #9ca3af;
-  border-color: #e5e7eb;
-  cursor: not-allowed;
-}
-
-/* ===== Loading ===== */
-.ds-loading {
-  cursor: progress;
-}
-
-/* Evita interação durante loading */
-.ds-loading * {
-  pointer-events: none;
-}
-
-/* ===== Error State ===== */
-.ds-has-error .ds-label {
-  color: #991b1b;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
 }
 
 .ds-has-error .ds-input {
   border-color: #dc2626;
 }
 
+.ds-error {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #dc2626;
+}
+
+.ds-input:disabled {
+  background: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.ds-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
