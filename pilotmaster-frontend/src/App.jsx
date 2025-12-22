@@ -6,7 +6,7 @@ import ShipsList from "./pages/ShipsList";
 import ShipForm from "./pages/ShipForm";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-import AppLayout from "./components/AppLayout";
+import Layout from "./components/Layout";
 
 import TestAuthPage from "./pages/TestAuthPage";
 import TestSchedulePage from "./pages/TestSchedulePage";
@@ -27,8 +27,8 @@ export default function App() {
         {/* ROTAS PROTEGIDAS */}
         <Route element={<ProtectedRoute />}>
 
-          {/* Layout do App */}
-          <Route element={<AppLayout />}>
+          {/* LAYOUT ÚNICO DO APP */}
+          <Route element={<Layout />}>
 
             {/* Dashboard */}
             <Route path="/home" element={<Home />} />
@@ -50,7 +50,7 @@ export default function App() {
               element={<div style={{ padding: 20 }}>Configurações (em construção)</div>}
             />
 
-            {/* Redirecionamento padrão */}
+            {/* Redirect padrão */}
             <Route path="/" element={<Navigate to="/home" replace />} />
 
           </Route>

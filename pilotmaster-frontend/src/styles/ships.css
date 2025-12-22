@@ -167,6 +167,22 @@
   white-space: nowrap;
 }
 
+@media (max-width: 640px) {
+  .ship-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-header button {
+    width: 100%;
+  }
+}
+
+
 
 
 
