@@ -52,17 +52,14 @@ export default function ShipForm() {
     }, 600);
 
   } catch (err) {
-  console.log("FULL ERROR:", err);
-  console.log("RESPONSE DATA:", err.response?.data);
-
   const apiMessage =
-    err.response?.data?.message ||
-    err.response?.data?.title ||
-    "Erro inesperado. Tente novamente.";
+    err.response?.data?.message || "Erro inesperado. Tente novamente.";
 
   setError(apiMessage);
-}
- finally {
+
+  // opcional (debug)
+  console.error("API ERROR CODE:", err.response?.data?.code);
+} finally {
     // ⚠️ IMPORTANTE: só libera depois do timeout
     setTimeout(() => {
       setSubmitting(false);
