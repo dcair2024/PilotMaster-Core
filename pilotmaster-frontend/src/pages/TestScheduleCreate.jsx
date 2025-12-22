@@ -1,120 +1,159 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ScheduleService from "../api/ScheduleService";
+import "../styles/ships.css";
 
 export default function TestScheduleCreate() {
+  const navigate = useNavigate();
 
-    const [form, setForm] = useState({
-        scheduledAt: "",
-        area: "",
-        shipId: "",
-        status: "Scheduled",
-        notes: ""
-    });
+  const [form, setForm] = useState({
+    scheduledAt: "",
+    area: "",
+    shipId: "",
+    status: "Scheduled",
+    notes: ""
+  });
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [result, setResult] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  }
 
-        setForm(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setError(null);
-        setResult(null);
+    setSubmitting(true);
+    setError("");
+    setSuccess("");
 
-        try {
+    try {
+      const payload = {
+        scheduledAt: new Date(form.scheduledAt).toISOString(),
+        area: form.area,
+        shipId: Number(form.shipId),
+        status: form.status,
+        notes: form.notes
+      };
 
-            const payload = {
-                scheduledAt: new Date(form.scheduledAt).toISOString(),
-                area: form.area,
-                shipId: Number(form.shipId),
-                status: form.status,
-                notes: form.notes
-            };
+      const res = await ScheduleService.create(payload);
 
-            const created = await ScheduleService.create(payload);
-            setResult(created);
+      // ✅ FE-41 — mensagem REAL do backend
+      setSuccess(res?.message || "Agendamento criado com sucesso.");
 
-        } catch (err) {
-            console.error("Erro ao criar schedule:", err);
-            setError(err.message || "Erro ao criar schedule");
-        } finally {
-            setLoading(false);
-        }
-    };
+      // ⏳ feedback visual antes do redirect
+      setTimeout(() => {
+        navigate("/schedule");
+      }, 600);
 
-    return (
-        <div style={{ maxWidth: "600px", margin: "auto", padding: 20 }}>
-            
-            <h2>📅 Criar Schedule (FE-05)</h2>
-            <p>Testando o endpoint POST /api/Schedule</p>
+    } catch (err) {
+      const apiMessage =
+        err.response?.data?.message || "Erro inesperado. Tente novamente.";
 
-            <form onSubmit={handleSubmit} style={{ display: "grid", gap: 10 }}>
+      setError(apiMessage);
+      console.error("API ERROR CODE:", err.response?.data?.code);
 
-                <label>Data / Hora:</label>
-                <input 
-                    type="datetime-local"
-                    name="scheduledAt"
-                    value={form.scheduledAt}
-                    onChange={handleChange}
-                    required
-                />
+    } finally {
+      setTimeout(() => {
+        setSubmitting(false);
+      }, 600);
+    }
+  }
 
-                <label>Área:</label>
-                <input
-                    type="text"
-                    name="area"
-                    value={form.area}
-                    onChange={handleChange}
-                    required
-                />
+  return (
+    <div className="ships-page">
+      <div className="ship-form-container">
+        <h2>📅 Criar Schedule</h2>
 
-                <label>ID do Navio (shipId):</label>
-                <input
-                    type="number"
-                    name="shipId"
-                    value={form.shipId}
-                    onChange={handleChange}
-                    required
-                />
+        <form className="ship-form" onSubmit={handleSubmit}>
 
-                <label>Status:</label>
-                <select name="status" value={form.status} onChange={handleChange}>
-                    <option value="Scheduled">Scheduled</option>
-                    <option value="Cancelled">Cancelled</option>
-                    <option value="Completed">Completed</option>
-                </select>
+          <div className="form-field">
+            <label>Data / Hora</label>
+            <input
+              type="datetime-local"
+              name="scheduledAt"
+              value={form.scheduledAt}
+              onChange={handleChange}
+              required
+              disabled={submitting}
+            />
+          </div>
 
-                <label>Notas:</label>
-                <textarea
-                    name="notes"
-                    value={form.notes}
-                    onChange={handleChange}
-                />
+          <div className="form-field">
+            <label>Área</label>
+            <input
+              type="text"
+              name="area"
+              value={form.area}
+              onChange={handleChange}
+              required
+              disabled={submitting}
+            />
+          </div>
 
-                <button type="submit" disabled={loading} style={{ marginTop: 12 }}>
-                    {loading ? "Enviando..." : "Criar Schedule"}
-                </button>
-            </form>
+          <div className="form-field">
+            <label>ID do Navio</label>
+            <input
+              type="number"
+              name="shipId"
+              value={form.shipId}
+              onChange={handleChange}
+              required
+              disabled={submitting}
+            />
+          </div>
 
-            {error && <p style={{ color: "red" }}>⚠️ {error}</p>}
+          <div className="form-field">
+            <label>Status</label>
+            <select
+              name="status"
+              value={form.status}
+              onChange={handleChange}
+              disabled={submitting}
+            >
+              <option value="Scheduled">Scheduled</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
 
-            {result && (
-                <div style={{ marginTop: 20, padding: 15, border: "1px solid #ccc" }}>
-                    <h3>✅ Schedule Criado</h3>
-                    <p><strong>ID:</strong> {result.id}</p>
-                    <p><strong>Área:</strong> {result.area}</p>
-                    <p><strong>Data:</strong> {result.scheduledAt}</p>
-                </div>
-            )}
-        </div>
-    );
+          <div className="form-field">
+            <label>Notas</label>
+            <textarea
+              name="notes"
+              value={form.notes}
+              onChange={handleChange}
+              disabled={submitting}
+            />
+          </div>
+
+          {/* FEEDBACK */}
+          {error && <div className="form-error">{error}</div>}
+          {success && <div className="form-success">{success}</div>}
+
+          <div className="form-actions">
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={() => navigate("/schedule")}
+              disabled={submitting}
+            >
+              Cancelar
+            </button>
+
+            <button className="btn-primary" disabled={submitting}>
+              {submitting ? "Enviando..." : "Criar Schedule"}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  );
 }
