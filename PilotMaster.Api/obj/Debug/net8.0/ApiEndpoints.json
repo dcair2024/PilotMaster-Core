@@ -162,6 +162,22 @@
     ]
   },
   {
+    "ContainingType": "PilotMaster.Api.Controllers.ScheduleController",
+    "Method": "GetHistory",
+    "RelativePath": "api/Schedule/{scheduleId}/history",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scheduleId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PilotMaster.Api.Controllers.ShipsController",
     "Method": "GetAll",
     "RelativePath": "api/Ships",

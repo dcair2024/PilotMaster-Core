@@ -77,4 +77,14 @@ public class ScheduleController : ControllerBase
 
         return Ok(new { message = "Cancelled" });
     }
+
+    [HttpGet("{scheduleId}/history")]
+    public async Task<IActionResult> GetHistory(
+    int scheduleId,
+    [FromServices] IManeuverHistoryService service)
+    {
+        var history = await service.GetByScheduleIdAsync(scheduleId);
+        return Ok(history);
+    }
+
 }

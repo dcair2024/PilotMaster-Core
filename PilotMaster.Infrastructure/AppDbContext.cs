@@ -10,5 +10,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Ship> Ships { get; set; } = null!;
     public DbSet<PilotSchedule> PilotSchedules { get; set; } = null!;
+
+    public DbSet<ManeuverHistory> ManeuverHistories { get; set; }
 }
 

@@ -46,3 +46,39 @@ Transformar o PilotMaster em um sistema operacional real, permitindo cadastro de
 
 ### 🏁 Resultado
 Ao final da Sprint 4, o PilotMaster deixou de ser apenas um sistema técnico funcional e passou a operar como um produto utilizável, permitindo fluxo completo de uso pelo usuário.
+## 🚀 Sprint 5 — Refinamento e Preparação para Release
+
+**Status:** ✅ Concluída  
+
+### 🎯 Objetivo
+Consolidar qualidade, estabilidade e experiência do usuário, preparando o PilotMaster Core para um release interno estável.
+
+### 🔵 Backend
+- Refinamento de validações de domínio
+- Padronização de responses de erro e sucesso
+- Revisão de regras críticas de Schedule e Navios
+- Garantia de consistência dos dados do Dashboard
+
+### 🟣 Frontend
+- Aplicação consistente do Design System
+- Refinamento de formulários (erro, loading, disabled)
+- Tratamento de cenários de erro do backend
+- Ajustes de UX sem impacto arquitetural
+
+### 🎨 UI / UX
+- Ajustes finos de layout e espaçamento
+- Revisão visual mobile-first
+- Melhorias pontuais de usabilidade
+
+### 🧱 CSS / Design System
+- Consolidação das classes de formulários
+- Estados visuais padronizados
+- Garantia de consistência global
+
+### 🧪 QA
+- Testes End-to-End do fluxo completo
+- Testes de regressão
+- Validação de responsividade
+
+### 🏁 Resultado
+Ao final da Sprint 5, o PilotMaster Core atingiu um nível de maturidade que permite uso estável, previsível e seguro, estando pronto para demonstração e evolução futura.

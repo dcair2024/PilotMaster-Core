@@ -12,6 +12,7 @@ import TestAuthPage from "./pages/TestAuthPage";
 import TestSchedulePage from "./pages/TestSchedulePage";
 import TestScheduleCreate from "./pages/TestScheduleCreate";
 import TestTariffPage from "./pages/TestTariffPage";
+import ScheduleHistory from "./pages/ScheduleHistory";
 
 import "./styles/design-system.css";
 import "./styles/cards.css";
@@ -40,6 +41,12 @@ export default function App() {
             {/* Agendamentos */}
             <Route path="/schedule" element={<TestSchedulePage />} />
             <Route path="/schedule/new" element={<TestScheduleCreate />} />
+
+            {/* HISTÓRICO DO SCHEDULE */}
+            <Route
+              path="/schedule/:scheduleId/history"
+              element={<ScheduleHistory />}
+            />
 
             {/* Tarifa */}
             <Route path="/tariff" element={<TestTariffPage />} />
