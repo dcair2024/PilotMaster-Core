@@ -14,12 +14,35 @@ namespace PilotMaster.Application.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<ManeuverHistory>> GetByScheduleIdAsync(int scheduleId)
+        public async Task<IEnumerable<ManeuverHistory>> GetByScheduleIdAsync(
+            int scheduleId,
+            string? action,
+            DateTime? from,
+            DateTime? to)
         {
-            return await _context.ManeuverHistories
+            var query = _context.ManeuverHistories
                 .Where(x => x.ScheduleId == scheduleId)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(action))
+            {
+                query = query.Where(x => x.Action == action);
+            }
+
+            if (from.HasValue)
+            {
+                query = query.Where(x => x.CreatedAt >= from.Value);
+            }
+
+            if (to.HasValue)
+            {
+                query = query.Where(x => x.CreatedAt <= to.Value);
+            }
+
+            return await query
                 .OrderBy(x => x.CreatedAt)
                 .ToListAsync();
         }
     }
 }
+

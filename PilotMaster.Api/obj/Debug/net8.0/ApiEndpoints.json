@@ -65,6 +65,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PilotMaster.Api.Controllers.DashboardController",
+    "Method": "GetScheduleReport",
+    "RelativePath": "api/Dashboard/report",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PilotMaster.Api.Controllers.ScheduleController",
     "Method": "Get",
     "RelativePath": "api/Schedule",
@@ -111,8 +127,12 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "PilotMaster.Domain.Entities.PilotSchedule",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
         "StatusCode": 200
       },
       {
@@ -173,6 +193,21 @@
         "Name": "scheduleId",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "action",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "from",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "to",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

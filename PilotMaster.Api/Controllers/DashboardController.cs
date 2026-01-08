@@ -54,5 +54,28 @@ public class DashboardController : ControllerBase
             lastTariffCalc
         });
     }
+    [HttpGet("report")]
+    public async Task<IActionResult> GetScheduleReport([FromQuery] string? status)
+    {
+        var query = _db.PilotSchedules.AsQueryable();
+
+        if (!string.IsNullOrEmpty(status))
+        {
+            query = query.Where(x => x.Status == status);
+        }
+
+        var report = await query
+            .GroupBy(x => x.Status)
+            .Select(g => new
+            {
+                Status = g.Key,
+                Total = g.Count()
+            })
+            .OrderBy(x => x.Status)
+            .ToListAsync();
+
+        return Ok(report);
+    }
+
 
 }

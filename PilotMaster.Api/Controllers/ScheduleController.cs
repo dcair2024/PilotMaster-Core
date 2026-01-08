@@ -21,7 +21,9 @@ public class ScheduleController : ControllerBase
     // GET: /api/schedule
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<PilotSchedule>), 200)]
-    public async Task<IActionResult> Get([FromQuery] DateTime? date = null, [FromQuery] string? area = null)
+    public async Task<IActionResult> Get(
+        [FromQuery] DateTime? date = null,
+        [FromQuery] string? area = null)
     {
         var result = await _service.GetSchedules(date, area);
         return Ok(result);
@@ -30,10 +32,6 @@ public class ScheduleController : ControllerBase
     // POST: /api/schedule
     [HttpPost]
     [ProducesResponseType(typeof(PilotSchedule), 200)]
-    [ProducesResponseType(400)]
-    // POST: /api/schedule
-    [HttpPost]
-    [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     public async Task<IActionResult> Create([FromBody] PilotSchedule schedule)
     {
@@ -63,7 +61,6 @@ public class ScheduleController : ControllerBase
         }
     }
 
-
     // PUT: /api/schedule/{id}/cancel
     [HttpPut("{id}/cancel")]
     [ProducesResponseType(typeof(object), 200)]
@@ -78,13 +75,22 @@ public class ScheduleController : ControllerBase
         return Ok(new { message = "Cancelled" });
     }
 
+    // GET: /api/schedule/{scheduleId}/history
     [HttpGet("{scheduleId}/history")]
     public async Task<IActionResult> GetHistory(
-    int scheduleId,
-    [FromServices] IManeuverHistoryService service)
+        int scheduleId,
+        [FromQuery] string? action,
+        [FromQuery] DateTime? from,
+        [FromQuery] DateTime? to,
+        [FromServices] IManeuverHistoryService service)
     {
-        var history = await service.GetByScheduleIdAsync(scheduleId);
+        var history = await service.GetByScheduleIdAsync(
+            scheduleId,
+            action,
+            from,
+            to
+        );
+
         return Ok(history);
     }
-
 }

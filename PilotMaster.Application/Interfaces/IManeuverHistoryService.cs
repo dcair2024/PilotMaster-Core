@@ -10,6 +10,11 @@ namespace PilotMaster.Application.Interfaces
 {
     public interface IManeuverHistoryService
     {
-        Task<IEnumerable<ManeuverHistory>> GetByScheduleIdAsync(int scheduleId);
+        Task<IEnumerable<ManeuverHistory>> GetByScheduleIdAsync(
+            int scheduleId,
+            string? action,
+            DateTime? from,
+            DateTime? to
+        );
     }
 }

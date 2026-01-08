@@ -88,23 +88,23 @@ public class ScheduleService : IScheduleService
 
     public async Task<bool> CancelSchedule(int id, string cancelledBy)
     {
-        var s = await _db.PilotSchedules.FindAsync(id);
-        if (s == null) return false;
+        var schedule = await _context.PilotSchedules.FindAsync(id);
+        if (schedule == null)
+            return false;
 
-        s.Status = "Cancelled";
-        s.Notes = $"Cancelled by {cancelledBy} at {DateTime.UtcNow}";
+        schedule.Status = "Cancelled";
+        schedule.Notes = $"Cancelled by {cancelledBy} at {DateTime.UtcNow:dd/MM/yyyy HH:mm:ss}";
 
-        // 🧾 HISTÓRICO (append-only)
-        _db.ManeuverHistories.Add(new ManeuverHistory
+        _context.ManeuverHistories.Add(new ManeuverHistory
         {
-            ScheduleId = s.Id,
+            ScheduleId = schedule.Id,
             Action = "CANCELLED",
             Description = $"Cancelled by {cancelledBy}",
             CreatedAt = DateTime.UtcNow
         });
 
-        await _db.SaveChangesAsync();
-
+        await _context.SaveChangesAsync();
         return true;
+
     }
 }

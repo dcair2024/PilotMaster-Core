@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\Pilotmaster-core\\Pilotmaster-core.csproj": {}
+    "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\Pilotmaster-core\\Pilotmaster-core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\Pilotmaster-core\\Pilotmaster-core.csproj": {
+    "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\Pilotmaster-core\\Pilotmaster-core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\Pilotmaster-core\\Pilotmaster-core.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\Pilotmaster-core\\Pilotmaster-core.csproj",
         "projectName": "Pilotmaster-core",
-        "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\Pilotmaster-core\\Pilotmaster-core.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\Pilotmaster-core\\Pilotmaster-core.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\Pilotmaster-core\\obj\\",
         "projectStyle": "PackageReference",
