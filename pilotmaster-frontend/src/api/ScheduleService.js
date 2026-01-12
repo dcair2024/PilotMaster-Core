@@ -1,4 +1,17 @@
 import { API_BASE_URL, getAuthHeaders } from "../config";
+import api from "./api";
+
+async function getHistory(scheduleId, filters = {}) {
+  if (!scheduleId) throw new Error("ScheduleId obrigatório");
+
+  const response = await api.get(
+    `/Schedule/${scheduleId}/history`,
+    { params: filters }
+  );
+
+  return response.data;
+}
+
 
 async function getAll() {
     const token = localStorage.getItem("token");
@@ -62,8 +75,10 @@ async function cancel(id) {
 
 
 export default {
-    getAll,
-    create,
-    cancel
+  getAll,
+  create,
+  cancel,
+  getHistory
 };
+
 

@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens; 
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PilotMaster.Application.Interfaces;
 using PilotMaster.Application.Services;
-using System.Text;
 using PilotMaster.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ========================
-// JWT CONFIG CORRETA ✅
+// JWT CONFIG ✅
 // ========================
 
 var jwtSection = builder.Configuration.GetSection("Jwt");
@@ -22,17 +21,17 @@ var audience = jwtSection["Audience"];
 var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
 
 // ========================
-// CORS ✅
+// CORS (AJUSTE MÍNIMO) ✅
 // ========================
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod());
+        policy
+            .WithOrigins("http://localhost:5173") // FRONTEND
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 });
-
 
 // ========================
 // AUTH ✅
@@ -72,19 +71,22 @@ builder.Services.AddScoped<IShipService, ShipService>();
 builder.Services.AddScoped<DashboardService>();
 builder.Services.AddScoped<IManeuverHistoryService, ManeuverHistoryService>();
 
-
-
-
 // ========================
 // CONTROLLERS + SWAGGER ✅
 // ========================
 
 builder.Services.AddControllers();
+
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "PilotMaster.Api", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "PilotMaster.Api",
+        Version = "v1"
+    });
 
     var securitySchema = new OpenApiSecurityScheme
     {
@@ -116,22 +118,24 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+// ========================
+// MIDDLEWARE ORDER (CRÍTICO) ✅
+// ========================
 
-app.UseMiddleware<ExceptionMiddleware>(); // 👈 PRIMEIRO DE TODOS
+app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors("AllowAll");
-
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireCors("AllowAll");
 
 app.Run();
+
 
 
 

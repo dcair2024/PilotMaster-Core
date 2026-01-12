@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ScheduleService from "../api/ScheduleService";
 
 export default function ScheduleHistory() {
   const { scheduleId } = useParams();
 
   const [status, setStatus] = useState("loading");
-  // loading | empty | error | success
-
-  const mockHistory = [
-    {
-      id: 1,
-      type: "CREATED",
-      description: "Schedule criado",
-      createdAt: "2026-01-07T10:30:00"
-    },
-    {
-      id: 2,
-      type: "CANCELLED",
-      description: "Schedule cancelado",
-      createdAt: "2026-01-07T11:15:00"
-    }
-  ];
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setStatus(mockHistory.length ? "success" : "empty");
-    }, 500);
+    async function loadHistory() {
+      try {
+        setStatus("loading");
 
-    return () => clearTimeout(timer);
-  }, []);
+        const data = await ScheduleService.getHistory(scheduleId);
+
+        if (!data || data.length === 0) {
+          setStatus("empty");
+        } else {
+          setHistory(data);
+          setStatus("success");
+        }
+      } catch (error) {
+        console.error(error);
+        setStatus("error");
+      }
+    }
+
+    loadHistory();
+  }, [scheduleId]);
 
   return (
     <div className="page-container">
@@ -42,11 +42,13 @@ export default function ScheduleHistory() {
 
       {status === "success" && (
         <ul style={{ marginTop: 16 }}>
-          {mockHistory.map(item => (
+          {history.map(item => (
             <li key={item.id} style={{ marginBottom: 12 }}>
-              <strong>{item.type}</strong> — {item.description}
+              <strong>{item.action}</strong> — {item.description}
               <br />
-              <small>{new Date(item.createdAt).toLocaleString()}</small>
+              <small>
+                {new Date(item.createdAt).toLocaleString()}
+              </small>
             </li>
           ))}
         </ul>
