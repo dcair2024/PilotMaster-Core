@@ -41,18 +41,34 @@ export default function ScheduleHistory() {
       {status === "error" && <p>Erro ao carregar histórico.</p>}
 
       {status === "success" && (
-        <ul style={{ marginTop: 16 }}>
-          {history.map(item => (
-            <li key={item.id} style={{ marginBottom: 12 }}>
-              <strong>{item.action}</strong> — {item.description}
-              <br />
-              <small>
-                {new Date(item.createdAt).toLocaleString()}
-              </small>
-            </li>
-          ))}
-        </ul>
-      )}
+  <ul style={{ marginTop: 24, padding: 0, listStyle: "none" }}>
+    {history.map(item => (
+      <li
+        key={item.id}
+        style={{
+          padding: "12px 16px",
+          marginBottom: 12,
+          borderRadius: 6,
+          background: "#f9f9f9",
+          border: "1px solid #e0e0e0"
+        }}
+      >
+        <div style={{ fontWeight: 600, marginBottom: 4 }}>
+          {item.action}
+        </div>
+
+        <div style={{ fontSize: 14, color: "#555", marginBottom: 6 }}>
+          {item.description}
+        </div>
+
+        <div style={{ fontSize: 12, color: "#888" }}>
+          {new Date(item.createdAt).toLocaleString()}
+        </div>
+      </li>
+    ))}
+  </ul>
+)}
+
     </div>
   );
 }
