@@ -36,20 +36,29 @@ export default function ShipHistory() {
       {status === "empty" && <p>Nenhum histórico disponível.</p>}
 
       {status === "success" && (
-        <ul>
-          {history.map((item, index) => (
-            <li key={index} style={{ marginBottom: 12 }}>
-              <strong>Schedule #{item.scheduleId}</strong> — {item.action}
-              <br />
-              {item.description}
-              <br />
-              <small>
-                {new Date(item.createdAt).toLocaleString()}
-              </small>
-            </li>
-          ))}
-        </ul>
-      )}
+  <ul style={{ listStyle: "none", padding: 0, marginTop: 16 }}>
+    {history.map((item, index) => (
+      <li
+        key={index}
+        className="card"
+        style={{ marginBottom: 12 }}
+      >
+        <div style={{ fontWeight: 600, marginBottom: 4 }}>
+          {item.action}
+        </div>
+
+        <div style={{ fontSize: 14, color: "#334155" }}>
+          Schedule #{item.scheduleId} — {item.description}
+        </div>
+
+        <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>
+          {new Date(item.createdAt).toLocaleString()}
+        </div>
+      </li>
+    ))}
+  </ul>
+)}
+
     </div>
   );
 }

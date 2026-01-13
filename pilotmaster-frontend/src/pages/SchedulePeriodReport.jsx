@@ -29,35 +29,62 @@ export default function SchedulePeriodReport() {
   }
 
   return (
-    <div className="page-container">
-      <h2>Relatório de Schedules por Período</h2>
+  <div className="page-container">
+    <h2>Relatório de Schedules por Período</h2>
 
-      <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
-        <input
-          type="date"
-          value={startDate}
-          onChange={e => setStartDate(e.target.value)}
-        />
-        <input
-          type="date"
-          value={endDate}
-          onChange={e => setEndDate(e.target.value)}
-        />
-        <button onClick={handleSearch}>Buscar</button>
+    {/* Filtros */}
+    <div className="card" style={{ marginBottom: 24 }}>
+      <div style={{ display: "flex", gap: 12, alignItems: "flex-end" }}>
+        <div className="form-field">
+          <label className="ds-label">Data inicial</label>
+          <input
+            type="date"
+            className="ds-input"
+            value={startDate}
+            onChange={e => setStartDate(e.target.value)}
+          />
+        </div>
+
+        <div className="form-field">
+          <label className="ds-label">Data final</label>
+          <input
+            type="date"
+            className="ds-input"
+            value={endDate}
+            onChange={e => setEndDate(e.target.value)}
+          />
+        </div>
+
+        <button className="btn-primary" onClick={handleSearch}>
+          Buscar
+        </button>
       </div>
+    </div>
 
-      {status === "loading" && <p>Carregando relatório...</p>}
-      {status === "error" && <p>Erro ao carregar relatório.</p>}
-      {status === "empty" && <p>Nenhum dado encontrado.</p>}
+    {/* Estados */}
+    {status === "loading" && <p>Carregando relatório...</p>}
+    {status === "error" && <p>Erro ao carregar relatório.</p>}
+    {status === "empty" && <p>Nenhum dado encontrado.</p>}
 
-      {status === "success" && report && (
-        <ul>
-          <li>Total de Schedules: {report.totalSchedules}</li>
-          <li>Cancelados: {report.totalCancelled}</li>
+    {/* Resultado */}
+    {status === "success" && report && (
+      <div className="card">
+        <div style={{ marginBottom: 16 }}>
+          <div style={{ fontSize: 12, color: "#64748b" }}>
+            TOTAL DE SCHEDULES
+          </div>
+          <div style={{ fontSize: 32, fontWeight: 700 }}>
+            {report.totalSchedules}
+          </div>
+        </div>
+
+        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           <li>Ativos: {report.totalActive}</li>
+          <li>Cancelados: {report.totalCancelled}</li>
           <li>Concluídos: {report.totalCompleted}</li>
         </ul>
-      )}
-    </div>
-  );
+      </div>
+    )}
+  </div>
+);
 }
