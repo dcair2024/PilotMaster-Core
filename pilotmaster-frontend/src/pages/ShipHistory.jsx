@@ -4,6 +4,7 @@ import ShipsService from "../api/shipsService";
 
 export default function ShipHistory() {
   const { shipId } = useParams();
+
   const [status, setStatus] = useState("loading");
   const [history, setHistory] = useState([]);
 
@@ -11,6 +12,7 @@ export default function ShipHistory() {
     async function loadHistory() {
       try {
         setStatus("loading");
+
         const data = await ShipsService.getShipHistory(shipId);
 
         if (!data || data.length === 0) {
@@ -36,29 +38,24 @@ export default function ShipHistory() {
       {status === "empty" && <p>Nenhum histórico disponível.</p>}
 
       {status === "success" && (
-  <ul style={{ listStyle: "none", padding: 0, marginTop: 16 }}>
-    {history.map((item, index) => (
-      <li
-        key={index}
-        className="card"
-        style={{ marginBottom: 12 }}
-      >
-        <div style={{ fontWeight: 600, marginBottom: 4 }}>
-          {item.action}
-        </div>
+        <ul className="history-list">
+          {history.map(item => (
+            <li key={item.id} className="card history-item">
+              <div className="history-action">
+                {item.action}
+              </div>
 
-        <div style={{ fontSize: 14, color: "#334155" }}>
-          Schedule #{item.scheduleId} — {item.description}
-        </div>
+              <div className="history-description">
+                Schedule #{item.scheduleId} — {item.description}
+              </div>
 
-        <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>
-          {new Date(item.createdAt).toLocaleString()}
-        </div>
-      </li>
-    ))}
-  </ul>
-)}
-
+              <div className="history-date">
+                {new Date(item.createdAt).toLocaleString()}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

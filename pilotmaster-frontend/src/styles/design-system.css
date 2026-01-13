@@ -44,3 +44,71 @@
   opacity: 0.6;
   pointer-events: none;
 }
+
+/* Histórico */
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.history-item {
+  margin-bottom: 12px;
+}
+
+.history-action {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.history-description {
+  font-size: 14px;
+  color: #334155;
+}
+
+.history-date {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+.report-total-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.report-total-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.report-summary {
+  margin-bottom: 16px;
+}
+
+.report-total-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.report-total-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.report-breakdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+

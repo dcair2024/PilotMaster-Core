@@ -35,41 +35,28 @@ export default function ScheduleHistory() {
       <h2>Histórico do Schedule #{scheduleId}</h2>
 
       {status === "loading" && <p>Carregando histórico...</p>}
-
       {status === "empty" && <p>Nenhum histórico disponível.</p>}
-
       {status === "error" && <p>Erro ao carregar histórico.</p>}
 
       {status === "success" && (
-  <ul style={{ marginTop: 24, padding: 0, listStyle: "none" }}>
-    {history.map(item => (
-      <li
-        key={item.id}
-        style={{
-          padding: "12px 16px",
-          marginBottom: 12,
-          borderRadius: 6,
-          background: "#f9f9f9",
-          border: "1px solid #e0e0e0"
-        }}
-      >
-        <div style={{ fontWeight: 600, marginBottom: 4 }}>
-          {item.action}
-        </div>
+        <ul className="history-list">
+          {history.map(item => (
+            <li key={item.id} className="card history-item">
+              <div className="history-action">
+                {item.action}
+              </div>
 
-        <div style={{ fontSize: 14, color: "#555", marginBottom: 6 }}>
-          {item.description}
-        </div>
+              <div className="history-description">
+                {item.description}
+              </div>
 
-        <div style={{ fontSize: 12, color: "#888" }}>
-          {new Date(item.createdAt).toLocaleString()}
-        </div>
-      </li>
-    ))}
-  </ul>
-)}
-
+              <div className="history-date">
+                {new Date(item.createdAt).toLocaleString()}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
-

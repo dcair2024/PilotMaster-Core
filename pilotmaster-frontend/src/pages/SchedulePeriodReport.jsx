@@ -29,62 +29,84 @@ export default function SchedulePeriodReport() {
   }
 
   return (
-  <div className="page-container">
-    <h2>Relatório de Schedules por Período</h2>
+    <div className="page-container">
+      <h2>Relatório de Schedules por Período</h2>
 
-    {/* Filtros */}
-    <div className="card" style={{ marginBottom: 24 }}>
-      <div style={{ display: "flex", gap: 12, alignItems: "flex-end" }}>
-        <div className="form-field">
-          <label className="ds-label">Data inicial</label>
-          <input
-            type="date"
-            className="ds-input"
-            value={startDate}
-            onChange={e => setStartDate(e.target.value)}
-          />
-        </div>
-
-        <div className="form-field">
-          <label className="ds-label">Data final</label>
-          <input
-            type="date"
-            className="ds-input"
-            value={endDate}
-            onChange={e => setEndDate(e.target.value)}
-          />
-        </div>
-
-        <button className="btn-primary" onClick={handleSearch}>
-          Buscar
-        </button>
-      </div>
+      {/* Filtros */}
+<div className="card" style={{ marginBottom: 24 }}>
+  <div style={{ 
+    display: "flex", 
+    gap: 16, 
+    alignItems: "flex-end", // 🟢 Alinha tudo pela base (resolve o desalinhamento do botão)
+    flexWrap: "wrap"        // 🟢 Garante que quebre linha em telas menores
+  }}>
+    
+    <div className="form-field" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <label className="ds-label">Data inicial</label>
+      <input
+        type="date"
+        className="ds-input"
+        style={{ width: "160px" }} // 🟢 Largura consistente
+        value={startDate}
+        onChange={e => setStartDate(e.target.value)}
+      />
     </div>
 
-    {/* Estados */}
-    {status === "loading" && <p>Carregando relatório...</p>}
-    {status === "error" && <p>Erro ao carregar relatório.</p>}
-    {status === "empty" && <p>Nenhum dado encontrado.</p>}
+    <div className="form-field" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <label className="ds-label">Data final</label>
+      <input
+        type="date"
+        className="ds-input"
+        style={{ width: "160px" }} // 🟢 Largura consistente
+        value={endDate}
+        onChange={e => setEndDate(e.target.value)}
+      />
+    </div>
 
-    {/* Resultado */}
-    {status === "success" && report && (
-      <div className="card">
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ fontSize: 12, color: "#64748b" }}>
-            TOTAL DE SCHEDULES
-          </div>
-          <div style={{ fontSize: 32, fontWeight: 700 }}>
-            {report.totalSchedules}
-          </div>
-        </div>
+    <div className="form-field">
+      {/* 🟢 Removida a label com &nbsp; para evitar espaços fantasmas */}
+      <button
+        className="btn-primary"
+        onClick={handleSearch}
+        style={{
+          height: "40px",      // Ajuste para bater com a altura real do seu ds-input
+          padding: "0 24px",   // Padding lateral para o botão respirar
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        Buscar
+      </button>
+    </div>
 
-        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          <li>Ativos: {report.totalActive}</li>
-          <li>Cancelados: {report.totalCancelled}</li>
-          <li>Concluídos: {report.totalCompleted}</li>
-        </ul>
-      </div>
-    )}
   </div>
-);
+</div>
+
+      {/* Estados */}
+      {status === "loading" && <p>Carregando relatório...</p>}
+      {status === "error" && <p>Erro ao carregar relatório.</p>}
+      {status === "empty" && <p>Nenhum dado encontrado.</p>}
+
+      {/* Resultado */}
+      {status === "success" && report && (
+        <div className="card">
+          <div className="report-summary">
+            <div className="report-total-label">
+              Total de schedules
+            </div>
+            <div className="report-total-value">
+              {report.totalSchedules}
+            </div>
+          </div>
+
+          <ul className="report-breakdown">
+            <li>Ativos: {report.totalActive}</li>
+            <li>Cancelados: {report.totalCancelled}</li>
+            <li>Concluídos: {report.totalCompleted}</li>
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
