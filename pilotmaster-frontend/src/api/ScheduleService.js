@@ -73,12 +73,22 @@ async function cancel(id) {
     return await res.json();
 }
 
+async function getReportByPeriod(startDate, endDate) {
+  const res = await api.get("/Schedule/report/by-period", {
+    params: { startDate, endDate }
+  });
+
+  return res.data;
+}
+
+
 
 export default {
   getAll,
   create,
   cancel,
-  getHistory
+  getHistory,
+  getReportByPeriod
 };
 
 

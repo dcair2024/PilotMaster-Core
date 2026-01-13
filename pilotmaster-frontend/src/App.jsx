@@ -13,6 +13,10 @@ import TestSchedulePage from "./pages/TestSchedulePage";
 import TestScheduleCreate from "./pages/TestScheduleCreate";
 import TestTariffPage from "./pages/TestTariffPage";
 import ScheduleHistory from "./pages/ScheduleHistory";
+import SchedulePeriodReport from "./pages/SchedulePeriodReport";
+import ShipHistory from "./pages/ShipHistory";
+
+
 
 import "./styles/design-system.css";
 import "./styles/cards.css";
@@ -47,6 +51,18 @@ export default function App() {
               path="/schedule/:scheduleId/history"
               element={<ScheduleHistory />}
             />
+
+            {/* RELATÓRIO DE SCHEDULES POR PERÍODO */}
+            <Route
+              path="/schedule/report"
+              element={<SchedulePeriodReport />}
+            />
+            {/* HISTÓRICO DO NAVIO */}
+            <Route
+              path="/ships/:shipId/history"
+              element={<ShipHistory />}
+            />
+
 
             {/* Tarifa */}
             <Route path="/tariff" element={<TestTariffPage />} />
