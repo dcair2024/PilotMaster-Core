@@ -241,6 +241,36 @@
         }
       }
     },
+    "/api/Schedule/report/by-period": {
+      "get": {
+        "tags": [
+          "Schedule"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Schedule/{id}/cancel": {
       "put": {
         "tags": [
@@ -562,6 +592,29 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Ships/{shipId}/history": {
+      "get": {
+        "tags": [
+          "Ships"
+        ],
+        "parameters": [
+          {
+            "name": "shipId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

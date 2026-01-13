@@ -213,6 +213,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PilotMaster.Api.Controllers.ScheduleController",
+    "Method": "GetReportByPeriod",
+    "RelativePath": "api/Schedule/report/by-period",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PilotMaster.Api.Controllers.ShipsController",
     "Method": "GetAll",
     "RelativePath": "api/Ships",
@@ -365,6 +386,22 @@
         "StatusCode": 404
       }
     ]
+  },
+  {
+    "ContainingType": "PilotMaster.Api.Controllers.ShipsController",
+    "Method": "GetShipHistory",
+    "RelativePath": "api/Ships/{shipId}/history",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "shipId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "PilotMaster.Api.Controllers.TariffController",

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PilotMaster.Application.DTOs;
 using PilotMaster.Application.Interfaces;
 using PilotMaster.Domain.Entities;
 using PilotMaster.Infrastructure;
@@ -106,5 +107,37 @@ public class ScheduleService : IScheduleService
         await _db.SaveChangesAsync();
         return true;
     }
+    public async Task<SchedulePeriodReportDto> GetReportByPeriodAsync(
+    DateTime startDate,
+    DateTime endDate)
+    {
+        var baseQuery = _db.PilotSchedules
+            .AsNoTracking()
+            .Where(x =>
+                x.ScheduledAt.Date >= startDate.Date &&
+                x.ScheduledAt.Date <= endDate.Date
+            );
+
+        var grouped = await baseQuery
+            .GroupBy(x => x.Status)
+            .Select(g => new
+            {
+                Status = g.Key,
+                Count = g.Count()
+            })
+            .ToListAsync();
+
+        return new SchedulePeriodReportDto
+        {
+            TotalSchedules = grouped.Sum(x => x.Count),
+            TotalCancelled = grouped
+                .FirstOrDefault(x => x.Status == "Cancelled")?.Count ?? 0,
+            TotalActive = grouped
+                .FirstOrDefault(x => x.Status == "Scheduled")?.Count ?? 0,
+            TotalCompleted = grouped
+                .FirstOrDefault(x => x.Status == "Completed")?.Count ?? 0
+        };
+    }
+
 
 }

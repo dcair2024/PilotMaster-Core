@@ -31,6 +31,17 @@ public class ShipsController : ControllerBase
         return ship == null ? NotFound() : Ok(ship);
     }
 
+    // GET: /api/ship/{shipId}/history
+    [HttpGet("{shipId}/history")]
+    public async Task<IActionResult> GetShipHistory(
+        int shipId,
+        [FromServices] IManeuverHistoryService historyService)
+    {
+        var history = await historyService.GetByShipIdAsync(shipId);
+        return Ok(history);
+    }
+
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)] // BK-41

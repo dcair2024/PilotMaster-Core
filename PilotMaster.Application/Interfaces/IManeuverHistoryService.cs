@@ -1,10 +1,10 @@
-﻿using System;
+﻿using PilotMaster.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using PilotMaster.Domain.Entities;
+using PilotMaster.Application.DTOs;
 
 namespace PilotMaster.Application.Interfaces
 {
@@ -16,5 +16,8 @@ namespace PilotMaster.Application.Interfaces
             DateTime? from,
             DateTime? to
         );
+
+
+        Task<IEnumerable<ShipHistoryDto>> GetByShipIdAsync(int shipId);
     }
 }

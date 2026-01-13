@@ -2,6 +2,7 @@
 using PilotMaster.Application.Interfaces;
 using PilotMaster.Domain.Entities;
 using PilotMaster.Infrastructure;
+using PilotMaster.Application.DTOs;
 
 namespace PilotMaster.Application.Services
 {
@@ -43,6 +44,27 @@ namespace PilotMaster.Application.Services
                 .OrderBy(x => x.CreatedAt)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<ShipHistoryDto>> GetByShipIdAsync(int shipId)
+        {
+            return await _context.PilotSchedules
+                .Where(s => s.ShipId == shipId)
+                .Join(
+                    _context.ManeuverHistories,
+                    schedule => schedule.Id,
+                    history => history.ScheduleId,
+                    (schedule, history) => new ShipHistoryDto
+                    {
+                        ScheduleId = schedule.Id,
+                        Action = history.Action,
+                        Description = history.Description,
+                        CreatedAt = history.CreatedAt
+                    }
+                )
+                .OrderBy(x => x.CreatedAt)
+                .ToListAsync();
+        }
+
+
     }
 }
 

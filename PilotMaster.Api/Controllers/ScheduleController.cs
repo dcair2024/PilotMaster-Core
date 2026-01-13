@@ -29,6 +29,24 @@ public class ScheduleController : ControllerBase
         return Ok(result);
     }
 
+    // GET: /api/schedule/report/by-period
+    [HttpGet("report/by-period")]
+    public async Task<IActionResult> GetReportByPeriod(
+        [FromQuery] DateTime startDate,
+        [FromQuery] DateTime endDate)
+    {
+        if (startDate > endDate)
+            return BadRequest("startDate cannot be greater than endDate");
+
+        var report = await _service.GetReportByPeriodAsync(
+            startDate,
+            endDate
+        );
+
+        return Ok(report);
+    }
+
+
     // POST: /api/schedule
     [HttpPost]
     [ProducesResponseType(typeof(PilotSchedule), 200)]
