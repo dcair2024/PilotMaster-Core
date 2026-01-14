@@ -38,24 +38,24 @@ export default function ShipHistory() {
       {status === "empty" && <p>Nenhum histórico disponível.</p>}
 
       {status === "success" && (
-        <ul className="history-list">
-          {history.map(item => (
-            <li key={item.id} className="card history-item">
-              <div className="history-action">
-                {item.action}
-              </div>
+  <ul className="history-list">
+    {history.map((item, index) => (
+      <li key={index} className="card history-item">
+        <div className="history-action">
+          {item.action}
+        </div>
 
-              <div className="history-description">
-                Schedule #{item.scheduleId} — {item.description}
-              </div>
+        <div className="history-description">
+          Schedule #{item.scheduleId} — {item.description}
+        </div>
 
-              <div className="history-date">
-                {new Date(item.createdAt).toLocaleString()}
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+        <div className="history-date">
+          {new Date(item.createdAt).toLocaleString()}
+        </div>
+      </li>
+    ))}
+  </ul>
+)}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ScheduleService from "../api/ScheduleService";
+import "../styles/history.css";
 
 export default function ScheduleHistory() {
   const { scheduleId } = useParams();
@@ -39,24 +40,24 @@ export default function ScheduleHistory() {
       {status === "error" && <p>Erro ao carregar histórico.</p>}
 
       {status === "success" && (
-        <ul className="history-list">
-          {history.map(item => (
-            <li key={item.id} className="card history-item">
-              <div className="history-action">
-                {item.action}
-              </div>
+      <ul className="history-list">
+    {history.map(item => (
+      <li key={item.id} className="card history-item">
+        <div className="history-action">
+          {item.action}
+        </div>
 
-              <div className="history-description">
-                {item.description}
-              </div>
+        <div className="history-description">
+          {item.description}
+        </div>
 
-              <div className="history-date">
-                {new Date(item.createdAt).toLocaleString()}
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+        <div className="history-date">
+          {new Date(item.createdAt).toLocaleString()}
+        </div>
+      </li>
+    ))}
+  </ul>
+)}
     </div>
   );
 }
