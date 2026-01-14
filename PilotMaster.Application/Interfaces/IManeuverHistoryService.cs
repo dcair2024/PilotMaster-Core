@@ -19,5 +19,8 @@ namespace PilotMaster.Application.Interfaces
 
 
         Task<IEnumerable<ShipHistoryDto>> GetByShipIdAsync(int shipId);
+
+        Task<IEnumerable<GlobalHistoryDto>> GetGlobalHistoryAsync();
+
     }
 }

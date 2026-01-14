@@ -120,6 +120,18 @@
         }
       }
     },
+    "/api/History": {
+      "get": {
+        "tags": [
+          "History"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Schedule": {
       "get": {
         "tags": [

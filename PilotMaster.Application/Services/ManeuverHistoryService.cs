@@ -63,6 +63,33 @@ namespace PilotMaster.Application.Services
                 .OrderBy(x => x.CreatedAt)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<GlobalHistoryDto>> GetGlobalHistoryAsync()
+        {
+            return await _context.ManeuverHistories
+                .Join(
+                    _context.PilotSchedules,
+                    history => history.ScheduleId,
+                    schedule => schedule.Id,
+                    (history, schedule) => new { history, schedule }
+                )
+                .Join(
+                    _context.Ships,
+                    hs => hs.schedule.ShipId,
+                    ship => ship.Id,
+                    (hs, ship) => new GlobalHistoryDto
+                    {
+                        ScheduleId = hs.schedule.Id,
+                        ShipId = ship.Id,
+                        ShipName = ship.Name,
+                        Action = hs.history.Action,
+                        Description = hs.history.Description,
+                        CreatedAt = hs.history.CreatedAt
+                    }
+                )
+                .OrderBy(x => x.CreatedAt)
+                .ToListAsync();
+        }
+
 
 
     }

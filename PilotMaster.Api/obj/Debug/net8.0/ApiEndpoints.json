@@ -81,6 +81,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PilotMaster.Api.Controllers.HistoryController",
+    "Method": "GetGlobalHistory",
+    "RelativePath": "api/History",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PilotMaster.Api.Controllers.ScheduleController",
     "Method": "Get",
     "RelativePath": "api/Schedule",
