@@ -40,15 +40,36 @@ export default function GlobalHistory() {
   }
 
   return (
-    <div>
+    <div className="page-container">
       <h1>Histórico Global</h1>
 
-      <ul>
-        {items.map((item) => (
-          <li key={`${item.scheduleId}-${item.createdAt}`}>
-            <strong>{item.action}</strong> — {item.shipName}
-            <br />
-            {item.description}
+      <ul className="history-list">
+        {items.map((item, index) => (
+          <li
+            key={`${item.scheduleId ?? "global"}-${item.createdAt}-${index}`}
+            className="history-item"
+          >
+            <div className="card">
+              {/* Ação */}
+              <div className="history-action">
+                {item.action}
+              </div>
+
+              {/* Contexto + descrição */}
+              <div className="history-description">
+                {item.shipName}
+                {item.scheduleId && (
+                  <> — Schedule #{item.scheduleId}</>
+                )}
+                <br />
+                {item.description}
+              </div>
+
+              {/* Data */}
+              <div className="history-date">
+                {new Date(item.createdAt).toLocaleString()}
+              </div>
+            </div>
           </li>
         ))}
       </ul>
