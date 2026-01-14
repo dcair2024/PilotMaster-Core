@@ -15,6 +15,8 @@ import TestTariffPage from "./pages/TestTariffPage";
 import ScheduleHistory from "./pages/ScheduleHistory";
 import SchedulePeriodReport from "./pages/SchedulePeriodReport";
 import ShipHistory from "./pages/ShipHistory";
+import GlobalHistory from "./pages/GlobalHistory";
+
 
 
 
@@ -61,6 +63,12 @@ export default function App() {
             <Route
               path="/ships/:shipId/history"
               element={<ShipHistory />}
+
+            />
+            {/* HISTÓRICO GLOBAL */}
+            <Route
+              path="/history"
+              element={<GlobalHistory />}
             />
 
 
