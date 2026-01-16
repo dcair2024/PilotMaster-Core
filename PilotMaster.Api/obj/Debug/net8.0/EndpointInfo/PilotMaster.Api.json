@@ -631,6 +631,18 @@
         }
       }
     },
+    "/api/system/info": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Tariff/calculate": {
       "get": {
         "tags": [

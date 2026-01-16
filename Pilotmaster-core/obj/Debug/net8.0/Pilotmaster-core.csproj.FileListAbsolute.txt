@@ -71,3 +71,13 @@ C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\obj\Debug\net8.0\re
 C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\obj\Debug\net8.0\Pilotmaster-core.pdb
 C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\obj\Debug\net8.0\Pilotmaster-core.genruntimeconfig.cache
 C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\obj\Debug\net8.0\ref\Pilotmaster-core.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.Logging.Debug.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+C:\Users\Davi\source\repos\PilotMaster-Core\Pilotmaster-core\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

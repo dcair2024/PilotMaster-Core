@@ -70,6 +70,19 @@ builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IShipService, ShipService>();
 builder.Services.AddScoped<DashboardService>();
 builder.Services.AddScoped<IManeuverHistoryService, ManeuverHistoryService>();
+builder.Services.AddScoped<ISystemInfoService>(sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    var env = sp.GetRequiredService<IWebHostEnvironment>();
+
+    return new SystemInfoService(
+        config,
+        env.EnvironmentName
+    );
+});
+
+
+
 
 // ========================
 // CONTROLLERS + SWAGGER ✅

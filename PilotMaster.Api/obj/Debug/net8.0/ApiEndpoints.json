@@ -414,6 +414,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PilotMaster.Api.Controllers.SystemController",
+    "Method": "GetSystemInfo",
+    "RelativePath": "api/system/info",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PilotMaster.Api.Controllers.TariffController",
     "Method": "Calculate",
     "RelativePath": "api/Tariff/calculate",
