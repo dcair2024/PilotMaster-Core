@@ -36,3 +36,37 @@
     margin-bottom: 12px;
   }
 }
+
+.pm-timeline-item {
+  position: relative;
+  padding-left: 24px;
+}
+
+.pm-timeline-line {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+}
+
+.pm-timeline-card {
+  padding: 12px;
+}
+
+.pm-action {
+  font-weight: 600;
+}
+
+.pm-context {
+  font-size: 14px;
+  color: #334155;
+}
+
+.pm-date {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 6px;
+}
+

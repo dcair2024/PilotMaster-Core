@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ScheduleService from "../api/ScheduleService";
+import PageContainer from "../components/PageContainer";
 
 export default function SchedulePeriodReport() {
   const [startDate, setStartDate] = useState("");
@@ -29,59 +30,44 @@ export default function SchedulePeriodReport() {
   }
 
   return (
-    <div className="page-container">
-      <h2>Relatório de Schedules por Período</h2>
+    <PageContainer title="Relatório de Schedules por Período">
 
       {/* Filtros */}
-<div className="card" style={{ marginBottom: 24 }}>
-  <div style={{ 
-    display: "flex", 
-    gap: 16, 
-    alignItems: "flex-end", // 🟢 Alinha tudo pela base (resolve o desalinhamento do botão)
-    flexWrap: "wrap"        // 🟢 Garante que quebre linha em telas menores
-  }}>
-    
-    <div className="form-field" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-      <label className="ds-label">Data inicial</label>
-      <input
-        type="date"
-        className="ds-input"
-        style={{ width: "160px" }} // 🟢 Largura consistente
-        value={startDate}
-        onChange={e => setStartDate(e.target.value)}
-      />
-    </div>
+      <div className="card pm-filters">
+        <div className="pm-filter-group">
 
-    <div className="form-field" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-      <label className="ds-label">Data final</label>
-      <input
-        type="date"
-        className="ds-input"
-        style={{ width: "160px" }} // 🟢 Largura consistente
-        value={endDate}
-        onChange={e => setEndDate(e.target.value)}
-      />
-    </div>
+          <div className="form-field">
+            <label className="ds-label">Data inicial</label>
+            <input
+              type="date"
+              className="ds-input"
+              value={startDate}
+              onChange={e => setStartDate(e.target.value)}
+            />
+          </div>
 
-    <div className="form-field">
-      {/* 🟢 Removida a label com &nbsp; para evitar espaços fantasmas */}
-      <button
-        className="btn-primary"
-        onClick={handleSearch}
-        style={{
-          height: "40px",      // Ajuste para bater com a altura real do seu ds-input
-          padding: "0 24px",   // Padding lateral para o botão respirar
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        Buscar
-      </button>
-    </div>
+          <div className="form-field">
+            <label className="ds-label">Data final</label>
+            <input
+              type="date"
+              className="ds-input"
+              value={endDate}
+              onChange={e => setEndDate(e.target.value)}
+            />
+          </div>
 
-  </div>
-</div>
+           <div className="form-field pm-filter-button">
+            <button
+              className="btn-primary"
+              onClick={handleSearch}
+            >
+              Buscar
+            </button>
+            
+           </div>
+
+        </div>
+      </div>
 
       {/* Estados */}
       {status === "loading" && <p>Carregando relatório...</p>}
@@ -107,6 +93,7 @@ export default function SchedulePeriodReport() {
           </ul>
         </div>
       )}
-    </div>
+
+    </PageContainer>
   );
 }

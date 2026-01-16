@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ShipsService from "../api/shipsService";
+import PageContainer from "../components/PageContainer";
+import TimelineEvent from "../components/TimelineEvent";
+
 
 export default function ShipHistory() {
   const { shipId } = useParams();
@@ -29,33 +32,18 @@ export default function ShipHistory() {
     loadHistory();
   }, [shipId]);
 
-  return (
-    <div className="page-container">
-      <h2>Histórico do Navio #{shipId}</h2>
+  return (<PageContainer title="Histórico Global">
+    <ul className="history-list">
+  {history.map(item => (
+    <TimelineEvent
+      key={item.id}
+      action={item.action}
+      description={`Schedule #${item.scheduleId} — ${item.description}`}
+      date={new Date(item.createdAt).toLocaleString()}
+    />
+  ))}
+</ul>
 
-      {status === "loading" && <p>Carregando histórico...</p>}
-      {status === "error" && <p>Erro ao carregar histórico.</p>}
-      {status === "empty" && <p>Nenhum histórico disponível.</p>}
-
-      {status === "success" && (
-  <ul className="history-list">
-    {history.map((item, index) => (
-      <li key={index} className="card history-item">
-        <div className="history-action">
-          {item.action}
-        </div>
-
-        <div className="history-description">
-          Schedule #{item.scheduleId} — {item.description}
-        </div>
-
-        <div className="history-date">
-          {new Date(item.createdAt).toLocaleString()}
-        </div>
-      </li>
-    ))}
-  </ul>
-)}
-    </div>
+  </PageContainer>
   );
 }

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
+import PageContainer from "../components/PageContainer";
+import TimelineEvent from "../components/TimelineEvent";
+
 
 export default function GlobalHistory() {
   const [status, setStatus] = useState("loading");
@@ -40,39 +43,17 @@ export default function GlobalHistory() {
   }
 
   return (
-    <div className="page-container">
-      <h1>Histórico Global</h1>
-
-      <ul className="history-list">
-        {items.map((item, index) => (
-          <li
-            key={`${item.scheduleId ?? "global"}-${item.createdAt}-${index}`}
-            className="history-item"
-          >
-            <div className="card">
-              {/* Ação */}
-              <div className="history-action">
-                {item.action}
-              </div>
-
-              {/* Contexto + descrição */}
-              <div className="history-description">
-                {item.shipName}
-                {item.scheduleId && (
-                  <> — Schedule #{item.scheduleId}</>
-                )}
-                <br />
-                {item.description}
-              </div>
-
-              {/* Data */}
-              <div className="history-date">
-                {new Date(item.createdAt).toLocaleString()}
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <PageContainer title="Histórico Global">
+    <ul className="history-list">
+  {items.map(item => (
+    <TimelineEvent
+      key={item.id}
+      action={item.action}
+      description={item.description}
+      date={new Date(item.createdAt).toLocaleString()}
+    />
+  ))}
+</ul>
+  </PageContainer>
   );
 }

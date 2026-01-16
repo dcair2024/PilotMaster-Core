@@ -1,17 +1,13 @@
-import "../styles/topbar.css";
+import { useSystemInfo } from "./SystemInfoProvider";
 
-export default function Topbar({ toggleSidebar }) {
+
+export default function Topbar() {
+  const info = useSystemInfo();
+
   return (
-    <header className="topbar">
-      <button
-        className="menu-btn"
-        onClick={toggleSidebar}
-        aria-label="Abrir menu"
-      >
-        ☰
-      </button>
-
-      <span>Sistema de Gestão Portuária</span>
-    </header>
+    <div className="app-topbar">
+      <strong>{info?.systemName ?? "PilotMaster"}</strong>
+    </div>
   );
 }
+

@@ -61,3 +61,42 @@
     padding: 16px;
   }
 }
+.pm-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pm-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #0f172a;
+}
+
+.pm-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+/* ===== FILTERS ===== */
+
+.pm-filters {
+  margin-bottom: 24px;
+}
+
+.pm-filter-group {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.pm-filter-group .ds-input {
+  width: 160px;
+}
+
+.pm-filter-action {
+  height: 40px;
+  padding: 0 24px;
+}
+

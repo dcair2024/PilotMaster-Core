@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ScheduleService from "../api/ScheduleService";
 import "../styles/history.css";
+import PageContainer from "../components/PageContainer";
+
 
 export default function ScheduleHistory() {
   const { scheduleId } = useParams();
@@ -32,32 +34,18 @@ export default function ScheduleHistory() {
   }, [scheduleId]);
 
   return (
-    <div className="page-container">
-      <h2>Histórico do Schedule #{scheduleId}</h2>
+   <PageContainer title="Histórico Global">
+   <ul className="history-list">
+  {history.map(item => (
+    <TimelineEvent
+      key={item.id}
+      action={item.action}
+      description={item.description}
+      date={new Date(item.createdAt).toLocaleString()}
+    />
+  ))}
+</ul>
 
-      {status === "loading" && <p>Carregando histórico...</p>}
-      {status === "empty" && <p>Nenhum histórico disponível.</p>}
-      {status === "error" && <p>Erro ao carregar histórico.</p>}
-
-      {status === "success" && (
-      <ul className="history-list">
-    {history.map(item => (
-      <li key={item.id} className="card history-item">
-        <div className="history-action">
-          {item.action}
-        </div>
-
-        <div className="history-description">
-          {item.description}
-        </div>
-
-        <div className="history-date">
-          {new Date(item.createdAt).toLocaleString()}
-        </div>
-      </li>
-    ))}
-  </ul>
-)}
-    </div>
+  </PageContainer>
   );
 }

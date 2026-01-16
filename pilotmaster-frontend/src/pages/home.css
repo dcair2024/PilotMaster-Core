@@ -1,6 +1,14 @@
-.home-page {
-  max-width: 1200px;
+.home-greeting {
+  font-size: 18px;
+  font-weight: 600;
 }
+
+.home-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
 
 /* títulos */
 .title {

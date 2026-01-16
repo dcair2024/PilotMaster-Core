@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/apiConfig";
+import PageContainer from "../components/PageContainer";
 import "./home.css";
 
 export default function Home() {
@@ -48,26 +49,25 @@ export default function Home() {
   ];
 
   return (
-    <div className="home-page">
-      <h2 className="title">Olá, Usuário 👋</h2>
-      <p className="subtitle">Dashboard de Manobras</p>
+    <PageContainer title="Dashboard">
+
+      <h2 className="home-greeting">Olá, Usuário 👋</h2>
+      <p className="home-subtitle">Dashboard de Manobras</p>
 
       {/* CARDS */}
-<div className="cards-grid">
-  {cards.map((c, i) => (
-    <div key={i} className="card" style={{ borderTopColor: c.color }}>
-      <div className="card-icon">{c.icon}</div>
-      <div className="card-value">{c.value}</div>
-      <div className="card-label">{c.label}</div>
-      <div className="card-sub">{c.subtitle}</div>
-    </div>
-  ))}
-</div>
+      <div className="cards-grid">
+        {cards.map((c, i) => (
+          <div key={i} className="card" style={{ borderTopColor: c.color }}>
+            <div className="card-icon">{c.icon}</div>
+            <div className="card-value">{c.value}</div>
+            <div className="card-label">{c.label}</div>
+            <div className="card-sub">{c.subtitle}</div>
+          </div>
+        ))}
+      </div>
 
-{/* SEPARADOR VISUAL */}
-<div className="section-separator" />
-
-    
+      {/* SEPARADOR */}
+      <div className="section-separator" />
 
       {/* LISTA */}
       <div className="recent-schedules">
@@ -100,7 +100,7 @@ export default function Home() {
         <button className="btn-primary">➕ Novo Agendamento</button>
         <button className="btn-secondary">📋 Ver Agendamentos</button>
       </div>
-    </div>
+
+    </PageContainer>
   );
 }
-
