@@ -1,111 +1,83 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import ScheduleService from "../api/ScheduleService";
+import PageContainer from "../components/PageContainer";
 
-export default function TestSchedulePage() {
-    const [loading, setLoading] = useState(true);
-    const [schedules, setSchedules] = useState([]);
-    const [error, setError] = useState(null);
+export default function SchedulePeriodReport() {
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [report, setReport] = useState(null);
 
-    // ============================
-    // Função para carregar os dados (assim pode ser chamada após cancelar)
-    // ============================
-    async function loadData() {
-        setLoading(true);
-        setError(null);
+  async function handleSearch() {
+    try {
+      setStatus("loading");
+      setReport(null);
 
-        try {
-            const data = await ScheduleService.getAll();
-            setSchedules(data);
-        } catch (err) {
-            console.error("Erro ao carregar schedules:", err);
-            setError(err.message || "Erro desconhecido ao carregar schedules.");
-        } finally {
-            setLoading(false);
-        }
+      const data = await ScheduleService.getReportByPeriod(startDate, endDate);
+
+      if (!data || data.totalSchedules === 0) {
+        setStatus("empty");
+      } else {
+        setReport(data);
+        setStatus("success");
+      }
+    } catch {
+      setStatus("error");
     }
+  }
 
-    // ============================
-    // Carrega quando a página inicia
-    // ============================
-    useEffect(() => {
-        loadData();
-    }, []);
+  return (
+    <PageContainer title="Relatório de Schedules por Período">
+      <div className="card pm-filters">
+        <div className="pm-filter-group">
 
-    // ============================
-    // FUNÇÃO DE CANCELAMENTO
-    // ============================
-    async function handleCancel(id) {
-        const ok = window.confirm(`Deseja realmente cancelar o schedule #${id}?`);
-        if (!ok) return;
+          <div className="form-field">
+            <label className="ds-label">Data inicial</label>
+            <input
+              type="date"
+              className="ds-input"
+              value={startDate}
+              onChange={e => setStartDate(e.target.value)}
+            />
+          </div>
 
-        try {
-            await ScheduleService.cancel(id);
-            alert(`Schedule #${id} cancelado com sucesso!`);
-            loadData(); // recarrega a lista após cancelar
-        } catch (err) {
-            console.error("Erro ao cancelar schedule:", err);
-            alert("Erro ao cancelar schedule.");
-        }
-    }
+          <div className="form-field">
+            <label className="ds-label">Data final</label>
+            <input
+              type="date"
+              className="ds-input"
+              value={endDate}
+              onChange={e => setEndDate(e.target.value)}
+            />
+          </div>
 
-    return (
-        <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
-            <h2>📅 Testar Listagem de Schedules (FE-04 + FE-06)</h2>
-            <p>Testando GET /api/Schedule e PUT /api/Schedule/{`{id}`}/cancel</p>
+          <div className="form-field pm-filter-button">
+            <button className="btn-primary" onClick={handleSearch}>
+              Buscar
+            </button>
+          </div>
 
-            {loading && <p>Carregando agendamentos...</p>}
-
-            {error && (
-                <p style={{ color: "red" }}>
-                    ⚠️ Erro: {error}
-                </p>
-            )}
-
-            {!loading && !error && schedules.length === 0 && (
-                <p>Nenhum agendamento encontrado.</p>
-            )}
-
-            {!loading && schedules.length > 0 && (
-                <div
-                    style={{
-                        marginTop: "20px",
-                        border: "1px solid #ccc",
-                        padding: "15px",
-                        backgroundColor: "#f9f9f9",
-                    }}
-                >
-                    <h3>📋 Schedules encontrados:</h3>
-                    <ul>
-                        {schedules.map((s) => (
-                            <li key={s.id} style={{ marginBottom: "12px" }}>
-                                <strong>ID:</strong> {s.id} <br />
-                                <strong>Navio:</strong> {s.shipName || "—"} <br />
-                                <strong>Data:</strong> {s.date || "—"} <br />
-                                <strong>Status:</strong> {s.status || "—"}
-                                <br />
-
-                                {/* Botão só aparece se ainda não estiver cancelado */}
-                                {s.status !== "Cancelled" && (
-                                    <button
-                                        style={{
-                                            marginTop: 6,
-                                            background: "#d9534f",
-                                            color: "white",
-                                            border: "none",
-                                            padding: "6px 12px",
-                                            cursor: "pointer",
-                                            borderRadius: 4,
-                                        }}
-                                        onClick={() => handleCancel(s.id)}
-                                    >
-                                        Cancelar
-                                    </button>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
         </div>
-    );
+      </div>
+
+      {status === "loading" && <p>Carregando relatório...</p>}
+      {status === "error" && <p>Erro ao carregar relatório.</p>}
+      {status === "empty" && <p>Nenhum dado encontrado.</p>}
+
+      {status === "success" && report && (
+        <div className="card">
+          <div className="report-summary">
+            <div className="report-total-label">Total de schedules</div>
+            <div className="report-total-value">{report.totalSchedules}</div>
+          </div>
+
+          <ul className="report-breakdown">
+            <li>Ativos: {report.totalActive}</li>
+            <li>Cancelados: {report.totalCancelled}</li>
+            <li>Concluídos: {report.totalCompleted}</li>
+          </ul>
+        </div>
+      )}
+    </PageContainer>
+  );
 }

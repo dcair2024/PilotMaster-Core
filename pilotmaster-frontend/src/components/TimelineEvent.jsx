@@ -1,11 +1,18 @@
+import "../styles/timeline.css";
+
 export default function TimelineEvent({ action, description, date }) {
   return (
-    <li className="pm-timeline-item">
-      <div className="pm-timeline-line" />
-      <div className="pm-timeline-card card">
-        <div className="pm-action">{action}</div>
-        <div className="pm-context">{description}</div>
-        <div className="pm-date">{date}</div>
+    <li className="timeline-item">
+      <div className="timeline-marker" />
+
+      <div className="timeline-card">
+        <div className="timeline-action">{action}</div>
+
+        {description && (
+          <div className="timeline-description">{description}</div>
+        )}
+
+        <div className="timeline-date">{date}</div>
       </div>
     </li>
   );

@@ -9,21 +9,18 @@ export default function Layout() {
 
   return (
     <div className="app-layout">
-      <Sidebar
-  open={sidebarOpen}
-  onClose={() => setSidebarOpen(false)}
-/>
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-<div className="main-area">
-  <Topbar toggleSidebar={() => setSidebarOpen(prev => !prev)} />
-  <main className="content">
-    <Outlet />
-  </main>
-</div>
+      <div className="app-main">
+        <Topbar toggleSidebar={() => setSidebarOpen(v => !v)} />
 
+        <main className="app-content">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
-
+ 
 
 

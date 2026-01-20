@@ -12,13 +12,11 @@ import TestAuthPage from "./pages/TestAuthPage";
 import TestSchedulePage from "./pages/TestSchedulePage";
 import TestScheduleCreate from "./pages/TestScheduleCreate";
 import TestTariffPage from "./pages/TestTariffPage";
+
 import ScheduleHistory from "./pages/ScheduleHistory";
 import SchedulePeriodReport from "./pages/SchedulePeriodReport";
 import ShipHistory from "./pages/ShipHistory";
 import GlobalHistory from "./pages/GlobalHistory";
-
-
-
 
 import "./styles/design-system.css";
 import "./styles/cards.css";
@@ -28,13 +26,13 @@ export default function App() {
     <BrowserRouter>
       <Routes>
 
-        {/* LOGIN (rota pública) */}
+        {/* 🔓 ROTA PÚBLICA */}
         <Route path="/auth/login" element={<Login />} />
 
-        {/* ROTAS PROTEGIDAS */}
+        {/* 🔒 ROTAS PROTEGIDAS */}
         <Route element={<ProtectedRoute />}>
 
-          {/* LAYOUT ÚNICO DO APP */}
+          {/* 🧱 LAYOUT BASE ÚNICO DO PRODUTO */}
           <Route element={<Layout />}>
 
             {/* Dashboard */}
@@ -43,36 +41,18 @@ export default function App() {
             {/* Navios */}
             <Route path="/ships" element={<ShipsList />} />
             <Route path="/ships/new" element={<ShipForm />} />
+            <Route path="/ships/:shipId/history" element={<ShipHistory />} />
 
             {/* Agendamentos */}
             <Route path="/schedule" element={<TestSchedulePage />} />
             <Route path="/schedule/new" element={<TestScheduleCreate />} />
+            <Route path="/schedule/:scheduleId/history" element={<ScheduleHistory />} />
+            <Route path="/schedule/report" element={<SchedulePeriodReport />} />
 
-            {/* HISTÓRICO DO SCHEDULE */}
-            <Route
-              path="/schedule/:scheduleId/history"
-              element={<ScheduleHistory />}
-            />
+            {/* Histórico Global */}
+            <Route path="/history" element={<GlobalHistory />} />
 
-            {/* RELATÓRIO DE SCHEDULES POR PERÍODO */}
-            <Route
-              path="/schedule/report"
-              element={<SchedulePeriodReport />}
-            />
-            {/* HISTÓRICO DO NAVIO */}
-            <Route
-              path="/ships/:shipId/history"
-              element={<ShipHistory />}
-
-            />
-            {/* HISTÓRICO GLOBAL */}
-            <Route
-              path="/history"
-              element={<GlobalHistory />}
-            />
-
-
-            {/* Tarifa */}
+            {/* Tarifas */}
             <Route path="/tariff" element={<TestTariffPage />} />
 
             {/* Configurações */}
@@ -87,7 +67,7 @@ export default function App() {
           </Route>
         </Route>
 
-        {/* Testes isolados */}
+        {/* 🧪 Rotas de teste isoladas */}
         <Route path="/test/auth" element={<TestAuthPage />} />
 
         {/* 404 */}

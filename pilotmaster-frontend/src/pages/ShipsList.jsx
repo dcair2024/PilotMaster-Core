@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getShips } from "../api/shipsService";
+import PageContainer from "../components/PageContainer";
 import "../styles/ships.css";
 
 export default function ShipsList() {
@@ -17,29 +18,26 @@ export default function ShipsList() {
     try {
       const data = await getShips();
       setShips(data);
-    } catch (err) {
-      console.error("Erro ao buscar navios:", err);
+    } catch {
       setShips([]);
     } finally {
       setLoading(false);
     }
   }
 
-  const filteredShips = ships.filter((ship) =>
+  const filteredShips = ships.filter(ship =>
     ship.name.toLowerCase().includes(search.toLowerCase())
   );
 
   if (loading) return <p>Carregando navios...</p>;
 
   return (
-    <div className="ships-page">
-
-      {/* HEADER */}
+    <PageContainer title="Navios">
       <div className="page-header">
         <input
           placeholder="Buscar navio..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={e => setSearch(e.target.value)}
         />
 
         <button
@@ -50,44 +48,24 @@ export default function ShipsList() {
         </button>
       </div>
 
-      {/* GRID */}
       <div className="ship-grid">
-        {filteredShips.map((ship) => (
+        {filteredShips.map(ship => (
           <div key={ship.id} className="ship-card">
-
             <div className="ship-card-header">
-              <strong className="ship-name">{ship.name}</strong>
-
-              <span
-                className={`ship-status ${
-                  ship.isActive ? "active" : "inactive"
-                }`}
-              >
+              <strong>{ship.name}</strong>
+              <span className={`ship-status ${ship.isActive ? "active" : "inactive"}`}>
                 {ship.isActive ? "Ativo" : "Inativo"}
               </span>
             </div>
 
             <div className="ship-card-body">
-              <div className="ship-info">
-                <span>GRT</span>
-                <strong>{ship.grt}</strong>
-              </div>
-
-              <div className="ship-info">
-                <span>Draft</span>
-                <strong>{ship.draft}</strong>
-              </div>
-
-              <div className="ship-info">
-                <span>Age</span>
-                <strong>{ship.age}</strong>
-              </div>
+              <div><span>GRT</span><strong>{ship.grt}</strong></div>
+              <div><span>Draft</span><strong>{ship.draft}</strong></div>
+              <div><span>Age</span><strong>{ship.age}</strong></div>
             </div>
-
           </div>
         ))}
       </div>
-
-    </div>
+    </PageContainer>
   );
 }

@@ -3,10 +3,8 @@ import api from "../api/api";
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
 
-
 export default function GlobalHistory() {
   const [status, setStatus] = useState("loading");
-  // loading | empty | error | success
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -21,8 +19,7 @@ export default function GlobalHistory() {
 
         setItems(response.data);
         setStatus("success");
-      } catch (err) {
-        console.error("Erro ao carregar histórico global", err);
+      } catch {
         setStatus("error");
       }
     }
@@ -30,30 +27,24 @@ export default function GlobalHistory() {
     loadHistory();
   }, []);
 
-  if (status === "loading") {
-    return <p>Carregando histórico...</p>;
-  }
-
-  if (status === "error") {
-    return <p>Erro ao carregar histórico.</p>;
-  }
-
-  if (status === "empty") {
-    return <p>Nenhuma atividade registrada.</p>;
-  }
-
   return (
     <PageContainer title="Histórico Global">
-    <ul className="history-list">
-  {items.map(item => (
-    <TimelineEvent
-      key={item.id}
-      action={item.action}
-      description={item.description}
-      date={new Date(item.createdAt).toLocaleString()}
-    />
-  ))}
-</ul>
-  </PageContainer>
+      {status === "loading" && <p>Carregando histórico...</p>}
+      {status === "error" && <p>Erro ao carregar histórico.</p>}
+      {status === "empty" && <p>Nenhuma atividade registrada.</p>}
+
+      {status === "success" && (
+        <ul className="history-list">
+          {items.map((item, index) => (
+            <TimelineEvent
+              key={`${item.id}-${item.createdAt}-${index}`}
+              action={item.action}
+              description={item.description}
+              date={new Date(item.createdAt).toLocaleString()}
+            />
+          ))}
+        </ul>
+      )}
+    </PageContainer>
   );
 }

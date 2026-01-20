@@ -122,5 +122,27 @@
   color: #0f172a;
 }
 
+/* =========================
+   PAGE CONTAINER – FE-60
+   ========================= */
+
+.pm-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+}
+
+.pm-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+.pm-content {
+  display: block;
+}
+
+
 
 

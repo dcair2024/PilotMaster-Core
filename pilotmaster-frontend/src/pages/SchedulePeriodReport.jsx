@@ -13,10 +13,7 @@ export default function SchedulePeriodReport() {
       setStatus("loading");
       setReport(null);
 
-      const data = await ScheduleService.getReportByPeriod(
-        startDate,
-        endDate
-      );
+      const data = await ScheduleService.getReportByPeriod(startDate, endDate);
 
       if (!data || data.totalSchedules === 0) {
         setStatus("empty");
@@ -31,8 +28,6 @@ export default function SchedulePeriodReport() {
 
   return (
     <PageContainer title="Relatório de Schedules por Período">
-
-      {/* Filtros */}
       <div className="card pm-filters">
         <div className="pm-filter-group">
 
@@ -56,34 +51,24 @@ export default function SchedulePeriodReport() {
             />
           </div>
 
-           <div className="form-field pm-filter-button">
-            <button
-              className="btn-primary"
-              onClick={handleSearch}
-            >
+          <div className="form-field pm-filter-button">
+            <button className="btn-primary" onClick={handleSearch}>
               Buscar
             </button>
-            
-           </div>
+          </div>
 
         </div>
       </div>
 
-      {/* Estados */}
       {status === "loading" && <p>Carregando relatório...</p>}
       {status === "error" && <p>Erro ao carregar relatório.</p>}
       {status === "empty" && <p>Nenhum dado encontrado.</p>}
 
-      {/* Resultado */}
       {status === "success" && report && (
         <div className="card">
           <div className="report-summary">
-            <div className="report-total-label">
-              Total de schedules
-            </div>
-            <div className="report-total-value">
-              {report.totalSchedules}
-            </div>
+            <div className="report-total-label">Total de schedules</div>
+            <div className="report-total-value">{report.totalSchedules}</div>
           </div>
 
           <ul className="report-breakdown">
@@ -93,7 +78,7 @@ export default function SchedulePeriodReport() {
           </ul>
         </div>
       )}
-
     </PageContainer>
   );
 }
+  

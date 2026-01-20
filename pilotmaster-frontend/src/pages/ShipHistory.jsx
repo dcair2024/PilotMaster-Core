@@ -4,18 +4,14 @@ import ShipsService from "../api/shipsService";
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
 
-
 export default function ShipHistory() {
   const { shipId } = useParams();
-
   const [status, setStatus] = useState("loading");
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
     async function loadHistory() {
       try {
-        setStatus("loading");
-
         const data = await ShipsService.getShipHistory(shipId);
 
         if (!data || data.length === 0) {
@@ -32,18 +28,24 @@ export default function ShipHistory() {
     loadHistory();
   }, [shipId]);
 
-  return (<PageContainer title="Histórico Global">
-    <ul className="history-list">
-  {history.map(item => (
-    <TimelineEvent
-      key={item.id}
-      action={item.action}
-      description={`Schedule #${item.scheduleId} — ${item.description}`}
-      date={new Date(item.createdAt).toLocaleString()}
-    />
-  ))}
-</ul>
+  return (
+    <PageContainer title="Histórico do Navio">
+      {status === "loading" && <p>Carregando histórico...</p>}
+      {status === "error" && <p>Erro ao carregar histórico.</p>}
+      {status === "empty" && <p>Nenhuma atividade registrada.</p>}
 
-  </PageContainer>
+      {status === "success" && (
+        <ul className="history-list">
+          {history.map(item => (
+            <TimelineEvent
+              key={item.id}
+              action={item.action}
+              description={`Schedule #${item.scheduleId} — ${item.description}`}
+              date={new Date(item.createdAt).toLocaleString()}
+            />
+          ))}
+        </ul>
+      )}
+    </PageContainer>
   );
 }
