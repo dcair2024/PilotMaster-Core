@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PilotMaster.Application.Interfaces;
+using PilotMaster.Api.Models;
+using PilotMaster.Application.DTOs;
 
 namespace PilotMaster.Api.Controllers;
 
@@ -19,6 +21,7 @@ public class SystemController : ControllerBase
     public IActionResult GetSystemInfo()
     {
         var info = _service.GetSystemInfo();
-        return Ok(info);
+
+        return Ok(ApiResponse<SystemInfoDto>.Ok(info));
     }
 }
