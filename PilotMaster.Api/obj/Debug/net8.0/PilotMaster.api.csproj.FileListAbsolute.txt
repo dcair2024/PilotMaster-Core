@@ -306,3 +306,8 @@ C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Mic
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Debug.dll
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+C:\Users\User\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\User\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\User\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\User\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Debug.dll
+C:\Users\User\source\repos\PilotMaster-Core\PilotMaster.api\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll

@@ -1,71 +1,53 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getShips } from "../api/shipsService";
+import { useParams } from "react-router-dom";
+import ShipsService from "../api/shipsService";
 import PageContainer from "../components/PageContainer";
-import "../styles/ships.css";
+import TimelineEvent from "../components/TimelineEvent";
 
-export default function ShipsList() {
-  const [ships, setShips] = useState([]);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+export default function ShipHistory() {
+  const { shipId } = useParams();
+
+  const [status, setStatus] = useState("loading");
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    loadShips();
-  }, []);
+    async function loadHistory() {
+      try {
+        const data = await ShipsService.getShipHistory(shipId);
 
-  async function loadShips() {
-    try {
-      const data = await getShips();
-      setShips(data);
-    } catch {
-      setShips([]);
-    } finally {
-      setLoading(false);
+        if (!data || data.length === 0) {
+          setStatus("empty");
+        } else {
+          setHistory(data);
+          setStatus("success");
+        }
+      } catch {
+        setStatus("error");
+      }
     }
-  }
 
-  const filteredShips = ships.filter(ship =>
-    ship.name.toLowerCase().includes(search.toLowerCase())
-  );
-
-  if (loading) return <p>Carregando navios...</p>;
+    loadHistory();
+  }, [shipId]);
 
   return (
-    <PageContainer title="Navios">
-      <div className="page-header">
-        <input
-          placeholder="Buscar navio..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
+    <PageContainer title="Histórico do Navio">
+      {status === "loading" && <p>Carregando histórico...</p>}
+      {status === "error" && <p>Erro ao carregar histórico.</p>}
+      {status === "empty" && <p>Nenhuma atividade registrada.</p>}
 
-        <button
-          className="btn-primary"
-          onClick={() => navigate("/ships/new")}
-        >
-          + Novo Navio
-        </button>
-      </div>
-
-      <div className="ship-grid">
-        {filteredShips.map(ship => (
-          <div key={ship.id} className="ship-card">
-            <div className="ship-card-header">
-              <strong>{ship.name}</strong>
-              <span className={`ship-status ${ship.isActive ? "active" : "inactive"}`}>
-                {ship.isActive ? "Ativo" : "Inativo"}
-              </span>
-            </div>
-
-            <div className="ship-card-body">
-              <div><span>GRT</span><strong>{ship.grt}</strong></div>
-              <div><span>Draft</span><strong>{ship.draft}</strong></div>
-              <div><span>Age</span><strong>{ship.age}</strong></div>
-            </div>
-          </div>
-        ))}
-      </div>
+      {status === "success" && (
+        <ul className="history-list">
+          {history.map((item, index) => (
+            <TimelineEvent
+              key={`${item.id}-${item.createdAt}-${index}`}
+              action={item.action}
+              description={`Schedule #${item.scheduleId} — ${item.description}`}
+              date={new Date(item.createdAt).toLocaleString()}
+            />
+          ))}
+        </ul>
+      )}
     </PageContainer>
   );
 }
+

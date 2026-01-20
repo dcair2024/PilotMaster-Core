@@ -23,3 +23,4 @@ C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.Domain\obj\Debug\net8.0\
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.Domain\obj\Debug\net8.0\PilotMaster.Domain.pdb
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.Domain\obj\Debug\net8.0\ref\PilotMaster.Domain.dll
 C:\Users\Davi\source\repos\PilotMaster-Core\PilotMaster.Domain\obj\Debug\net8.0\PilotMaster.Domain.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\PilotMaster-Core\PilotMaster.Domain\obj\Debug\net8.0\PilotMaster.Domain.csproj.AssemblyReference.cache
