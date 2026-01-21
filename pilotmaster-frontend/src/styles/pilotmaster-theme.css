@@ -1,0 +1,55 @@
+/* =====================================================
+   PilotMaster — Tema Oficial
+   AS-60 | Sprint 11
+   ===================================================== */
+
+:root {
+
+  /* 🎨 CORES */
+
+  --pm-color-primary: #2563eb;      /* já usado no focus */
+  --pm-color-danger: #dc2626;       /* erros / CANCELLED */
+  --pm-color-success: #16a34a;      /* COMPLETED */
+
+  --pm-gray-900: #0f172a;           /* títulos fortes */
+  --pm-gray-700: #334155;           /* texto normal */
+  --pm-gray-500: #64748b;           /* labels / datas */
+  --pm-gray-200: #e5e7eb;           /* bordas */
+  --pm-gray-100: #f1f5f9;           /* backgrounds */
+  --pm-white: #ffffff;
+
+
+  /* 🔤 TIPOGRAFIA */
+
+  --pm-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --pm-font-size-title: 22px;
+  --pm-font-size-base: 14px;
+  --pm-font-size-small: 12px;
+
+  --pm-font-weight-strong: 700;
+  --pm-font-weight-medium: 600;
+  --pm-font-weight-normal: 400;
+
+
+  /* 📐 ESPAÇAMENTOS */
+
+  --pm-space-xs: 4px;
+  --pm-space-sm: 6px;
+  --pm-space-md: 12px;
+  --pm-space-lg: 16px;
+  --pm-space-xl: 24px;
+
+
+  /* 🧱 RADIUS */
+
+  --pm-radius-sm: 6px;
+  --pm-radius-md: 8px;
+  --pm-radius-lg: 12px;
+
+
+  /* 🌫️ SHADOWS */
+
+  --pm-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --pm-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+}

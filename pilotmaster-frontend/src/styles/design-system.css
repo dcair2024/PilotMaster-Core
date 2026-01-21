@@ -143,6 +143,57 @@
   display: block;
 }
 
+/* ======================================================
+   AS-61 — COMPONENTES VISUAIS BASE
+   ====================================================== */
+
+/* 🧱 CARD BASE */
+.pm-card {
+  background-color: var(--pm-white);
+  border-radius: var(--pm-radius-lg);
+  padding: var(--pm-space-lg);
+  box-shadow: var(--pm-shadow-md);
+}
+
+/* 🏷️ TÍTULO DE PÁGINA */
+.pm-title {
+  font-family: var(--pm-font-family);
+  font-size: var(--pm-font-size-title);
+  font-weight: var(--pm-font-weight-strong);
+  color: var(--pm-gray-900);
+  margin-bottom: var(--pm-space-xl);
+}
+
+/* 📝 SUBTÍTULO / CONTEXTO */
+.pm-subtitle {
+  font-family: var(--pm-font-family);
+  font-size: var(--pm-font-size-base);
+  font-weight: var(--pm-font-weight-normal);
+  color: var(--pm-gray-700);
+}
+
+/* 🧭 TIMELINE (CONTAINER) */
+.pm-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pm-space-lg);
+}
+
+/* 🔔 AÇÃO (UI-61) */
+.pm-action {
+  font-family: var(--pm-font-family);
+  font-size: var(--pm-font-size-base);
+  font-weight: var(--pm-font-weight-strong);
+  text-transform: uppercase;
+  color: var(--pm-gray-900);
+}
+
+/* CANCELLED */
+.pm-action--danger {
+  color: var(--pm-color-danger);
+}
+
+
 
 
 

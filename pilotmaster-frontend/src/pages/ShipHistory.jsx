@@ -6,10 +6,16 @@ import TimelineEvent from "../components/TimelineEvent";
 
 export default function ShipHistory() {
   const { shipId } = useParams();
+
   const [status, setStatus] = useState("loading");
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
+    if (!shipId) {
+      setStatus("error");
+      return;
+    }
+
     async function loadHistory() {
       try {
         const data = await ShipsService.getShipHistory(shipId);
@@ -31,7 +37,7 @@ export default function ShipHistory() {
   return (
     <PageContainer title="Histórico do Navio">
       {status === "loading" && <p>Carregando histórico...</p>}
-      {status === "error" && <p>Erro ao carregar histórico.</p>}
+      {status === "error" && <p>Navio não informado ou erro ao carregar histórico.</p>}
       {status === "empty" && <p>Nenhuma atividade registrada.</p>}
 
       {status === "success" && (

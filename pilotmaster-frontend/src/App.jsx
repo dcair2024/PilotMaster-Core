@@ -18,6 +18,8 @@ import SchedulePeriodReport from "./pages/SchedulePeriodReport";
 import ShipHistory from "./pages/ShipHistory";
 import GlobalHistory from "./pages/GlobalHistory";
 
+/* 🎨 ORDEM CORRETA DE CSS */
+import "./styles/pilotmaster-theme.css";
 import "./styles/design-system.css";
 import "./styles/cards.css";
 
