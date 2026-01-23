@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PilotMaster.Application.Interfaces;
 using PilotMaster.Domain.Entities;
+using PilotMaster.Domain.Exceptions;
 
 namespace PilotMaster.Api.Controllers;
 
@@ -28,7 +29,14 @@ public class ShipsController : ControllerBase
     public async Task<IActionResult> GetById(int id)
     {
         var ship = await _service.GetByIdAsync(id);
-        return ship == null ? NotFound() : Ok(ship);
+        if (ship == null)
+            throw new NotFoundException(
+                "Ship not found",
+                "SHIP_NOT_FOUND"
+            );
+
+        return Ok(ship);
+
     }
 
     // GET: /api/ship/{shipId}/history

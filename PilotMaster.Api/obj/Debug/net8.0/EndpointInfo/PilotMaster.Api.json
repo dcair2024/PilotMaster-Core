@@ -631,7 +631,7 @@
         }
       }
     },
-    "/api/system/info": {
+    "/api/system/health": {
       "get": {
         "tags": [
           "System"

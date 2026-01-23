@@ -3,6 +3,8 @@ using PilotMaster.Application.DTOs;
 using PilotMaster.Application.Interfaces;
 using PilotMaster.Domain.Entities;
 using PilotMaster.Infrastructure;
+using PilotMaster.Domain.Exceptions;
+
 
 namespace PilotMaster.Application.Services;
 
@@ -46,19 +48,24 @@ public class ScheduleService : IScheduleService
         schedule.Area = schedule.Area?.Trim().ToUpper();
 
         if (schedule.ScheduledAt <= DateTime.UtcNow)
-            throw new InvalidOperationException("Data de agendamento não pode ser no passado.");
+            throw new ValidationException("Data de agendamento não pode ser no passado.");
 
         if (string.IsNullOrWhiteSpace(schedule.Area))
-            throw new InvalidOperationException("Área é obrigatória.");
+            throw new ValidationException("Área é obrigatória.");
 
         if (schedule.ShipId <= 0)
-            throw new InvalidOperationException("ShipId é obrigatório para criar um agendamento.");
+            throw new ValidationException("ShipId é obrigatório.");
+
 
         var ship = await _db.Ships
             .FirstOrDefaultAsync(s => s.Id == schedule.ShipId && s.IsActive);
 
         if (ship == null)
-            throw new InvalidOperationException("Navio inexistente ou inativo.");
+            throw new NotFoundException(
+                "Ship not found",
+                "SHIP_NOT_FOUND"
+            );
+
 
         var conflict = await _db.PilotSchedules.AnyAsync(x =>
             x.Area.ToUpper() == schedule.Area &&
@@ -66,7 +73,8 @@ public class ScheduleService : IScheduleService
             x.Status == "Scheduled");
 
         if (conflict)
-            throw new InvalidOperationException("Conflito de horário para essa área.");
+            throw new ValidationException("Conflito de horário para essa área.");
+
 
         schedule.Status = "Scheduled";
 
@@ -90,6 +98,7 @@ public class ScheduleService : IScheduleService
     public async Task<bool> CancelSchedule(int id, string cancelledBy)
     {
         var schedule = await _db.PilotSchedules.FindAsync(id);
+
         if (schedule == null)
             return false;
 
@@ -107,6 +116,7 @@ public class ScheduleService : IScheduleService
         await _db.SaveChangesAsync();
         return true;
     }
+
     public async Task<SchedulePeriodReportDto> GetReportByPeriodAsync(
     DateTime startDate,
     DateTime endDate)

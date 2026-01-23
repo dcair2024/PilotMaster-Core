@@ -1,9 +1,9 @@
 ﻿namespace PilotMaster.Application.DTOs;
 
-public class SystemInfoDto
+public class SystemHealthDto
 {
-    public string Name { get; set; } = string.Empty;
+    public string Status { get; set; } = "ok";
     public string Version { get; set; } = string.Empty;
     public string Environment { get; set; } = string.Empty;
-    public DateTime BuildDate { get; set; }
+    public DateTime Timestamp { get; set; }
 }

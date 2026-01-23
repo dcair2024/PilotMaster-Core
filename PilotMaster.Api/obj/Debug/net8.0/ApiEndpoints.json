@@ -415,13 +415,19 @@
   },
   {
     "ContainingType": "PilotMaster.Api.Controllers.SystemController",
-    "Method": "GetSystemInfo",
-    "RelativePath": "api/system/info",
+    "Method": "Health",
+    "RelativePath": "api/system/health",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PilotMaster.Api.Controllers.TariffController",

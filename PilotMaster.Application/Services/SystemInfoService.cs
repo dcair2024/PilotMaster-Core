@@ -1,37 +1,35 @@
-﻿using PilotMaster.Application.DTOs;
+﻿using Microsoft.Extensions.Configuration;
+using PilotMaster.Application.DTOs;
 using PilotMaster.Application.Interfaces;
-using Microsoft.Extensions.Configuration;
-
-namespace PilotMaster.Application.Services;
 
 public class SystemInfoService : ISystemInfoService
 {
-    private readonly IConfiguration _configuration;
-    private readonly string _environmentName;
+    private readonly IConfiguration _config;
+    private readonly string _environment;
 
-    public SystemInfoService(
-        IConfiguration configuration,
-        string environmentName)
+    public SystemInfoService(IConfiguration config, string environment)
     {
-        _configuration = configuration;
-        _environmentName = environmentName;
+        _config = config;
+        _environment = environment;
     }
 
     public SystemInfoDto GetSystemInfo()
     {
         return new SystemInfoDto
         {
-            SystemName = _configuration["SystemInfo:Name"] ?? "PilotMaster",
-            Version = _configuration["SystemInfo:Version"] ?? "dev",
-            Environment = _environmentName,
-            BuildDate = GetBuildDate()
+            Name = _config["SystemInfo:Name"]!,
+            Version = _config["SystemInfo:Version"]!
         };
     }
 
-    private static DateTime GetBuildDate()
+    public SystemHealthDto GetHealth()
     {
-        return System.IO.File.GetLastWriteTime(
-            typeof(SystemInfoService).Assembly.Location
-        );
+        return new SystemHealthDto
+        {
+            Status = "ok",
+            Version = _config["SystemInfo:Version"]!,
+            Environment = _environment,
+            Timestamp = DateTime.UtcNow
+        };
     }
 }

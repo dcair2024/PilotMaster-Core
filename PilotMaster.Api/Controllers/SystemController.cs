@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PilotMaster.Application.Interfaces;
-using PilotMaster.Api.Models;
-using PilotMaster.Application.DTOs;
 
 namespace PilotMaster.Api.Controllers;
 
@@ -16,12 +14,12 @@ public class SystemController : ControllerBase
         _service = service;
     }
 
-    // GET: /api/system/info
-    [HttpGet("info")]
-    public IActionResult GetSystemInfo()
+    // GET /api/system/health
+    [HttpGet("health")]
+    [ProducesResponseType(200)]
+    public IActionResult Health()
     {
-        var info = _service.GetSystemInfo();
-
-        return Ok(ApiResponse<SystemInfoDto>.Ok(info));
+        var health = _service.GetHealth();
+        return Ok(health);
     }
 }

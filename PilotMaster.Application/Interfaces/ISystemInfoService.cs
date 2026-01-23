@@ -5,4 +5,5 @@ namespace PilotMaster.Application.Interfaces;
 public interface ISystemInfoService
 {
     SystemInfoDto GetSystemInfo();
+    SystemHealthDto GetHealth();
 }

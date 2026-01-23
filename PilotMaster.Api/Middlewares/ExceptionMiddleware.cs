@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using PilotMaster.Domain.Exceptions;
 
 public class ExceptionMiddleware
 {
@@ -16,40 +17,65 @@ public class ExceptionMiddleware
         {
             await _next(context);
         }
-        catch (Exception ex)
+        catch (NotFoundException ex)
         {
-            context.Response.ContentType = "application/json";
-
-            // 🔥 REGRA DE VALIDAÇÃO (BK-41)
-            if (ex is ArgumentException || ex.InnerException is ArgumentException)
-            {
-                var message = ex is ArgumentException
-                    ? ex.Message
-                    : ex.InnerException!.Message;
-
-                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-
-                await context.Response.WriteAsync(JsonSerializer.Serialize(new
-                {
-                    success = false,
-                    message = message,
-                    code = "INVALID_MODEL"
-                }));
-
-                return;
-            }
-
-            // ☠️ ERRO REAL DE SERVIDOR
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-            await context.Response.WriteAsync(JsonSerializer.Serialize(new
-            {
-                success = false,
-                message = "Erro inesperado no servidor.",
-                code = "INTERNAL_ERROR"
-            }));
+            await WriteError(
+                context,
+                HttpStatusCode.NotFound,
+                ex.Message,
+                ex.Code
+            );
+        }
+        catch (DomainValidationException ex)
+        {
+            await WriteError(
+                context,
+                HttpStatusCode.BadRequest,
+                ex.Message,
+                ex.Code
+            );
+        }
+        catch (ArgumentException ex)
+        {
+            await WriteError(
+                context,
+                HttpStatusCode.BadRequest,
+                ex.Message,
+                "INVALID_ARGUMENT"
+            );
+        }
+        catch (Exception)
+        {
+            await WriteError(
+                context,
+                HttpStatusCode.InternalServerError,
+                "Erro inesperado no servidor.",
+                "INTERNAL_ERROR"
+            );
         }
     }
+
+    private static async Task WriteError(
+        HttpContext context,
+        HttpStatusCode status,
+        string message,
+        string code)
+    {
+        if (context.Response.HasStarted)
+            return;
+
+        context.Response.Clear();
+        context.Response.ContentType = "application/json";
+        context.Response.StatusCode = (int)status;
+
+        var response = new
+        {
+            message,
+            code
+        };
+
+        await context.Response.WriteAsync(
+            JsonSerializer.Serialize(response)
+        );
+    }
 }
-
-
