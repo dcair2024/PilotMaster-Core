@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import api from "../api/api";
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
+import EmptyState from "../components/EmptyState";
+
+import { Link } from "react-router-dom";
+
 
 export default function GlobalHistory() {
   const [status, setStatus] = useState("loading");
@@ -30,21 +34,56 @@ export default function GlobalHistory() {
   return (
     <PageContainer title="Histórico Global">
       {status === "loading" && <p>Carregando histórico...</p>}
-      {status === "error" && <p>Erro ao carregar histórico.</p>}
-      {status === "empty" && <p>Nenhuma atividade registrada.</p>}
+      {status === "empty" && (
+  <EmptyState
+    title="Nenhum registro encontrado"
+    subtitle="Não há atividades registradas no sistema."
+  />
+)}
+
+{status === "error" && (
+  <EmptyState
+    title="Erro ao carregar histórico"
+    subtitle="Verifique sua conexão ou tente novamente."
+  />
+)}
+
+      
 
       {status === "success" && (
-        <ul className="history-list">
-          {items.map((item, index) => (
-            <TimelineEvent
-              key={`${item.id}-${item.createdAt}-${index}`}
-              action={item.action}
-              description={item.description}
-              date={new Date(item.createdAt).toLocaleString()}
-            />
-          ))}
-        </ul>
-      )}
+  <ul className="history-list">
+    {items.map((item, index) => {
+      let link = null;
+
+      if (item.shipId) {
+        link = `/ships/${item.shipId}/history`;
+      } else if (item.scheduleId) {
+        link = `/schedule/${item.scheduleId}/history`;
+      }
+
+      const timelineItem = (
+        <TimelineEvent
+          action={item.action}
+          description={item.description}
+          date={new Date(item.createdAt).toLocaleString()}
+        />
+      );
+
+      return link ? (
+        <Link
+          key={`${item.id}-${item.createdAt}-${index}`}
+          to={link}
+          style={{ textDecoration: "none", display: "block" }}
+        >
+          {timelineItem}
+        </Link>
+      ) : (
+        timelineItem
+      );
+    })}
+  </ul>
+)}
+
     </PageContainer>
   );
 }

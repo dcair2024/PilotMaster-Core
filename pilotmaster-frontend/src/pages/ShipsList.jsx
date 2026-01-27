@@ -12,7 +12,14 @@ export default function ShipHistory() {
 
   useEffect(() => {
     async function loadHistory() {
+      // 🛡️ PROTEÇÃO: Se não houver ID ou se for a string "undefined", nem tenta chamar a API
+      if (!shipId || shipId === "undefined") {
+        setStatus("error");
+        return;
+      }
+
       try {
+        setStatus("loading");
         const data = await ShipsService.getShipHistory(shipId);
 
         if (!data || data.length === 0) {
@@ -21,25 +28,33 @@ export default function ShipHistory() {
           setHistory(data);
           setStatus("success");
         }
-      } catch {
+      } catch (err) {
+        console.error("Erro ao buscar histórico:", err);
         setStatus("error");
       }
     }
 
     loadHistory();
-  }, [shipId]);
+  }, [shipId]); // Recarrega se o ID mudar
 
   return (
     <PageContainer title="Histórico do Navio">
       {status === "loading" && <p>Carregando histórico...</p>}
-      {status === "error" && <p>Erro ao carregar histórico.</p>}
-      {status === "empty" && <p>Nenhuma atividade registrada.</p>}
+      
+      {status === "error" && (
+        <p style={{ color: "red" }}>
+          Erro: ID do navio inválido ou problema na conexão.
+        </p>
+      )}
+      
+      {status === "empty" && <p>Nenhuma atividade registrada para este navio.</p>}
 
       {status === "success" && (
         <ul className="history-list">
           {history.map((item, index) => (
             <TimelineEvent
-              key={`${item.id}-${item.createdAt}-${index}`}
+              // Usando uma chave composta para garantir unicidade
+              key={`${item.id || index}-${item.createdAt}`}
               action={item.action}
               description={`Schedule #${item.scheduleId} — ${item.description}`}
               date={new Date(item.createdAt).toLocaleString()}
@@ -50,4 +65,3 @@ export default function ShipHistory() {
     </PageContainer>
   );
 }
-

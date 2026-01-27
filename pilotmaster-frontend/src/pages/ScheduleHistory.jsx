@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ScheduleService from "../api/ScheduleService";
+import ScheduleService from "../api/ScheduleService"; // ✅ IMPORTANTE: Serviço de Agendamento
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
-import "../styles/history.css";
+import EmptyState from "../components/EmptyState";
 
 export default function ScheduleHistory() {
   const { scheduleId } = useParams();
@@ -12,8 +12,18 @@ export default function ScheduleHistory() {
 
   useEffect(() => {
     async function loadHistory() {
+      // ✅ CORREÇÃO B: Converter para número e validar
+      const id = Number(scheduleId);
+
+      if (isNaN(id) || !scheduleId || scheduleId === "undefined") {
+        setStatus("error");
+        return;
+      }
+
       try {
-        const data = await ScheduleService.getHistory(scheduleId);
+        setStatus("loading");
+        // ✅ Chama o serviço correto de Agendamento
+        const data = await ScheduleService.getHistory(id);
 
         if (!data || data.length === 0) {
           setStatus("empty");
@@ -21,25 +31,37 @@ export default function ScheduleHistory() {
           setHistory(data);
           setStatus("success");
         }
-      } catch {
+      } catch (err) {
+        console.error("Erro na API de Histórico do Agendamento:", err);
         setStatus("error");
       }
     }
-
     loadHistory();
   }, [scheduleId]);
 
   return (
-    <PageContainer title="Histórico do Schedule">
-      {status === "loading" && <p>Carregando histórico...</p>}
-      {status === "error" && <p>Erro ao carregar histórico.</p>}
-      {status === "empty" && <p>Nenhuma atividade registrada.</p>}
+    <PageContainer title="Histórico do Agendamento">
+      {status === "loading" && <p>Carregando histórico do agendamento...</p>}
+
+      {status === "empty" && (
+        <EmptyState
+          title="Histórico vazio"
+          subtitle="Nenhuma movimentação para este agendamento."
+        />
+      )}
+
+      {status === "error" && (
+        <EmptyState
+          title="Erro no Agendamento"
+          subtitle="O ID do agendamento fornecido é inválido."
+        />
+      )}
 
       {status === "success" && (
         <ul className="history-list">
-          {history.map(item => (
+          {history.map((item, index) => (
             <TimelineEvent
-              key={item.id}
+              key={item.id ?? `sch-hist-${index}`}
               action={item.action}
               description={item.description}
               date={new Date(item.createdAt).toLocaleString()}

@@ -193,6 +193,25 @@
   color: var(--pm-color-danger);
 }
 
+.pm-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: #6b7280;
+}
+
+.pm-empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.pm-empty-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+
 
 
 

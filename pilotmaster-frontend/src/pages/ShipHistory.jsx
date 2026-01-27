@@ -1,24 +1,28 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ShipsService from "../api/shipsService";
+import { useParams, Link } from "react-router-dom";
+import ShipsService from "../api/shipsService"; // Serviço de Navios
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
+import EmptyState from "../components/EmptyState";
 
 export default function ShipHistory() {
   const { shipId } = useParams();
-
   const [status, setStatus] = useState("loading");
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    if (!shipId) {
-      setStatus("error");
-      return;
-    }
-
     async function loadHistory() {
+      // ✅ CORREÇÃO B: Converter para número e validar
+      const id = Number(shipId);
+
+      if (isNaN(id) || !shipId || shipId === "undefined") {
+        setStatus("error");
+        return;
+      }
+
       try {
-        const data = await ShipsService.getShipHistory(shipId);
+        setStatus("loading");
+        const data = await ShipsService.getShipHistory(id);
 
         if (!data || data.length === 0) {
           setStatus("empty");
@@ -26,27 +30,43 @@ export default function ShipHistory() {
           setHistory(data);
           setStatus("success");
         }
-      } catch {
+      } catch (err) {
+        console.error("Erro na API de Histórico do Navio:", err);
         setStatus("error");
       }
     }
-
     loadHistory();
   }, [shipId]);
 
   return (
     <PageContainer title="Histórico do Navio">
-      {status === "loading" && <p>Carregando histórico...</p>}
-      {status === "error" && <p>Navio não informado ou erro ao carregar histórico.</p>}
-      {status === "empty" && <p>Nenhuma atividade registrada.</p>}
+      {status === "loading" && <p>Carregando histórico do navio...</p>}
+
+      {status === "empty" && (
+        <EmptyState
+          title="Nenhum histórico encontrado"
+          subtitle="Este navio ainda não possui atividades registradas."
+        />
+      )}
+
+      {status === "error" && (
+        <EmptyState
+          title="Erro ao carregar histórico"
+          subtitle="O ID do navio é inválido ou não foi encontrado."
+        />
+      )}
 
       {status === "success" && (
         <ul className="history-list">
-          {history.map(item => (
+          {history.map((item, index) => (
             <TimelineEvent
-              key={item.id}
+              key={item.id ?? `ship-hist-${index}`}
               action={item.action}
-              description={`Schedule #${item.scheduleId} — ${item.description}`}
+              description={
+                <Link to={`/schedule/${item.scheduleId}/history`}>
+                  Schedule #{item.scheduleId} — {item.description}
+                </Link>
+              }
               date={new Date(item.createdAt).toLocaleString()}
             />
           ))}

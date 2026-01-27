@@ -15,10 +15,11 @@ import TestTariffPage from "./pages/TestTariffPage";
 
 import ScheduleHistory from "./pages/ScheduleHistory";
 import SchedulePeriodReport from "./pages/SchedulePeriodReport";
-import ShipHistory from "./pages/ShipHistory";
+import ShipHistory from "./pages/ShipHistory"; // Componente para Navios
 import GlobalHistory from "./pages/GlobalHistory";
+import RequireParam from "./components/RequireParam";
 
-/* 🎨 ORDEM CORRETA DE CSS */
+/* 🎨 CSS */
 import "./styles/pilotmaster-theme.css";
 import "./styles/design-system.css";
 import "./styles/cards.css";
@@ -27,57 +28,53 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-
-        {/* 🔓 ROTA PÚBLICA */}
         <Route path="/auth/login" element={<Login />} />
 
-        {/* 🔒 ROTAS PROTEGIDAS */}
         <Route element={<ProtectedRoute />}>
-
-          {/* 🧱 LAYOUT BASE ÚNICO DO PRODUTO */}
           <Route element={<Layout />}>
-
-            {/* Dashboard */}
+            
             <Route path="/home" element={<Home />} />
 
-            {/* Navios */}
+            {/* --- SEÇÃO DE NAVIOS --- */}
             <Route path="/ships" element={<ShipsList />} />
             <Route path="/ships/new" element={<ShipForm />} />
-            <Route path="/ships/:shipId/history" element={<ShipHistory />} />
+            <Route 
+              path="/ships/:shipId/history"
+              element={
+                <RequireParam name="shipId" redirectTo="/ships">
+                  <ShipHistory />
+                </RequireParam>
+              }
+            />
 
-            {/* Agendamentos */}
+            {/* --- SEÇÃO DE AGENDAMENTOS --- */}
             <Route path="/schedule" element={<TestSchedulePage />} />
             <Route path="/schedule/new" element={<TestScheduleCreate />} />
-            <Route path="/schedule/:scheduleId/history" element={<ScheduleHistory />} />
+            <Route 
+              path="/schedule/:scheduleId/history"  
+              element={
+                <RequireParam name="scheduleId" redirectTo="/schedule">
+                  {/* ✅ AQUI ESTAVA O ERRO: Tinha que ser ScheduleHistory */}
+                  <ScheduleHistory />
+                </RequireParam>
+              }
+            />
+            
             <Route path="/schedule/report" element={<SchedulePeriodReport />} />
-
-            {/* Histórico Global */}
             <Route path="/history" element={<GlobalHistory />} />
-
-            {/* Tarifas */}
             <Route path="/tariff" element={<TestTariffPage />} />
 
-            {/* Configurações */}
             <Route
               path="/settings"
               element={<div style={{ padding: 20 }}>Configurações (em construção)</div>}
             />
 
-            {/* Redirect padrão */}
             <Route path="/" element={<Navigate to="/home" replace />} />
-
           </Route>
         </Route>
 
-        {/* 🧪 Rotas de teste isoladas */}
         <Route path="/test/auth" element={<TestAuthPage />} />
-
-        {/* 404 */}
-        <Route
-          path="*"
-          element={<div style={{ padding: 20 }}>404 — Não encontrado</div>}
-        />
-
+        <Route path="*" element={<div style={{ padding: 20 }}>404 — Não encontrado</div>} />
       </Routes>
     </BrowserRouter>
   );

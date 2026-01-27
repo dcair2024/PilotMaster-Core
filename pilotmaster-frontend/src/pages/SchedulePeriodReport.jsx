@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ScheduleService from "../api/ScheduleService";
 import PageContainer from "../components/PageContainer";
+import EmptyState from "../components/EmptyState";
+
 
 export default function SchedulePeriodReport() {
   const [startDate, setStartDate] = useState("");
@@ -61,8 +63,20 @@ export default function SchedulePeriodReport() {
       </div>
 
       {status === "loading" && <p>Carregando relatório...</p>}
-      {status === "error" && <p>Erro ao carregar relatório.</p>}
-      {status === "empty" && <p>Nenhum dado encontrado.</p>}
+      {status === "empty" && (
+  <EmptyState
+    title="Nenhum dado encontrado"
+    subtitle="Não há schedules no período selecionado."
+  />
+)}
+
+{status === "error" && (
+  <EmptyState
+    title="Erro ao gerar relatório"
+    subtitle="Tente novamente mais tarde."
+  />
+)}
+
 
       {status === "success" && report && (
         <div className="card">
