@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ShipsService from "../api/shipsService";
 import PageContainer from "../components/PageContainer";
 import "../styles/cards.css";
@@ -18,6 +18,15 @@ export default function ShipsList() {
 
   return (
     <PageContainer title="Navios">
+      {/* HEADER */}
+      <div className="page-header">
+        <span />
+        <Link to="/ships/new" className="btn-primary">
+          + Novo Navio
+        </Link>
+      </div>
+
+      {/* GRID */}
       <div className="cards-grid">
         {ships.map(ship => (
           <div
@@ -37,3 +46,4 @@ export default function ShipsList() {
     </PageContainer>
   );
 }
+
