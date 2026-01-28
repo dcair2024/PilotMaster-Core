@@ -3,6 +3,8 @@ import api from "../api/api";
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
 import EmptyState from "../components/EmptyState";
+import { MICROCOPY } from "../ui/microcopy";
+
 
 import { Link } from "react-router-dom";
 
@@ -33,22 +35,21 @@ export default function GlobalHistory() {
 
   return (
     <PageContainer title="Histórico Global">
-      {status === "loading" && <p>Carregando histórico...</p>}
-      {status === "empty" && (
+      {status === "loading" && <p>{MICROCOPY.loading.globalHistory}</p>}
+
+{status === "empty" && (
   <EmptyState
-    title="Nenhum registro encontrado"
-    subtitle="Não há atividades registradas no sistema."
+    title={MICROCOPY.empty.globalHistory.title}
+    subtitle={MICROCOPY.empty.globalHistory.subtitle}
   />
 )}
 
 {status === "error" && (
   <EmptyState
-    title="Erro ao carregar histórico"
-    subtitle="Verifique sua conexão ou tente novamente."
+    title={MICROCOPY.error.generic.title}
+    subtitle={MICROCOPY.error.generic.subtitle}
   />
-)}
-
-      
+)}      
 
       {status === "success" && (
   <ul className="history-list">

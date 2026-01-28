@@ -4,6 +4,7 @@ import ScheduleService from "../api/ScheduleService"; // ✅ IMPORTANTE: Serviç
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
 import EmptyState from "../components/EmptyState";
+import { MICROCOPY } from "../ui/microcopy";
 
 export default function ScheduleHistory() {
   const { scheduleId } = useParams();
@@ -41,21 +42,23 @@ export default function ScheduleHistory() {
 
   return (
     <PageContainer title="Histórico do Agendamento">
-      {status === "loading" && <p>Carregando histórico do agendamento...</p>}
+      
+{status === "loading" && <p>{MICROCOPY.loading.scheduleHistory}</p>}
 
-      {status === "empty" && (
-        <EmptyState
-          title="Histórico vazio"
-          subtitle="Nenhuma movimentação para este agendamento."
-        />
-      )}
+{status === "empty" && (
+  <EmptyState
+    title={MICROCOPY.empty.scheduleHistory.title}
+    subtitle={MICROCOPY.empty.scheduleHistory.subtitle}
+  />
+)}
 
-      {status === "error" && (
-        <EmptyState
-          title="Erro no Agendamento"
-          subtitle="O ID do agendamento fornecido é inválido."
-        />
-      )}
+{status === "error" && (
+  <EmptyState
+    title={MICROCOPY.error.invalidSchedule.title}
+    subtitle={MICROCOPY.error.invalidSchedule.subtitle}
+  />
+)}
+
 
       {status === "success" && (
         <ul className="history-list">

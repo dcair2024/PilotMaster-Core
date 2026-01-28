@@ -4,6 +4,7 @@ import ShipsService from "../api/shipsService";
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
 import EmptyState from "../components/EmptyState";
+import { MICROCOPY } from "../ui/microcopy";
 
 export default function ShipHistory() {
   
@@ -45,21 +46,21 @@ export default function ShipHistory() {
 
   return (
     <PageContainer title="Histórico do Navio">
-      {status === "loading" && <p>Carregando histórico do navio...</p>}
+      {status === "loading" && <p>{MICROCOPY.loading.shipHistory}</p>}
 
-      {status === "empty" && (
-        <EmptyState
-          title="Nenhum histórico encontrado"
-          subtitle="Este navio ainda não possui atividades registradas."
-        />
-      )}
+{status === "empty" && (
+  <EmptyState
+    title={MICROCOPY.empty.shipHistory.title}
+    subtitle={MICROCOPY.empty.shipHistory.subtitle}
+  />
+)}
 
-      {status === "error" && (
-        <EmptyState
-          title="Erro ao carregar histórico"
-          subtitle="O ID do navio é inválido ou não foi encontrado."
-        />
-      )}
+{status === "error" && (
+  <EmptyState
+    title={MICROCOPY.error.invalidShip.title}
+    subtitle={MICROCOPY.error.invalidShip.subtitle}
+  />
+)}
 
       {status === "success" && (
         <ul className="history-list">
