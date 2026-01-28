@@ -1,23 +1,18 @@
-import api from "./apiConfig";
+import api from "./api";
 
+const ShipsService = {
+  getShips: async () => {
+    const response = await api.get("/ships");
+    return response.data;
+  },
 
-export const getShips = async () => {
-  const response = await api.get("/Ships");
-  return response.data;
+  getShipHistory: async (shipId) => {
+    const response = await api.get(`/ships/${shipId}/history`);
+    return response.data;
+  }
 };
 
-export const createShip = async (ship) => {
-  const response = await api.post("/Ships", ship);
-  return response.data;
-};
+export default ShipsService;
 
-async function getShipHistory(shipId) {
-  const res = await api.get(`/Ships/${shipId}/history`);
-  return res.data;
-}
-export default {
-  
-  getShipHistory
-};
 
 

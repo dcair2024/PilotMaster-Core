@@ -1,67 +1,39 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ShipsService from "../api/shipsService";
 import PageContainer from "../components/PageContainer";
-import TimelineEvent from "../components/TimelineEvent";
+import "../styles/cards.css";
 
-export default function ShipHistory() {
-  const { shipId } = useParams();
-
-  const [status, setStatus] = useState("loading");
-  const [history, setHistory] = useState([]);
+export default function ShipsList() {
+  const [ships, setShips] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function loadHistory() {
-      // 🛡️ PROTEÇÃO: Se não houver ID ou se for a string "undefined", nem tenta chamar a API
-      if (!shipId || shipId === "undefined") {
-        setStatus("error");
-        return;
-      }
-
-      try {
-        setStatus("loading");
-        const data = await ShipsService.getShipHistory(shipId);
-
-        if (!data || data.length === 0) {
-          setStatus("empty");
-        } else {
-          setHistory(data);
-          setStatus("success");
-        }
-      } catch (err) {
-        console.error("Erro ao buscar histórico:", err);
-        setStatus("error");
-      }
+    async function load() {
+      const data = await ShipsService.getShips();
+      setShips(data);
     }
-
-    loadHistory();
-  }, [shipId]); // Recarrega se o ID mudar
+    load();
+  }, []);
 
   return (
-    <PageContainer title="Histórico do Navio">
-      {status === "loading" && <p>Carregando histórico...</p>}
-      
-      {status === "error" && (
-        <p style={{ color: "red" }}>
-          Erro: ID do navio inválido ou problema na conexão.
-        </p>
-      )}
-      
-      {status === "empty" && <p>Nenhuma atividade registrada para este navio.</p>}
+    <PageContainer title="Navios">
+      <div className="cards-grid">
+        {ships.map(ship => (
+          <div
+            key={ship.id}
+            className="ship-card"
+            onClick={() => navigate(`/ships/${ship.id}/history`)}
+          >
+            <h3>{ship.name}</h3>
+            <p>Status: {ship.active ? "Ativo" : "Inativo"}</p>
 
-      {status === "success" && (
-        <ul className="history-list">
-          {history.map((item, index) => (
-            <TimelineEvent
-              // Usando uma chave composta para garantir unicidade
-              key={`${item.id || index}-${item.createdAt}`}
-              action={item.action}
-              description={`Schedule #${item.scheduleId} — ${item.description}`}
-              date={new Date(item.createdAt).toLocaleString()}
-            />
-          ))}
-        </ul>
-      )}
+            <div className="card-actions">
+              <span className="btn-primary">Ver histórico</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </PageContainer>
   );
 }

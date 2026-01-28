@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.api\\PilotMaster.Api.csproj": {}
+    "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.api\\PilotMaster.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.api\\PilotMaster.Api.csproj": {
+    "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.api\\PilotMaster.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.api\\PilotMaster.Api.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.api\\PilotMaster.Api.csproj",
         "projectName": "PilotMaster.Api",
-        "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.api\\PilotMaster.Api.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.api\\PilotMaster.Api.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.api\\obj\\",
         "projectStyle": "PackageReference",
@@ -32,14 +32,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Application\\PilotMaster.Application.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Application\\PilotMaster.Application.csproj"
+              "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\PilotMaster.Application.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\PilotMaster.Application.csproj"
               },
-              "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj"
+              "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj"
               },
-              "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj"
+              "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj"
               }
             }
           }
@@ -118,12 +118,12 @@
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Application\\PilotMaster.Application.csproj": {
+    "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\PilotMaster.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Application\\PilotMaster.Application.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\PilotMaster.Application.csproj",
         "projectName": "PilotMaster.Application",
-        "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Application\\PilotMaster.Application.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Application\\PilotMaster.Application.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Application\\obj\\",
         "projectStyle": "PackageReference",
@@ -146,11 +146,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj"
+              "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj"
               },
-              "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj"
+              "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj"
               }
             }
           }
@@ -196,12 +196,12 @@
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
+    "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj",
         "projectName": "PilotMaster.Domain",
-        "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\obj\\",
         "projectStyle": "PackageReference",
@@ -267,12 +267,12 @@
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj": {
+    "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
         "projectName": "PilotMaster.Infrastructure",
-        "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Infrastructure\\PilotMaster.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
@@ -295,8 +295,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\PilotMaster-Core\\PilotMaster.Domain\\PilotMaster.Domain.csproj"
+              "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj": {
+                "projectPath": "C:\\Users\\User\\source\\repos\\Pilotmaster-core\\PilotMaster.Domain\\PilotMaster.Domain.csproj"
               }
             }
           }

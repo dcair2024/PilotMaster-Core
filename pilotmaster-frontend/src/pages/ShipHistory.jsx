@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import ShipsService from "../api/shipsService"; // Serviço de Navios
+import ShipsService from "../api/shipsService";
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
 import EmptyState from "../components/EmptyState";
 
 export default function ShipHistory() {
+  
   const { shipId } = useParams();
+  if (!shipId || shipId === "undefined") {
+  return null;
+}
+
   const [status, setStatus] = useState("loading");
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
     async function loadHistory() {
-      // ✅ CORREÇÃO B: Converter para número e validar
       const id = Number(shipId);
 
-      if (isNaN(id) || !shipId || shipId === "undefined") {
+      if (isNaN(id)) {
         setStatus("error");
         return;
       }
@@ -35,6 +39,7 @@ export default function ShipHistory() {
         setStatus("error");
       }
     }
+
     loadHistory();
   }, [shipId]);
 
