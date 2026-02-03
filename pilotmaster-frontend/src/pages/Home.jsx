@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/apiConfig";
 import PageContainer from "../components/PageContainer";
 import "./home.css";
+import { NavLink } from "react-router-dom";
+
 
 export default function Home() {
   const [data, setData] = useState(null);
@@ -110,15 +112,43 @@ export default function Home() {
       )}
     </section>
 
-    {/* ===== AÇÕES RÁPIDAS ===== */}
-    <section className="pm-card" style={{ marginTop: 24 }}>
-      <h3 className="pm-title">Ações rápidas</h3>
+   {/* ===== AÇÕES RÁPIDAS ===== */}
+<section className="pm-card" style={{ marginTop: 24 }}>
+  <h3 className="pm-title">Acesso rápido</h3>
 
-      <div className="quick-actions">
-        <button className="btn-primary">➕ Novo Agendamento</button>
-        <button className="btn-secondary">📋 Ver Agendamentos</button>
-      </div>
-    </section>
+  <div className="cards-grid">
+
+    <NavLink to="/history" className="pm-card">
+      <h3>📜 Histórico Global</h3>
+      <p className="pm-subtitle">
+        Visualize todos os eventos do sistema
+      </p>
+    </NavLink>
+
+    <NavLink to="/schedule/report" className="pm-card">
+      <h3>📊 Relatório por Período</h3>
+      <p className="pm-subtitle">
+        Análises e dados consolidados
+      </p>
+    </NavLink>
+
+    <NavLink to="/ships" className="pm-card">
+      <h3>🚢 Navios</h3>
+      <p className="pm-subtitle">
+        Cadastro e informações da frota
+      </p>
+    </NavLink>
+
+    <NavLink to="/schedule" className="pm-card">
+      <h3>🗓️ Agendamentos</h3>
+      <p className="pm-subtitle">
+        Gerencie manobras e operações
+      </p>
+    </NavLink>
+
+  </div>
+</section>
+
 
   </PageContainer>
 );
