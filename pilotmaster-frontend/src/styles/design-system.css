@@ -285,6 +285,38 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Hover do botão primário */
+.btn-primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+}
+
+/* Foco do botão para acessibilidade */
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.3);
+}
+
+/* Hover do botão secundário */
+.btn-secondary:hover {
+  background: #e5e7eb;
+  color: #0f172a;
+}
+a {
+  color: var(--pm-color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+* {
+  transition: all 0.2s ease;
+}
+
+
 
 
 

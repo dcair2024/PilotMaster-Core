@@ -2,6 +2,8 @@ import { useState } from "react";
 import { login } from "../api/AuthService";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
+import logo from '../assets/logo/pilotmaster-logo.png';
+
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -23,10 +25,11 @@ export default function Login() {
       <div className="pm-card login-card">
 
         {/* LOGO */}
-        <div className="login-logo">
-          <h1>PilotMaster</h1>
-          <span>Sistema de Manobras</span>
-        </div>
+        <div className="login-header">
+  <img src={logo} alt="PilotMaster" className="login-logo" />
+</div>
+
+
 
         {/* FORM */}
         <form onSubmit={handleLogin}>

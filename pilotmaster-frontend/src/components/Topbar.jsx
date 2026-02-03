@@ -17,6 +17,8 @@ export default function Topbar({ toggleSidebar }) {
           {info?.environment} · v{info?.version}
         </span>
       </div>
+     
+
     </header>
   );
 }

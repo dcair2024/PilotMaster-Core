@@ -75,5 +75,31 @@
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
 }
 
+/* Adicionar transição suave padronizada */
+.ship-card, .pm-card {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Hover dos cards */
+.ship-card:hover, .pm-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.14);
+  border-color: var(--pm-color-primary); /* usar variável */
+}
+
+/* Hover do título do card */
+.ship-card:hover h3, .pm-card:hover h3 {
+  color: var(--pm-color-primary);
+}
+
+/* Hover do botão primário dentro do card */
+.ship-card:hover .btn-primary, .pm-card:hover .btn-primary {
+  background: #1d4ed8;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.4);
+}
+
 
 

@@ -67,4 +67,26 @@
   }
 }
 
+/* Hover e ativo já existem, reforçar transição */
+.nav-link:hover, .nav-link.active {
+  background: var(--pm-color-primary);
+  color: var(--pm-white);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Foco acessível */
+.nav-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.4);
+}
+
+.sidebar-logo img {
+  width: 140px; /* ajustável */
+  height: auto;
+  display: block;
+  margin-bottom: 32px;
+}
+
+
+
 
