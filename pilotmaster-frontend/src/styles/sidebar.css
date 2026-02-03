@@ -87,6 +87,15 @@
   margin-bottom: 32px;
 }
 
+.pm-version {
+  margin-top: auto;
+  padding: 12px;
+  font-size: 12px;
+  color: #94a3b8;
+  opacity: 0.85;
+}
+
+
 
 
 

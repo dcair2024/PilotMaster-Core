@@ -4,8 +4,8 @@ import "../styles/sidebar.css";
 import logo from '../assets/logo/pilotmaster-logo.png';
 
 
-
-export default function Sidebar({ open, onClose }) {
+export default function Sidebar({ open, onClose, systemInfo }) 
+ {
   const info = useSystemInfo();
 
   return (
@@ -30,6 +30,12 @@ export default function Sidebar({ open, onClose }) {
           Tarifas
         </NavLink>
       </nav>
+      {systemInfo && (
+  <div className="pm-version">
+    v{systemInfo.version} • {systemInfo.environment}
+  </div>
+)}
+
     </aside>
   );
 }

@@ -9,14 +9,7 @@ export default function Topbar({ toggleSidebar }) {
         ☰
       </button>
 
-      <div className="pm-system">
-        <span className="pm-system-name">
-          {info?.systemName ?? "PilotMaster"}
-        </span>
-        <span className="pm-system-meta">
-          {info?.environment} · v{info?.version}
-        </span>
-      </div>
+      
      
 
     </header>
