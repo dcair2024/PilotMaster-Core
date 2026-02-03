@@ -44,9 +44,3 @@
   }
 }
 
-.section-separator {
-  height: 1px;
-  background: linear-gradient(to right, transparent, #e5e7eb, transparent);
-  margin: 32px 0;
-}
-

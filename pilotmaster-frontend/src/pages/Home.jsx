@@ -49,15 +49,25 @@ export default function Home() {
   ];
 
   return (
-    <PageContainer title="Dashboard">
+  <PageContainer title="Dashboard">
 
+    {/* ===== RESUMO ===== */}
+    <section className="pm-card">
       <h2 className="home-greeting">Olá, Usuário 👋</h2>
       <p className="home-subtitle">Dashboard de Manobras</p>
+    </section>
 
-      {/* CARDS */}
+    {/* ===== MÉTRICAS ===== */}
+    <section className="pm-card" style={{ marginTop: 24 }}>
+      <h3 className="pm-title">Métricas</h3>
+
       <div className="cards-grid">
         {cards.map((c, i) => (
-          <div key={i} className="card" style={{ borderTopColor: c.color }}>
+          <div
+            key={i}
+            className="pm-card"
+            style={{ borderTop: `4px solid ${c.color}` }}
+          >
             <div className="card-icon">{c.icon}</div>
             <div className="card-value">{c.value}</div>
             <div className="card-label">{c.label}</div>
@@ -65,14 +75,18 @@ export default function Home() {
           </div>
         ))}
       </div>
+    </section>
 
-      {/* SEPARADOR */}
-      <div className="section-separator" />
+    {/* ===== ÚLTIMOS AGENDAMENTOS ===== */}
+    <section className="pm-card" style={{ marginTop: 24 }}>
+      <h3 className="pm-title">Últimos Agendamentos</h3>
 
-      {/* LISTA */}
-      <div className="recent-schedules">
-        <h3>Últimos Agendamentos</h3>
-
+      {data.recentSchedules.length === 0 ? (
+        <EmptyState
+          title="Nenhum agendamento recente"
+          subtitle="Os últimos agendamentos aparecerão aqui"
+        />
+      ) : (
         <table className="table">
           <thead>
             <tr>
@@ -83,7 +97,7 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {data.recentSchedules.map((schedule) => (
+            {data.recentSchedules.map(schedule => (
               <tr key={schedule.id}>
                 <td>{new Date(schedule.scheduledAt).toLocaleString()}</td>
                 <td>{schedule.area}</td>
@@ -93,14 +107,20 @@ export default function Home() {
             ))}
           </tbody>
         </table>
-      </div>
+      )}
+    </section>
 
-      {/* AÇÕES */}
+    {/* ===== AÇÕES RÁPIDAS ===== */}
+    <section className="pm-card" style={{ marginTop: 24 }}>
+      <h3 className="pm-title">Ações rápidas</h3>
+
       <div className="quick-actions">
         <button className="btn-primary">➕ Novo Agendamento</button>
         <button className="btn-secondary">📋 Ver Agendamentos</button>
       </div>
+    </section>
 
-    </PageContainer>
-  );
+  </PageContainer>
+);
+
 }

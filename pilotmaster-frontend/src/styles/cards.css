@@ -53,3 +53,27 @@
   background: #1d4ed8;
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
 }
+
+.pm-card {
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.pm-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.14);
+  border-color: #2563eb;
+}
+
+.pm-card:hover .btn-primary {
+  background: #1d4ed8;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+
+
