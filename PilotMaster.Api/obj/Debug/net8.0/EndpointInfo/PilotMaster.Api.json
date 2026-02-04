@@ -650,7 +650,7 @@
         ],
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -658,14 +658,14 @@
             }
           },
           {
-            "name": "Name",
+            "name": "name",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "GRT",
+            "name": "grt",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -673,7 +673,7 @@
             }
           },
           {
-            "name": "Draft",
+            "name": "draft",
             "in": "query",
             "schema": {
               "type": "number",
@@ -681,7 +681,7 @@
             }
           },
           {
-            "name": "Age",
+            "name": "age",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -689,41 +689,23 @@
             }
           },
           {
-            "name": "RequiresTug",
+            "name": "requiresTug",
             "in": "query",
             "schema": {
               "type": "boolean"
             }
           },
           {
-            "name": "Deficiency",
+            "name": "deficiency",
             "in": "query",
             "schema": {
               "$ref": "#/components/schemas/OperationalDeficiency"
-            }
-          },
-          {
-            "name": "IsActive",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": { }
-              },
-              "application/json": {
-                "schema": { }
-              },
-              "text/json": {
-                "schema": { }
-              }
-            }
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request",

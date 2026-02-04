@@ -438,54 +438,45 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Id",
+        "Name": "id",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "Name",
+        "Name": "name",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "GRT",
+        "Name": "grt",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "Draft",
+        "Name": "draft",
         "Type": "System.Decimal",
         "IsRequired": false
       },
       {
-        "Name": "Age",
+        "Name": "age",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "RequiresTug",
+        "Name": "requiresTug",
         "Type": "System.Boolean",
         "IsRequired": false
       },
       {
-        "Name": "Deficiency",
+        "Name": "deficiency",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsActive",
-        "Type": "System.Boolean",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       },
       {

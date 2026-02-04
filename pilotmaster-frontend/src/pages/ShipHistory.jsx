@@ -1,78 +1,58 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ShipsService from "../api/shipsService";
 import PageContainer from "../components/PageContainer";
 import TimelineEvent from "../components/TimelineEvent";
-import EmptyState from "../components/EmptyState";
-import { MICROCOPY } from "../ui/microcopy";
 
 export default function ShipHistory() {
-  
   const { shipId } = useParams();
-  if (!shipId || shipId === "undefined") {
-  return null;
-}
-
   const [status, setStatus] = useState("loading");
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
     async function loadHistory() {
-      const id = Number(shipId);
-
-      if (isNaN(id)) {
-        setStatus("error");
-        return;
-      }
+      setStatus("loading");
 
       try {
-        setStatus("loading");
-        const data = await ShipsService.getShipHistory(id);
+        const data = await ShipsService.getShipHistory(shipId);
 
         if (!data || data.length === 0) {
+          setHistory([]);
           setStatus("empty");
         } else {
           setHistory(data);
           setStatus("success");
         }
       } catch (err) {
-        console.error("Erro na API de Histórico do Navio:", err);
-        setStatus("error");
+        // 🔑 CORREÇÃO PRINCIPAL:
+        // 404 = histórico vazio, NÃO erro
+        if (err.response?.status === 404) {
+          setHistory([]);
+          setStatus("empty");
+        } else {
+          setStatus("error");
+        }
       }
     }
 
-    loadHistory();
+    if (shipId) {
+      loadHistory();
+    }
   }, [shipId]);
 
   return (
     <PageContainer title="Histórico do Navio">
-      {status === "loading" && <p>{MICROCOPY.loading.shipHistory}</p>}
-
-{status === "empty" && (
-  <EmptyState
-    title={MICROCOPY.empty.shipHistory.title}
-    subtitle={MICROCOPY.empty.shipHistory.subtitle}
-  />
-)}
-
-{status === "error" && (
-  <EmptyState
-    title={MICROCOPY.error.invalidShip.title}
-    subtitle={MICROCOPY.error.invalidShip.subtitle}
-  />
-)}
+      {status === "loading" && <p>Carregando histórico...</p>}
+      {status === "error" && <p>Erro ao carregar histórico.</p>}
+      {status === "empty" && <p>Nenhuma atividade registrada.</p>}
 
       {status === "success" && (
         <ul className="history-list">
-          {history.map((item, index) => (
+          {history.map(item => (
             <TimelineEvent
-              key={item.id ?? `ship-hist-${index}`}
+              key={item.id}
               action={item.action}
-              description={
-                <Link to={`/schedule/${item.scheduleId}/history`}>
-                  Schedule #{item.scheduleId} — {item.description}
-                </Link>
-              }
+              description={`Schedule #${item.scheduleId} — ${item.description}`}
               date={new Date(item.createdAt).toLocaleString()}
             />
           ))}

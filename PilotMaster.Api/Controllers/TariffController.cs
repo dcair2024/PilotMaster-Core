@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PilotMaster.Application.DTOs;
 using PilotMaster.Domain.Entities;
 
 namespace PilotMaster.Api.Controllers;
@@ -9,12 +10,31 @@ namespace PilotMaster.Api.Controllers;
 [Authorize]
 public class TariffController : ControllerBase
 {
-    [HttpGet("calculate")]
-    [ProducesResponseType(typeof(object), 200)]
-    [ProducesResponseType(400)]
 
-    public IActionResult Calculate([FromQuery] Ship ship)
+    [HttpGet("calculate")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult Calculate(
+    [FromQuery] int id,
+    [FromQuery] string name,
+    [FromQuery] int grt,
+    [FromQuery] decimal draft,
+    [FromQuery] int age,
+    [FromQuery] bool requiresTug,
+    [FromQuery] OperationalDeficiency deficiency = OperationalDeficiency.None
+)
     {
+        var ship = new Ship
+        {
+            Id = id,
+            Name = name,
+            GRT = grt,
+            Draft = draft,
+            Age = age,
+            RequiresTug = requiresTug,
+            Deficiency = deficiency
+        };
+
         decimal baseValue = ship.GRT * 0.15m;
 
         if (ship.Age > 20)

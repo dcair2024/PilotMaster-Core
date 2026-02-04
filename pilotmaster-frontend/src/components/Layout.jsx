@@ -10,9 +10,7 @@ export default function Layout() {
   const [systemInfo, setSystemInfo] = useState(null);
 
   useEffect(() => {
-    getSystemInfo()
-      .then(setSystemInfo)
-      .catch(() => {});
+    getSystemInfo().then(setSystemInfo).catch(() => {});
   }, []);
 
   return (
@@ -22,6 +20,14 @@ export default function Layout() {
         onClose={() => setSidebarOpen(false)}
         systemInfo={systemInfo}
       />
+
+      {/* OVERLAY MOBILE */}
+      {sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       <div className="app-main">
         <Topbar toggleSidebar={() => setSidebarOpen(v => !v)} />

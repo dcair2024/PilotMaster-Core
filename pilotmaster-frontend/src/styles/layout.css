@@ -1,23 +1,43 @@
 /* === LAYOUT RAIZ DO APP === */
 
 .app-layout {
-  display: grid;
-  grid-template-columns: 240px 1fr;
+  display: flex;
   min-height: 100vh;
 }
+
+
+.app-content {
+  position: relative;
+  background:
+    linear-gradient(
+      rgba(248, 250, 252, 0.92),
+      rgba(248, 250, 252, 0.92)
+    ),
+    url("/src/assets/bg/ship-bg.jpg") center / cover no-repeat fixed;
+
+  min-height: 100vh;
+}
+
 
 /* Sidebar */
 .app-sidebar {
   background: #0f172a; /* azul escuro */
   color: #fff;
 }
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+}
+
 
 /* Área principal */
 .app-main {
   display: flex;
   flex-direction: column;
   background: #f8fafc;
-}
+  flex: 1;}
+
+
 
 /* Topbar */
 .app-topbar {
@@ -26,10 +46,7 @@
   background: #ffffff;
 }
 
-/* Conteúdo das páginas */
-.app-content {
-  padding: 24px;
-}
+
 
 @media (max-width: 768px) {
 
